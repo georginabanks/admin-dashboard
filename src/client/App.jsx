@@ -1,34 +1,53 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import { Navigate, Routes, Route, Outlet } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR!
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  );
+export default function App() {
+    
+    // Login State
+    
+    const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+    
+    function addHours (dt, h){
+        const d = new Date(dt);
+        d.setHours(d.getHours() + h);
+        return d;
+    }
+    
+    function handleLogin(user) {
+        setCookie("user", {
+            username: user,
+            expires: addHours(new Date(), 4)
+        }, {
+            path: "/",
+            maxAge: 4 * 60 * 60
+        });
+    }
+    
+    function handleLogout() {
+        removeCookie("user");
+        return <Navigate to="/login" replace state={{path: location.pathname}}/>
+    }
+    
+    function timeout() {
+        if (new Date(cookies.user.expires) < new Date()) {
+            handleLogout()
+        }
+    }
+    
+    if (cookies.user) {
+        setTimeout(timeout, 1000 * 60 * 15);
+    }
+    
+    
+    // Dashboard Layout
+    
+    const DashboardLayout = () => {
+    
+    }
+    
+    return (
+            <Routes >
+            
+            </Routes>
+    )
 }
-
-export default App;
