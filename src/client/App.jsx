@@ -1,5 +1,9 @@
 import { Navigate, Routes, Route, Outlet } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import DashboardSidebar from "./admin/DashboardSidebar";
+import Dashboard from "./admin/Dashboard";
+import Pages from "./admin/Pages";
+import Posts from "./admin/Posts";
 
 export default function App() {
     
@@ -42,11 +46,26 @@ export default function App() {
     // Dashboard Layout
     
     const DashboardLayout = () => {
-    
+        return (
+                <div className={"row"}>
+                    <div className={"col-md-3"}>
+                        <DashboardSidebar />
+                    </div>
+                    <div className={"col-md-9"}>
+                        <Outlet />
+                    </div>
+                </div>
+        )
     }
     
     return (
             <Routes >
+                
+                <Route path={"/"} element={<DashboardLayout />}>
+                    <Route path={""} element={<Dashboard />} />
+                    <Route path={"pages"} element={<Pages />} />
+                    <Route path={"posts"} element={<Posts />} />
+                </Route>
             
             </Routes>
     )
