@@ -7,6 +7,9 @@ const app = express();
 app.use(fileUpload());
 app.use(express.static('public'));
 
+
+// Upload Images
+
 app.post('/upload', (req, res) => {
     // Get the file that was set to our field named "image"
     const { image } = req.files;
@@ -20,6 +23,11 @@ app.post('/upload', (req, res) => {
     res.sendStatus(200);
 });
 
-ViteExpress.listen(app, 3000, () =>
-    console.log("Server is listening on port 3000...")
+
+// Server
+
+const port = process.env.PORT || 3000
+
+ViteExpress.listen(app, port, () =>
+    console.log(`Server is listening on port ${port}...`)
 );
