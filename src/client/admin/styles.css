@@ -1,0 +1,19 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Sidebar */
+
+.sidebar {
+    background: rgba(216, 191, 216, 0.32);
+    min-height: 100vh;
+    min-width: auto;
+    padding: 2rem;
+}
+
+
+/* Outlet */
+
+.outlet {
+    padding: 2rem;
+}

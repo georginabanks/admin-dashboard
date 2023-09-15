@@ -1,9 +1,10 @@
-import { Navigate, Routes, Route, Outlet } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import DashboardSidebar from "./admin/DashboardSidebar";
-import Dashboard from "./admin/Dashboard";
-import Pages from "./admin/Pages";
-import Posts from "./admin/Posts";
+import { DashboardLayout } from "./admin/DashboardLayout";
+import Dashboard from "./admin/pages/Dashboard";
+import Pages from "./admin/pages/Pages";
+import Posts from "./admin/pages/Posts";
+import Upload from "./admin/Upload";
 
 export default function App() {
     
@@ -42,22 +43,6 @@ export default function App() {
         setTimeout(timeout, 1000 * 60 * 15);
     }
     
-    
-    // Dashboard Layout
-    
-    const DashboardLayout = () => {
-        return (
-                <div className={"row"}>
-                    <div className={"col-md-3"}>
-                        <DashboardSidebar />
-                    </div>
-                    <div className={"col-md-9"}>
-                        <Outlet />
-                    </div>
-                </div>
-        )
-    }
-    
     return (
             <Routes >
                 
@@ -65,6 +50,7 @@ export default function App() {
                     <Route path={""} element={<Dashboard />} />
                     <Route path={"pages"} element={<Pages />} />
                     <Route path={"posts"} element={<Posts />} />
+                    <Route path={"upload"} element={<Upload />} />
                 </Route>
             
             </Routes>
