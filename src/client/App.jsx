@@ -5,6 +5,8 @@ import Dashboard from "./admin/pages/Dashboard";
 import Pages from "./admin/pages/Pages";
 import Posts from "./admin/pages/Posts";
 import Upload from "./admin/Upload";
+import Settings from "./admin/pages/Settings";
+import Login from "./admin/pages/Login";
 
 export default function App() {
     
@@ -30,7 +32,7 @@ export default function App() {
     
     function handleLogout() {
         removeCookie("user");
-        return <Navigate to="/login" replace state={{path: location.pathname}}/>
+        return <Navigate to='/login' replace state={{path: location.pathname}}/>
     }
     
     function timeout() {
@@ -46,11 +48,13 @@ export default function App() {
     return (
             <Routes >
                 
-                <Route path={"/"} element={<DashboardLayout />}>
-                    <Route path={""} element={<Dashboard />} />
-                    <Route path={"pages"} element={<Pages />} />
-                    <Route path={"posts"} element={<Posts />} />
-                    <Route path={"upload"} element={<Upload />} />
+                <Route path={'/'} element={<DashboardLayout />}>
+                    <Route path={''} element={<Dashboard />} />
+                    <Route path={'pages'} element={<Pages />} />
+                    <Route path={'posts'} element={<Posts />} />
+                    <Route path={'upload'} element={<Upload />} />
+                    <Route path={'settings'} element={<Settings />} />
+                    <Route path={'login'} element={<Login />} />
                 </Route>
             
             </Routes>

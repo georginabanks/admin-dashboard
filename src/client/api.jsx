@@ -98,11 +98,6 @@ export const getPostBySlug = ( slug ) => {
 }
 
 
-// Images
-
-export const getImages = [];
-
-
 // Testimonials
 
 export const getTestimonialsByPage = ( page ) => {
