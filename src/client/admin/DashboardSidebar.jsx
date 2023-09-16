@@ -8,7 +8,7 @@ function CreateNav(props) {
 					<div className={'col-2'}>
 						{ props.icon }
 					</div>
-					<div className={'col-2'}>
+					<div className={'col-6'}>
 						{ props.name }
 					</div>
 				</div>
@@ -94,7 +94,7 @@ function SecondaryNavigation() {
 export default function DashboardSidebar() {
 	return (
 			<div className={'sidebar d-flex align-items-start flex-column mb-3 nav-menu'}>
-				<div className={'mb-auto'}>
+				<div className={'mb-lg-auto'}>
 					<Logo />
 					<PrimaryNavigation />
 				</div>

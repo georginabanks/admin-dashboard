@@ -22,7 +22,7 @@ export default function App() {
     
     function handleLogin(user) {
         setCookie("user", {
-            username: user,
+            ...user,
             expires: addHours(new Date(), 4)
         }, {
             path: "/",
@@ -48,13 +48,13 @@ export default function App() {
     return (
             <Routes >
                 
-                <Route path={'/'} element={<DashboardLayout />}>
+                <Route path={'/'} element={<DashboardLayout handleLogout={handleLogout} cookies={cookies} />}>
                     <Route path={''} element={<Dashboard />} />
                     <Route path={'pages'} element={<Pages />} />
                     <Route path={'posts'} element={<Posts />} />
                     <Route path={'upload'} element={<Upload />} />
                     <Route path={'settings'} element={<Settings />} />
-                    <Route path={'login'} element={<Login />} />
+                    <Route path={'login'} element={<Login handleLogin={handleLogin} />} />
                 </Route>
             
             </Routes>
