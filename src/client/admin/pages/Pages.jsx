@@ -6,6 +6,7 @@ export default function Pages() {
 	
 	const [pages, setPages] = useState([]);
 	const [counter, setCounter] = useState(0);
+	const [select, setSelect] = useState([]);
 	
 	useEffect(() => {
 		setPages(getPages);
@@ -13,7 +14,7 @@ export default function Pages() {
 	
 	return (
 			<div>
-				<PostsTable posts={ pages } title={ 'Page' } />
+				<PostsTable posts={ pages } title={ 'Page' } select={select} setSelect={setSelect} />
 			</div>
 	)
 }

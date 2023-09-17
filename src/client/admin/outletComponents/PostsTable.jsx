@@ -32,10 +32,7 @@ function Row({ post, select, setSelect }) {
 	)
 }
 
-export default function PostsTable({ posts, title }) {
-	
-	const [select, setSelect] = useState([]);
-	
+export default function PostsTable({ posts, title, select, setSelect }) {
 	return (
 			<div>
 				<table className={'table table-hover'}>
