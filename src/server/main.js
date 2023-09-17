@@ -2,9 +2,9 @@ import express from "express";
 import ViteExpress from "vite-express";
 import fileUpload from "express-fileupload";
 import path from "path";
-import { getPages } from "./admin/pages.js";
-import { getPosts } from "./admin/posts.js";
-import { getTestimonials } from "./admin/testimonials.js";
+import {addPage, getPages} from "./admin/pages.js";
+import {addPost, getPosts} from "./admin/posts.js";
+import {addTestimonial, getTestimonials} from "./admin/testimonials.js";
 
 const app = express();
 app.use(fileUpload());
@@ -16,6 +16,9 @@ app.use(express.static('public'));
 app.route('/api/admin/pages')
         .get(async function (req, res) {
             res.send(await getPages(req.query.limit));
+        })
+        .post(async function (req, res) {
+            res.send(await addPage(req.body));
         });
 
 
@@ -24,6 +27,9 @@ app.route('/api/admin/pages')
 app.route('/api/admin/posts')
         .get(async function (req, res) {
             res.send(await getPosts(req.query.limit));
+        })
+        .post(async function (req, res) {
+            res.send(await addPost(req.body));
         });
 
 
@@ -32,6 +38,9 @@ app.route('/api/admin/posts')
 app.route('/api/admin/testimonials')
         .get(async function (req, res) {
             res.send(await getTestimonials(req.query.limit));
+        })
+        .post(async function (req, res) {
+            res.send(await addTestimonial(req.body));
         });
 
 

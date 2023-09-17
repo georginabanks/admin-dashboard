@@ -2,7 +2,12 @@ import { Page, knex } from "./db.js";
 
 export async function addPage( page ) {
 	return await Page.create({
-	
+		pageTitle: page.pageTitle,
+		pageContent: page.pageContent,
+		datePublished: page.datePublished,
+		pageSlug: page.pageSlug,
+		StatusStatusId: page.StatusStatusId,
+		UserUserId: page.UserUserId
 	});
 }
 

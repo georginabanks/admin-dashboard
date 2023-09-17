@@ -17,10 +17,6 @@ export const getPages = async ( limit ) => {
 	return data.data;
 };
 
-export const getPageBySlug = async ( slug ) => {
-
-}
-
 
 // Posts
 
@@ -30,10 +26,6 @@ export const getPosts = async ( limit ) => {
 		}});
 	return data.data;
 };
-
-export const getPostBySlug = ( slug ) => {
-
-}
 
 
 // Testimonials
@@ -45,11 +37,3 @@ export const getTestimonials = async ( limit ) => {
 	return data.data;
 };
 
-export const getTestimonialsByPage = ( page ) => {
-
-}
-
-
-// Users
-
-export const getUsers = [];
