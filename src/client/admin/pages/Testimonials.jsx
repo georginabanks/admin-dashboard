@@ -5,7 +5,7 @@ function Row({ testimonial, select, setSelect }) {
 	
 	const changeSelect = (event) => {
 		let data = [...select];
-		const index = data.indexOf(String(testimonial.id));
+		const index = data.indexOf(String(testimonial.testimonialId));
 		
 		if (index > -1) {
 			data.splice(index, 1);
@@ -16,8 +16,8 @@ function Row({ testimonial, select, setSelect }) {
 		setSelect(data);
 	}
 	
-	let comments = testimonial.testimonialComments;
-	if (testimonial.testimonialComments.length > 150) { comments.slice(150) }
+	let comments = testimonial.testimonialContent;
+	if (testimonial.testimonialContent.length > 150) { comments.slice(150) }
 	
 	return (
 			<tr>
@@ -39,29 +39,32 @@ export default function Testimonials() {
 	const [testimonials, setTestimonials] = useState([]);
 	const [counter, setCounter] = useState(0);
 	const [select, setSelect] = useState([]);
+	const [limit, setLimit] = useState(10);
 	
 	useEffect(() => {
-		setTestimonials(getTestimonials);
+		getTestimonials(limit).then( res => setTestimonials(res) );
 	}, [ counter ])
 	
 	return (
 			<div>
-				<table className={'table table-hover'}>
+				{ testimonials.length > 0 && <table className={'table table-hover'}>
 					<thead>
-						<tr>
-							<th scope={'col'}></th>
-							<th scope={'col'}>Testimonial Author</th>
-							<th scope={'col'}>Excerpt</th>
-							<th scope={'col'}>Page Assigned</th>
-						</tr>
+					<tr>
+						<th scope={'col'}></th>
+						<th scope={'col'}>Testimonial Author</th>
+						<th scope={'col'}>Excerpt</th>
+						<th scope={'col'}>Page Assigned</th>
+					</tr>
 					</thead>
 					
 					<tbody>
-						{ testimonials.map( t => {
-							return <Row testimonial={t} key={ t.id } select={select} setSelect={setSelect} />
-						}) }
+					{testimonials.map(t => {
+						return <Row testimonial={t} key={t.id} select={select} setSelect={setSelect}/>
+					})}
 					</tbody>
-				</table>
+				</table> }
+				
+				{ testimonials.length === 0 && <p>There are no testimonials yet.</p> }
 			</div>
 	)
 }
