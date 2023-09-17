@@ -8,7 +8,7 @@ function CreateNav(props) {
 					<div className={'col-2'}>
 						{ props.icon }
 					</div>
-					<div className={'col-6'}>
+					<div className={'col-8'}>
 						{ props.name }
 					</div>
 				</div>
@@ -23,7 +23,7 @@ function Logo() {
 	return (
 			<div className={'row logo'}>
 				<div className={'col-3'}>
-					<img src={'./public/uploads/spacey_logo.png'} alt={'logo'} />
+					<img src={'/public/uploads/logo.png'} alt={'logo'} />
 				</div>
 				<div className={'col-9'}>
 					<h5>Company Name</h5>

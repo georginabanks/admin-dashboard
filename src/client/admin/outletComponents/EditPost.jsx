@@ -1,8 +1,8 @@
 export default function EditPost() {
 	return (
-			<div className={'row'}>
+			<div>
 				<div className="mb-3">
-					<input type="text" className="form-control" name='postTitle' id="postTitle"
+					<input type="text" className="form-control form-control-lg" name='postTitle' id="postTitle"
 						   placeholder="Title" />
 				</div>
 				<div className="mb-3">
@@ -10,17 +10,19 @@ export default function EditPost() {
 						   placeholder="Slug" />
 				</div>
 				<div className="mb-3">
-					<textarea className="form-control" name='postContent' id="postContent" rows="10"></textarea>
+					<textarea className="form-control" name='postContent' id="postContent" rows="20"></textarea>
 				</div>
 				
-				<div className={'col-3 mb-3'}>
-				
-				</div>
-				<div className={'col-3 mb-3'}>
-				
-				</div>
-				<div className={'col-3 mb-3'}>
-				
+				<div className={'row'}>
+					<div className={'col-4 mb-3'}>
+						<button type="button" className="btn delete-button">Delete Post</button>
+					</div>
+					<div className={'col-4 mb-3'}>
+						<button type="button" className="btn save-button">Save Draft</button>
+					</div>
+					<div className={'col-4 mb-3'}>
+						<button type="button" className="btn publish-button">Publish</button>
+					</div>
 				</div>
 			</div>
 	)

@@ -1,8 +1,8 @@
 export default function EditPage() {
 	return (
-			<div className={'row'}>
+			<div>
 				<div className="mb-3">
-					<input type="text" className="form-control" name='PageTitle' id="PageTitle"
+					<input type="text" className="form-control form-control-lg" name='PageTitle' id="PageTitle"
 						   placeholder="Title" />
 				</div>
 				<div className="mb-3">
@@ -10,17 +10,19 @@ export default function EditPage() {
 						   placeholder="Slug" />
 				</div>
 				<div className="mb-3">
-					<textarea className="form-control" name='PageContent' id="PageContent" rows="10"></textarea>
+					<textarea className="form-control" name='PageContent' id="PageContent" rows="20"></textarea>
 				</div>
 				
-				<div className={'col-3 mb-3'}>
-				
-				</div>
-				<div className={'col-3 mb-3'}>
-				
-				</div>
-				<div className={'col-3 mb-3'}>
-				
+				<div className='row'>
+					<div className={'col-4 mb-3'}>
+					
+					</div>
+					<div className={'col-4 mb-3'}>
+					
+					</div>
+					<div className={'col-4 mb-3'}>
+					
+					</div>
 				</div>
 			</div>
 	)

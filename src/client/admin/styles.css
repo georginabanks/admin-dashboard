@@ -16,7 +16,7 @@ a {
     background: rgba(216, 191, 216, 0.32);
     padding: 2rem 1rem;
     height: 100vh;
-    width: 25vw;
+    width: 22vw;
     color: #624F81;
     overflow: hidden;
     z-index: 1;
@@ -24,7 +24,7 @@ a {
 }
 
 .sidebar a {
-    width: calc(25vw - 2rem);
+    width: calc(22vw - 2rem);
 }
 
 /* Active/current link */
@@ -70,7 +70,7 @@ a {
 
 .outlet {
     padding: 2rem;
-    margin-left: 25vw;
+    margin-left: 22vw;
 }
 
 .footer {
@@ -84,4 +84,38 @@ a {
     .outlet {
         margin: 0;
     }
+}
+
+
+/* Buttons */
+
+.btn {
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(216, 191, 216, 1);
+    border-radius: 2rem;
+    color: #624F81;
+}
+.btn:hover {
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(216, 191, 216, 1);
+    border-radius: 2rem;
+    color: #624F81;
+}
+
+.delete-button {
+    background: rgba(233, 234, 236, 0.65);
+}
+.delete-button:hover {
+    background: rgba(233, 234, 236, 1);
+}
+
+.save-button {
+    background: rgba(216, 191, 216, 0.65);
+}
+.save-button:hover {
+    background: rgba(216, 191, 216, 1);
+}
+
+.publish-button:hover {
+    background: rgba(233, 234, 236, 0.5);
 }
