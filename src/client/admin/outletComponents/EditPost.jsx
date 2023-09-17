@@ -10,17 +10,17 @@ export default function EditPost() {
 						   placeholder="Slug" />
 				</div>
 				<div className="mb-3">
-					<textarea className="form-control" name='postContent' id="postContent" rows="20"></textarea>
+					<textarea className="form-control" name='postContent' id="postContent" rows="18"></textarea>
 				</div>
 				
-				<div className={'row'}>
-					<div className={'col-4 mb-3'}>
+				<div className={'row justify-content-center'}>
+					<div className={'col-auto mb-3'}>
 						<button type="button" className="btn delete-button">Delete Post</button>
 					</div>
-					<div className={'col-4 mb-3'}>
+					<div className={'col-auto mb-3'}>
 						<button type="button" className="btn save-button">Save Draft</button>
 					</div>
-					<div className={'col-4 mb-3'}>
+					<div className={'col-auto mb-3'}>
 						<button type="button" className="btn publish-button">Publish</button>
 					</div>
 				</div>

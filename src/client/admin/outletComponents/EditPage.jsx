@@ -13,15 +13,15 @@ export default function EditPage() {
 					<textarea className="form-control" name='PageContent' id="PageContent" rows="20"></textarea>
 				</div>
 				
-				<div className='row'>
-					<div className={'col-4 mb-3'}>
-					
+				<div className={'row justify-content-center'}>
+					<div className={'col-auto mb-3'}>
+						<button type="button" className="btn delete-button">Delete Post</button>
 					</div>
-					<div className={'col-4 mb-3'}>
-					
+					<div className={'col-auto mb-3'}>
+						<button type="button" className="btn save-button">Save Draft</button>
 					</div>
-					<div className={'col-4 mb-3'}>
-					
+					<div className={'col-auto mb-3'}>
+						<button type="button" className="btn publish-button">Publish</button>
 					</div>
 				</div>
 			</div>

@@ -74,7 +74,7 @@ a {
 }
 
 .footer {
-    padding: 2rem 0 1rem;
+    padding: 1.5rem 0 0;
     text-align: center;
     color: slategrey;
     font-size: 0.8rem;
@@ -104,9 +104,11 @@ a {
 
 .delete-button {
     background: rgba(233, 234, 236, 0.65);
+    border: rgba(233, 234, 236, 1);
 }
 .delete-button:hover {
     background: rgba(233, 234, 236, 1);
+    border: rgba(233, 234, 236, 1);
 }
 
 .save-button {
@@ -117,5 +119,5 @@ a {
 }
 
 .publish-button:hover {
-    background: rgba(233, 234, 236, 0.5);
+    background: rgba(216, 191, 216, 1);
 }
