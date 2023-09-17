@@ -4,9 +4,12 @@ import { DashboardLayout } from "./admin/DashboardLayout";
 import Dashboard from "./admin/pages/Dashboard";
 import Pages from "./admin/pages/Pages";
 import Posts from "./admin/pages/Posts";
-import Upload from "./admin/Upload";
+import Upload from "./admin/outletComponents/Upload";
 import Settings from "./admin/pages/Settings";
 import Login from "./admin/pages/Login";
+import Images from "./admin/pages/Images";
+import EditPage from "./admin/outletComponents/EditPage";
+import EditPost from "./admin/outletComponents/EditPost";
 
 export default function App() {
     
@@ -50,10 +53,18 @@ export default function App() {
                 
                 <Route path={'/'} element={<DashboardLayout handleLogout={handleLogout} cookies={cookies} />}>
                     <Route path={''} element={<Dashboard />} />
+                    
                     <Route path={'pages'} element={<Pages />} />
+                    <Route path={'pages/edit'} element={<EditPage />} />
+                    
                     <Route path={'posts'} element={<Posts />} />
-                    <Route path={'upload'} element={<Upload />} />
+                    <Route path={'posts/edit'} element={<EditPost />} />
+                    
+                    <Route path={'images'} element={<Images />} />
+                    <Route path={'images/upload'} element={<Upload />} />
+                    
                     <Route path={'settings'} element={<Settings />} />
+                    
                     <Route path={'login'} element={<Login handleLogin={handleLogin} />} />
                 </Route>
             

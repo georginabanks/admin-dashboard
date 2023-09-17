@@ -2,6 +2,7 @@
 
 export const getPages = [
 	{
+		id: 1,
 		pageTitle: "page 1",
 		pageContent: "page 1 content",
 		pageStatus: "1",
@@ -12,6 +13,7 @@ export const getPages = [
 		username: "georginabanks"
 	},
 	{
+		id: 2,
 		pageTitle: "page 2",
 		pageContent: "page 2 content",
 		pageStatus: "1",
@@ -22,6 +24,7 @@ export const getPages = [
 		username: "georginabanks"
 	},
 	{
+		id: 3,
 		pageTitle: "page 3",
 		pageContent: "page 3 content",
 		pageStatus: "1",
@@ -32,6 +35,7 @@ export const getPages = [
 		username: "georginabanks"
 	},
 	{
+		id: 4,
 		pageTitle: "page 4",
 		pageContent: "page 4 content",
 		pageStatus: "2",
@@ -52,6 +56,7 @@ export const getPageBySlug = ( slug ) => {
 
 export const getPosts = [
 	{
+		id: 1,
 		postTitle: "post 1",
 		postContent: "post 1 content",
 		postStatus: "1",
@@ -62,6 +67,7 @@ export const getPosts = [
 		username: "georginabanks"
 	},
 	{
+		id: 2,
 		postTitle: "post 2",
 		postContent: "post 2 content",
 		postStatus: "1",
@@ -72,6 +78,7 @@ export const getPosts = [
 		username: "georginabanks"
 	},
 	{
+		id: 3,
 		postTitle: "post 3",
 		postContent: "post 3 content",
 		postStatus: "1",
@@ -82,6 +89,7 @@ export const getPosts = [
 		username: "georginabanks"
 	},
 	{
+		id: 4,
 		postTitle: "post 4",
 		postContent: "post 4 content",
 		postStatus: "2",

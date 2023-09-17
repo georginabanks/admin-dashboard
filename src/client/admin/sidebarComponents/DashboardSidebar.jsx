@@ -1,5 +1,5 @@
-import Help from "./sidebarComponents/Help";
-import Logout from "./sidebarComponents/Logout";
+import Help from "./Help";
+import Logout from "./Logout";
 
 function CreateNav(props) {
 	return (
