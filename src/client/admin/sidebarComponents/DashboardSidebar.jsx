@@ -59,6 +59,12 @@ function PrimaryNavigation() {
 			name: 'Images',
 			icon: <i className="fa-solid fa-camera"></i>,
 			link: '/images'
+		},
+		{
+			id: 5,
+			name: 'Testimonials',
+			icon: <i className="fa-solid fa-comment-dots"></i>,
+			link: '/testimonials'
 		}
 	]
 	

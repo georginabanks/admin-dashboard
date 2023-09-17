@@ -10,6 +10,7 @@ import Login from "./admin/pages/Login";
 import Images from "./admin/pages/Images";
 import EditPage from "./admin/outletComponents/EditPage";
 import EditPost from "./admin/outletComponents/EditPost";
+import Testimonials from "./admin/pages/Testimonials";
 
 export default function App() {
     
@@ -62,6 +63,8 @@ export default function App() {
                     
                     <Route path={'images'} element={<Images />} />
                     <Route path={'images/upload'} element={<Upload />} />
+                    
+                    <Route path={'testimonials'} element={<Testimonials />} />
                     
                     <Route path={'settings'} element={<Settings />} />
                     

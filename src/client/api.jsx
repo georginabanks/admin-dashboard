@@ -108,6 +108,16 @@ export const getPostBySlug = ( slug ) => {
 
 // Testimonials
 
+export const getTestimonials = [
+	{
+		id: 1,
+		testimonialComments: 'testimonials',
+		testimonialAuthor: 'name',
+		pageAssigned: '1',
+		pageTitle: 'page 1'
+	}
+];
+
 export const getTestimonialsByPage = ( page ) => {
 
 }
