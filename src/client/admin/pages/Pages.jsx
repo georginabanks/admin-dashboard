@@ -1,6 +1,7 @@
 import PostsTable from "../outletComponents/PostsTable";
 import {useEffect, useState} from "react";
 import { getPages } from "../../api";
+import OutletHeader from "../outletComponents/OutletHeader.jsx";
 
 export default function Pages() {
 	
@@ -15,6 +16,8 @@ export default function Pages() {
 	
 	return (
 			<div>
+				<OutletHeader link={'/pages/new'} newText={'New Page'} />
+				
 				{ pages.length > 0
 						&& <PostsTable posts={pages} title={'Page'} select={select} setSelect={setSelect}/> }
 				

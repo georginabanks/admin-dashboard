@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTestimonials } from "../../api";
+import OutletHeader from "../outletComponents/OutletHeader.jsx";
 
 function Row({ testimonial, select, setSelect }) {
 	
@@ -47,6 +48,8 @@ export default function Testimonials() {
 	
 	return (
 			<div>
+				<OutletHeader link={'/testimonials/new'} newText={'New Testimonial'} />
+				
 				{ testimonials.length > 0 && <table className={'table table-hover'}>
 					<thead>
 					<tr>

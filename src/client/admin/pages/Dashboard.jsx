@@ -1,5 +1,11 @@
+import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
+
 export default function Dashboard() {
 	return (
-			"hello"
+			<div>
+				<DashboardHeader />
+				
+				hello
+			</div>
 	)
 }

@@ -13,6 +13,7 @@ import EditPost from "./admin/pages/EditPost.jsx";
 import NewPost from "./admin/pages/NewPost.jsx";
 import EditPage from "./admin/pages/EditPage.jsx";
 import NewPage from "./admin/pages/NewPage.jsx";
+import NewTestimonial from "./admin/pages/NewTestimonial.jsx";
 
 export default function App() {
     
@@ -69,6 +70,7 @@ export default function App() {
                     <Route path={'images/upload'} element={<Upload />} />
                     
                     <Route path={'testimonials'} element={<Testimonials />} />
+                    <Route path={'testimonials/new'} element={<NewTestimonial />} />
                     
                     <Route path={'settings'} element={<Settings />} />
                     

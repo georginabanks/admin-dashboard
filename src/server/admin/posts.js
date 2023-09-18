@@ -1,4 +1,4 @@
-import { Post, knex } from './db.js';
+import {Post, knex, PostCategory} from './db.js';
 
 export async function addPost( post ) {
 	return await Post.create({
@@ -29,4 +29,10 @@ export function getPostById( id ) {
 			.select('*')
 			.where({ postId: id })
 			.first();
+}
+
+export async function addPostCategory( category ) {
+	return await PostCategory.create({
+		postCategory: category.postCategory
+	});
 }

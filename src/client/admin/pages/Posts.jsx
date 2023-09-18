@@ -1,6 +1,7 @@
 import PostsTable from "../outletComponents/PostsTable";
 import { getPosts } from "../../api";
 import { useState, useEffect } from "react";
+import OutletHeader from "../outletComponents/OutletHeader.jsx";
 
 export default function Posts() {
 	
@@ -15,6 +16,8 @@ export default function Posts() {
 	
 	return (
 			<div>
+				<OutletHeader link={'/posts/new'} newText={'New Post'} />
+				
 				{ posts.length > 0
 						&& <PostsTable posts={posts} title={'Post'} select={select} setSelect={setSelect}/> }
 				

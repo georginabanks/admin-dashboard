@@ -77,6 +77,10 @@ i {
     margin-left: 22vw;
 }
 
+.outlet-header {
+    padding-bottom: 1rem;
+}
+
 .footer {
     padding: 1.5rem 0 0;
     text-align: center;
@@ -115,13 +119,13 @@ i {
     border: rgba(233, 234, 236, 1);
 }
 
-.save-button {
-    background: rgba(216, 191, 216, 0.65);
-}
 .save-button:hover {
     background: rgba(216, 191, 216, 1);
 }
 
+.publish-button {
+    background: rgba(216, 191, 216, 0.65);
+}
 .publish-button:hover {
     background: rgba(216, 191, 216, 1);
 }

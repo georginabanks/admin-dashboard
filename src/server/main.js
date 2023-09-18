@@ -3,7 +3,7 @@ import ViteExpress from "vite-express";
 import fileUpload from "express-fileupload";
 import path from "path";
 import {addPage, editPage, getPageById, getPages} from "./admin/pages.js";
-import {addPost, editPost, getPostById, getPosts} from "./admin/posts.js";
+import {addPost, addPostCategory, editPost, getPostById, getPosts} from "./admin/posts.js";
 import {addTestimonial, getTestimonialById, getTestimonials} from "./admin/testimonials.js";
 
 const app = express();
@@ -45,6 +45,11 @@ app.route('/api/admin/posts')
         })
         .post(async function (req, res) {
             res.send(await addPost(req.body));
+        });
+
+app.route('/api/admin/posts/categories')
+        .post(async function (req, res) {
+            res.send(await addPostCategory(req.body));
         });
 
 app.route('/api/admin/posts/:postId')
