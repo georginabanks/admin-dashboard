@@ -23,7 +23,7 @@ function Logo() {
 	return (
 			<div className={'row logo'}>
 				<div className={'col-3'}>
-					<img src={'/public/uploads/logo.png'} alt={'logo'} />
+					<img src={'/uploads/logo.png'} alt={'logo'} />
 				</div>
 				<div className={'col-9'}>
 					<h5>Company Name</h5>

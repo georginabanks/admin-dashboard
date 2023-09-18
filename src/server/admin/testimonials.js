@@ -14,3 +14,10 @@ export function getTestimonials( limit ) {
 			.select('*')
 			.limit(limit);
 }
+
+export function getTestimonialById( id ) {
+	return knex('testimonials')
+			.select('*')
+			.where({ testimonialId: id })
+			.first();
+}

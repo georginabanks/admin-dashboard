@@ -16,3 +16,10 @@ export function getPages( limit ) {
 			.select('*')
 			.limit(limit);
 }
+
+export function getPageById( id ) {
+	return knex('testimonials')
+			.select('*')
+			.where({ pageId: id })
+			.first();
+}

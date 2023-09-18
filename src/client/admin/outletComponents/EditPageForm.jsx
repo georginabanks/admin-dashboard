@@ -1,4 +1,4 @@
-export default function EditPage() {
+export default function EditPageForm() {
 	return (
 			<div>
 				<div className="mb-3">

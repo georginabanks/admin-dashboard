@@ -2,13 +2,19 @@ import express from "express";
 import ViteExpress from "vite-express";
 import fileUpload from "express-fileupload";
 import path from "path";
-import {addPage, getPages} from "./admin/pages.js";
-import {addPost, getPosts} from "./admin/posts.js";
-import {addTestimonial, getTestimonials} from "./admin/testimonials.js";
+import {addPage, getPageById, getPages} from "./admin/pages.js";
+import {addPost, editPost, getPostById, getPosts} from "./admin/posts.js";
+import {addTestimonial, getTestimonialById, getTestimonials} from "./admin/testimonials.js";
 
 const app = express();
 app.use(fileUpload());
 app.use(express.static('public'));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.get('/api/admin/health-check', function (req, res) {
+    res.sendStatus(200);
+});
 
 
 // Pages
@@ -19,6 +25,11 @@ app.route('/api/admin/pages')
         })
         .post(async function (req, res) {
             res.send(await addPage(req.body));
+        });
+
+app.route('/api/admin/pages/:pageId')
+        .get(async function (req, res) {
+            res.send(await getPageById(req.params.pageId));
         });
 
 
@@ -32,6 +43,16 @@ app.route('/api/admin/posts')
             res.send(await addPost(req.body));
         });
 
+app.route('/api/admin/posts/:postId')
+        .get(async function (req, res) {
+            res.send(await getPostById(req.params.postId));
+        })
+        .post(async function (req, res) {
+            console.log(req.body)
+            if ( String(req.params.postId) === "0") { res.send(await addPost(req.body)) }
+            else { res.send(await editPost(req.body)) }
+        });
+
 
 // Testimonials
 
@@ -41,6 +62,11 @@ app.route('/api/admin/testimonials')
         })
         .post(async function (req, res) {
             res.send(await addTestimonial(req.body));
+        });
+
+app.route('/api/admin/testimonials/:testimonialId')
+        .get(async function (req, res) {
+            res.send(await getTestimonialById(req.params.testimonialId));
         });
 
 
@@ -63,7 +89,7 @@ app.route('/api/admin/images')
 
 // Server
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 ViteExpress.listen(app, port, () =>
     console.log(`Server is listening on port ${port}...`)

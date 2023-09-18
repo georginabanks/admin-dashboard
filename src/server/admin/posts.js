@@ -12,8 +12,21 @@ export async function addPost( post ) {
 	});
 }
 
+export function editPost( post ) {
+	return knex('posts')
+			.where({postId: post.postId})
+			.update( post );
+}
+
 export function getPosts( limit ) {
 	return knex('posts')
 			.select('*')
 			.limit(limit);
+}
+
+export function getPostById( id ) {
+	return knex('testimonials')
+			.select('*')
+			.where({ postId: id })
+			.first();
 }
