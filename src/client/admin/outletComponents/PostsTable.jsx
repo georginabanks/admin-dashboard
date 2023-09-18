@@ -1,11 +1,10 @@
 import {DateString} from "./Datetime";
-import {useState} from "react";
 
 function Row({ post, select, setSelect }) {
 	
 	const changeSelect = (event) => {
 		let data = [...select];
-		const index = data.indexOf(String(post.id));
+		const index = data.indexOf(String(post.postId || post.pageId));
 		
 		if (index > -1) {
 			data.splice(index, 1);
@@ -20,7 +19,8 @@ function Row({ post, select, setSelect }) {
 			<tr>
 				<td>
 					<div className="form-check" onChange={changeSelect}>
-						<input className="form-check-input" type="checkbox" value={post.id} id={post.id} />
+						<input className="form-check-input" type="checkbox" value={ post.pageId || post.postId }
+							   id={ post.pageId || post.postId } />
 					</div>
 				</td>
 				
@@ -48,7 +48,7 @@ export default function PostsTable({ posts, title, select, setSelect }) {
 					
 					<tbody>
 						{ posts.map( p => {
-							return <Row post={p} key={ p.id } select={select} setSelect={setSelect} />
+							return <Row post={p} key={ p.pageId || p.postId } select={select} setSelect={setSelect} />
 						}) }
 					</tbody>
 				</table>

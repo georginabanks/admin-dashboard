@@ -21,19 +21,20 @@ export function HandleChange(event, state, setState) {
 
 // Response If/Else
 
-async function response(setButtonText, saveButton, savedButton, data ) {
-	if (data.data === "success") {
+async function response(setButtonText, buttons, buttonType, originalButton, doneButton, data, dataSuccess ) {
+	
+	if (typeof data.data[dataSuccess] !== 'undefined') {
 		function timeout() {
-			setButtonText(saveButton);
+			setButtonText({ ...buttons, [buttonType]: doneButton });
 		}
 		
 		setTimeout(timeout, 1800);
-		setButtonText(savedButton);
+		setButtonText({ ...buttons, [buttonType]: originalButton });
 	} else {
 		console.log(data)
-		setTimeout(() => setButtonText(saveButton), 3000);
+		setTimeout(() => setButtonText({ ...buttons, [buttonType]: originalButton }), 3000);
 		if (data.data.name === "SequelizeUniqueConstraintError") { setButtonText("Already in database!"); }
-		else { setButtonText("ERROR!") }
+		else { setButtonText({ ...buttons, [buttonType]: 'ERROR' }) }
 	}
 }
 
@@ -41,26 +42,26 @@ async function response(setButtonText, saveButton, savedButton, data ) {
 // Post Request
 
 export default async function PostData(
-		event, setButtonText, saveButton, savingButton, savedButton, url, content
+		event, setButtons, buttons, buttonType, originalButton, waitingButton, doneButton, url, content, dataSuccess
 ) {
 	event.preventDefault();
-	setButtonText(savingButton);
+	setButtons({ ...buttons, [buttonType]: waitingButton});
 	
 	const data = await axios.post("/api/admin/" + url, content, config);
 	
-	await response(setButtonText, saveButton, savedButton, data)
+	await response(setButtons, buttons, buttonType, originalButton,
+			doneButton, data, dataSuccess);
 }
 
 
 // Delete Request
 
-export async function DeleteData(
-		event, setButtonText, deleteButton, deletingButton, deletedButton, url
-) {
+export async function DeleteData( event, setButtons, buttons, url, dataSuccess ) {
 	event.preventDefault();
-	setButtonText(deletingButton);
+	setButtons({ ...buttons, deleteButton: 'Deleting...'});
 	
 	const data = await axios.delete('/api/admin/' + url, config);
 	
-	await response(setButtonText, deleteButton, deletedButton, data)
+	await response(setButtons, buttons, 'deleteButton', 'Delete',
+			'Deleted', data, dataSuccess)
 }
