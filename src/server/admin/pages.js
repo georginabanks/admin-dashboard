@@ -11,6 +11,12 @@ export async function addPage( page ) {
 	});
 }
 
+export function editPage( page ) {
+	return knex('pages')
+			.where({pageId: page.pageId})
+			.update( page );
+}
+
 export function getPages( limit ) {
 	return knex('pages')
 			.select('*')

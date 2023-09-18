@@ -25,11 +25,11 @@ async function response(setButtonText, buttons, buttonType, originalButton, done
 	
 	if (typeof data.data[dataSuccess] !== 'undefined') {
 		function timeout() {
-			setButtonText({ ...buttons, [buttonType]: doneButton });
+			setButtonText({ ...buttons, [buttonType]: originalButton });
 		}
 		
 		setTimeout(timeout, 1800);
-		setButtonText({ ...buttons, [buttonType]: originalButton });
+		setButtonText({ ...buttons, [buttonType]: doneButton });
 	} else {
 		console.log(data)
 		setTimeout(() => setButtonText({ ...buttons, [buttonType]: originalButton }), 3000);

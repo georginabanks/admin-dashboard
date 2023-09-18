@@ -1,12 +1,11 @@
-import PostData, {DeleteData} from "../outletComponents/PostData.jsx";
-import {Navigate} from "react-router-dom";
+import PostData from "../outletComponents/PostData.jsx";
 import {useState} from "react";
+import EditPostForm from "../outletComponents/EditPostForm.jsx";
 
 export default function NewPage() {
 	
-	const [page, setPage] = useState({});
+	const [page, setPage] = useState({ pageId: 0 });
 	const [buttons, setButtons] = useState({
-		deleteButton: 'Delete Post',
 		saveButton: 'Save Draft',
 		publishButton: 'Publish'
 	});
@@ -14,24 +13,21 @@ export default function NewPage() {
 	
 	// Post Data
 	
-	const deletePost = async ( event ) => {
-		await DeleteData(
-				event, setButtons, deleteButton, 'Deleting...',
-				'Post Deleted', 'pages/' + post.postId
-		);
-		
-		return <Navigate to={'/posts'} replace={ true } />
-	}
-	
 	const saveDraft = async ( event ) => {
-		await PostData(event, setSaveButton, saveButton, 'Saving...', 'Saved',
-				'posts/' + post.postId, { ...post, StatusStatusId: 1 }
+		console.log(page)
+		await PostData(event, setButtons, buttons, 'saveButton', 'Save Draft',
+				'Saving...', 'Page Saved', 'pages/' + page.pageId,
+				{ ...page, StatusStatusId: 1 }, 'pageId'
 		);
 	}
 	
 	const publishPost = async ( event ) => {
-		await PostData( event, setPublishButton, publishButton, 'Publishing...',
-				'Published', 'posts/' + post.postId, { ...post, StatusStatusId: 2 }
+		await PostData( event, setButtons, buttons, 'publishButton', 'Publish',
+				'Publishing...', 'Published', 'pages/' + page.pageId,
+				{ ...page, StatusStatusId: 2 }, 'pageId'
 		);
 	}
+	
+	return <EditPostForm post={ page } setPost={ setPage } saveDraft={ saveDraft } publishPost={ publishPost }
+						 buttons={ buttons } showDelete={ false } />
 }

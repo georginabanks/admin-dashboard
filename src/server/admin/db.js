@@ -58,10 +58,10 @@ export const Page = sequelize.define('Page', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	pageTitle: { type: DataTypes.TEXT },
-	pageContent: { type: DataTypes.TEXT('medium') },
+	title: { type: DataTypes.TEXT },
+	content: { type: DataTypes.TEXT('medium') },
 	datePublished: { type: DataTypes.DATE },
-	pageSlug: { type: DataTypes.TEXT }
+	slug: { type: DataTypes.TEXT }
 }, { timestamps: false, tableName: 'pages' });
 
 export const Post = sequelize.define('Post', {
@@ -70,10 +70,10 @@ export const Post = sequelize.define('Post', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	postTitle: { type: DataTypes.TEXT },
-	postContent: { type: DataTypes.TEXT('medium') },
+	title: { type: DataTypes.TEXT },
+	content: { type: DataTypes.TEXT('medium') },
 	datePublished: { type: DataTypes.DATE },
-	postSlug: { type: DataTypes.TEXT }
+	slug: { type: DataTypes.TEXT }
 }, { timestamps: false, tableName: 'posts' });
 
 export const PostCategory = sequelize.define('PostCategory', {

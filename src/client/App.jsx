@@ -8,11 +8,11 @@ import Upload from "./admin/outletComponents/Upload";
 import Settings from "./admin/pages/Settings";
 import Login from "./admin/pages/Login";
 import Images from "./admin/pages/Images";
-import EditPageForm from "./admin/outletComponents/EditPageForm.jsx";
-import EditPostForm from "./admin/outletComponents/EditPostForm.jsx";
 import Testimonials from "./admin/pages/Testimonials";
 import EditPost from "./admin/pages/EditPost.jsx";
 import NewPost from "./admin/pages/NewPost.jsx";
+import EditPage from "./admin/pages/EditPage.jsx";
+import NewPage from "./admin/pages/NewPage.jsx";
 
 export default function App() {
     
@@ -58,8 +58,8 @@ export default function App() {
                     <Route path={''} element={<Dashboard />} />
                     
                     <Route path={'pages'} element={<Pages />} />
-                    <Route path={'pages/:pageId/edit'} element={<EditPageForm />} />
-                    <Route path={'pages/new'} element={<EditPageForm />} />
+                    <Route path={'pages/:pageId/edit'} element={<EditPage />} />
+                    <Route path={'pages/new'} element={<NewPage />} />
                     
                     <Route path={'posts'} element={<Posts />} />
                     <Route path={'posts/:postId/edit'} element={<EditPost />} />

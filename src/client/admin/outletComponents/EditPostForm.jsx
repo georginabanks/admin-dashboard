@@ -16,15 +16,15 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 				
 				<div className="mb-3">
 					<input type="text" className="form-control form-control-lg" name='postTitle' id="postTitle"
-						   placeholder="Title" value={ post.postTitle || '' } onChange={ handleChange } />
+						   placeholder="Title" value={ post.title || '' } onChange={ handleChange } />
 				</div>
 				<div className="mb-3">
 					<input type="text" className="form-control" name='postSlug' id="postSlug"
-						   placeholder="Slug" value={ post.postSlug || ''} onChange={ handleChange } />
+						   placeholder="Slug" value={ post.slug || ''} onChange={ handleChange } />
 				</div>
 				<div className="mb-3">
 					<textarea className="form-control" name='postContent' id="postContent" rows="18"
-							  value={ post.postContent || '' } onChange={ handleChange }></textarea>
+							  value={ post.content || '' } onChange={ handleChange }></textarea>
 				</div>
 			</div>
 	)

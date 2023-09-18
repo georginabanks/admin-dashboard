@@ -1,7 +1,6 @@
 import EditPostForm from "../outletComponents/EditPostForm.jsx";
 import { useState } from "react";
-import PostData, {DeleteData} from "../outletComponents/PostData.jsx";
-import {Navigate} from "react-router-dom";
+import PostData from "../outletComponents/PostData.jsx";
 
 export default function NewPost() {
 	
