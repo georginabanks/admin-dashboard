@@ -16,10 +16,11 @@ export default function Posts() {
 	
 	return (
 			<div>
-				<OutletHeader link={'/posts/new'} newText={'New Post'} />
+				<OutletHeader newLink={'/posts/new'} newText={'New Post'} />
 				
 				{ posts.length > 0
-						&& <PostsTable posts={posts} title={'Post'} select={select} setSelect={setSelect}/> }
+						&& <PostsTable posts={ posts } title={'Post'} select={ select } setSelect={ setSelect }
+									   counter={ counter } setCounter={ setCounter } limit={ limit } setLimit={ setLimit }/> }
 				
 				{ posts.length === 0 && <p>There are no posts yet.</p> }
 			</div>

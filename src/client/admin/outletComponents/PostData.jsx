@@ -42,7 +42,7 @@ async function response(setButtonText, buttons, buttonType, originalButton, done
 // Post Request
 
 export default async function PostData(
-		event, setButtons, buttons, buttonType, originalButton, waitingButton, doneButton, url, content, dataSuccess
+		event, setButtons, buttons, buttonType, originalButton, waitingButton, doneButton, url, content, dataSuccess, setState
 ) {
 	event.preventDefault();
 	setButtons({ ...buttons, [buttonType]: waitingButton});
@@ -51,6 +51,8 @@ export default async function PostData(
 	
 	await response(setButtons, buttons, buttonType, originalButton,
 			doneButton, data, dataSuccess);
+	
+	setState( data.data );
 }
 
 

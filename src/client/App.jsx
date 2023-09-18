@@ -4,16 +4,14 @@ import { DashboardLayout } from "./admin/DashboardLayout";
 import Dashboard from "./admin/pages/Dashboard";
 import Pages from "./admin/pages/Pages";
 import Posts from "./admin/pages/Posts";
-import Upload from "./admin/outletComponents/Upload";
+import Upload from "./admin/pages/Upload.jsx";
 import Settings from "./admin/pages/Settings";
 import Login from "./admin/pages/Login";
 import Images from "./admin/pages/Images";
 import Testimonials from "./admin/pages/Testimonials";
-import EditPost from "./admin/pages/EditPost.jsx";
-import NewPost from "./admin/pages/NewPost.jsx";
+import EditTestimonial from "./admin/pages/EditTestimonial.jsx";
 import EditPage from "./admin/pages/EditPage.jsx";
-import NewPage from "./admin/pages/NewPage.jsx";
-import NewTestimonial from "./admin/pages/NewTestimonial.jsx";
+import EditPost from "./admin/pages/EditPost.jsx";
 
 export default function App() {
     
@@ -59,18 +57,19 @@ export default function App() {
                     <Route path={''} element={<Dashboard />} />
                     
                     <Route path={'pages'} element={<Pages />} />
-                    <Route path={'pages/:pageId/edit'} element={<EditPage />} />
-                    <Route path={'pages/new'} element={<NewPage />} />
+                    <Route path={'pages/:pageId/edit'} element={<EditPage showDelete={ true } />} />
+                    <Route path={'pages/new'} element={<EditPage showDelete={ false } />} />
                     
                     <Route path={'posts'} element={<Posts />} />
-                    <Route path={'posts/:postId/edit'} element={<EditPost />} />
-                    <Route path={'posts/new'} element={<NewPost />} />
+                    <Route path={'posts/:postId/edit'} element={<EditPost showDelete={ true } />} />
+                    <Route path={'posts/new'} element={<EditPost showDelete={ false } />} />
                     
                     <Route path={'images'} element={<Images />} />
                     <Route path={'images/upload'} element={<Upload />} />
                     
                     <Route path={'testimonials'} element={<Testimonials />} />
-                    <Route path={'testimonials/new'} element={<NewTestimonial />} />
+                    <Route path={'testimonials/:testimonialId/edit'} element={<EditTestimonial showDelete={ true } />} />
+                    <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
                     
                     <Route path={'settings'} element={<Settings />} />
                     

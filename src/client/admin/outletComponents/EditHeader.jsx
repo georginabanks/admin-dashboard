@@ -7,9 +7,9 @@ export default function EditHeader({ deletePost, saveDraft, publishPost, backUrl
 				
 				<div className={'col-auto'}>
 					<div className={'row edit-buttons'}>
-						{ showDelete && <div className={'col-auto mb-3'}>
-							<button type="submit" className="btn delete-button" onClick={deletePost}>
-								{buttons.deleteButton}
+						{ showDelete === true && <div className={'col-auto mb-3'}>
+							<button type="submit" className="btn delete-button" onClick={ deletePost }>
+								{ buttons.deleteButton }
 							</button>
 						</div>}
 						<div className={'col-auto mb-3'}>

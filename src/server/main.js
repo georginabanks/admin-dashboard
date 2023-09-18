@@ -2,8 +2,9 @@ import express from "express";
 import ViteExpress from "vite-express";
 import fileUpload from "express-fileupload";
 import path from "path";
-import {addPage, editPage, getPageById, getPages} from "./admin/pages.js";
-import {addPost, addPostCategory, editPost, getPostById, getPosts} from "./admin/posts.js";
+import {knex} from './admin/db.js'
+import {addPage, deletePage, editPage, getPageById, getPages} from "./admin/pages.js";
+import {addPost, addPostCategory, deletePost, editPost, getPostById, getPosts} from "./admin/posts.js";
 import {addTestimonial, getTestimonialById, getTestimonials} from "./admin/testimonials.js";
 
 const app = express();
@@ -34,6 +35,9 @@ app.route('/api/admin/pages/:pageId')
         .post(async function (req, res) {
             if ( String(req.params.pageId) === "0") { res.send(await addPage(req.body)) }
             else { res.send(await editPage(req.body)) }
+        })
+        .delete(async function (req, res) {
+            res.send(await deletePage(req.params.pageId));
         });
 
 
@@ -59,6 +63,9 @@ app.route('/api/admin/posts/:postId')
         .post(async function (req, res) {
             if ( String(req.params.postId) === "0") { res.send(await addPost(req.body)) }
             else { res.send(await editPost(req.body)) }
+        })
+        .delete(async function (req, res) {
+            res.send(await deletePost(req.params.postId));
         });
 
 

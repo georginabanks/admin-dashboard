@@ -48,7 +48,7 @@ export default function Testimonials() {
 	
 	return (
 			<div>
-				<OutletHeader link={'/testimonials/new'} newText={'New Testimonial'} />
+				<OutletHeader newLink={'/testimonials/new'} newText={'New Testimonial'} />
 				
 				{ testimonials.length > 0 && <table className={'table table-hover'}>
 					<thead>

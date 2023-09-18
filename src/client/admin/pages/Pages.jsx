@@ -16,10 +16,11 @@ export default function Pages() {
 	
 	return (
 			<div>
-				<OutletHeader link={'/pages/new'} newText={'New Page'} />
+				<OutletHeader newLink={'/pages/new'} newText={'New Page'} />
 				
 				{ pages.length > 0
-						&& <PostsTable posts={pages} title={'Page'} select={select} setSelect={setSelect}/> }
+						&& <PostsTable posts={ pages } title={'Page'} select={ select } setSelect={ setSelect }
+									   counter={ counter } setCounter={ setCounter } limit={ limit } setLimit={ setLimit } /> }
 				
 				{ pages.length === 0 && <p>There are no pages yet.</p>}
 			</div>
