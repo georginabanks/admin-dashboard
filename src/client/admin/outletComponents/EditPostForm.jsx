@@ -1,7 +1,7 @@
 import EditHeader from "./EditHeader.jsx";
 import { HandleChange } from "./PostData.jsx";
 
-export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete }) {
+export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl }) {
 	
 	// Handle Change
 	
@@ -11,7 +11,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 	
 	return (
 			<div>
-				<EditHeader backUrl={'/posts'} deletePost={ deletePost } saveDraft={ saveDraft } publishPost={ publishPost }
+				<EditHeader backUrl={ backUrl } deletePost={ deletePost } saveDraft={ saveDraft } publishPost={ publishPost }
 							buttons={ buttons } showDelete={ showDelete } />
 				
 				<div className="mb-3">

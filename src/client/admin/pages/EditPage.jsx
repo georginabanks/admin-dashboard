@@ -1,6 +1,8 @@
 import PostData, {DeleteData} from "../outletComponents/PostData.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import EditPostForm from "../outletComponents/EditPostForm.jsx";
+import {useParams} from "react-router-dom";
+import {getPostById} from "../../api.jsx";
 
 export default function EditPage({ showDelete }) {
 	
@@ -10,6 +12,13 @@ export default function EditPage({ showDelete }) {
 		saveButton: 'Save Draft',
 		publishButton: 'Publish'
 	});
+	
+	const { pageId } = useParams();
+	if (pageId !== undefined) {
+		useEffect(() => {
+			getPostById(pageId).then( res => setPage(res) );
+		}, [])
+	}
 	
 	
 	// Post Data
@@ -33,5 +42,5 @@ export default function EditPage({ showDelete }) {
 	}
 	
 	return <EditPostForm post={ page } setPost={ setPage } deletePost={ deletePost } saveDraft={ saveDraft }
-						 publishPost={ publishPost } buttons={ buttons } showDelete={ showDelete } />
+						 publishPost={ publishPost } buttons={ buttons } showDelete={ showDelete } backUrl={'/pages'} />
 }

@@ -4,7 +4,7 @@ export async function addPost( post ) {
 	return await Post.create({
 		title: post.title,
 		content: post.content,
-		datePublished: post.datePublished,
+		datePublished: post.datePublished || new Date(),
 		slug: post.slug,
 		StatusStatusId: post.StatusStatusId,
 		UserUserId: post.UserUserId,
@@ -18,7 +18,7 @@ export async function editPost( post ) {
 			.update( post );
 	
 	if (data > 0) { return getPostById(post.postId) }
-	else { return data }
+	else { return 'error' + data }
 }
 
 export function getPosts( limit ) {
@@ -46,5 +46,5 @@ export async function deletePost( id ) {
 			.del();
 	
 	if (data > 0) { return 'deleted' }
-	else { return data }
+	else { return 'error' + data }
 }

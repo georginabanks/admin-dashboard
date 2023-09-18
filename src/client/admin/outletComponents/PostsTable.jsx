@@ -8,10 +8,10 @@ function Row({ post, select, setSelect, pageName, counter, setCounter }) {
 	
 	let url;
 	let dataSuccess;
-	if (post.postId !== 'undefined') {
+	if (post.postId !== undefined) {
 		url = 'posts/' + post.postId ;
 		dataSuccess = 'postId';
-	} else if (post.pageId !== 'undefined') {
+	} else if (post.pageId !== undefined) {
 		url = 'pages/' + post.pageId;
 		dataSuccess = 'pageId';
 	}

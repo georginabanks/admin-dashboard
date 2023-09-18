@@ -4,7 +4,7 @@ export async function addPage( page ) {
 	return await Page.create({
 		title: page.title,
 		content: page.content,
-		datePublished: page.datePublished,
+		datePublished: page.datePublished || new Date(),
 		slug: page.slug,
 		StatusStatusId: page.StatusStatusId,
 		UserUserId: page.UserUserId
@@ -12,9 +12,12 @@ export async function addPage( page ) {
 }
 
 export function editPage( page ) {
-	return knex('pages')
+	const data = knex('pages')
 			.where({ pageId: page.pageId })
 			.update( page );
+	
+	if (data > 0) { return getPageById(page.pageId) }
+	else { return 'error' + data }
 }
 
 export function getPages( limit ) {
@@ -36,5 +39,5 @@ export async function deletePage( id ) {
 			.del();
 	
 	if (data > 0) { return 'deleted' }
-	else { return data }
+	else { return `error` + data }
 }

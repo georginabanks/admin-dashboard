@@ -21,7 +21,7 @@ export function HandleChange(event, state, setState) {
 
 // Response If/Else
 
-async function response(setButtonText, buttons, buttonType, originalButton, doneButton, data, dataSuccess ) {
+async function response(setButtonText, buttons, buttonType, originalButton, doneButton, data, dataSuccess, setState ) {
 	
 	if (typeof data.data[dataSuccess] !== 'undefined') {
 		function timeout() {
@@ -30,6 +30,7 @@ async function response(setButtonText, buttons, buttonType, originalButton, done
 		
 		setTimeout(timeout, 1800);
 		setButtonText({ ...buttons, [buttonType]: doneButton });
+		setState(data.data);
 	} else {
 		console.log(data)
 		setTimeout(() => setButtonText({ ...buttons, [buttonType]: originalButton }), 3000);
@@ -50,9 +51,7 @@ export default async function PostData(
 	const data = await axios.post("/api/admin/" + url, content, config);
 	
 	await response(setButtons, buttons, buttonType, originalButton,
-			doneButton, data, dataSuccess);
-	
-	setState( data.data );
+			doneButton, data, dataSuccess, setState);
 }
 
 
