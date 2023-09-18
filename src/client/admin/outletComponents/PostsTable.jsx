@@ -36,12 +36,12 @@ function Row({ post, select, setSelect, pageName, counter, setCounter }) {
 	
 	return (
 			<tr>
-				<td>
-					<div className="form-check" onChange={changeSelect}>
-						<input className="form-check-input" type="checkbox" value={ post.pageId || post.postId }
-							   id={ post.pageId || post.postId } />
-					</div>
-				</td>
+				{/*<td>*/}
+				{/*	<div className="form-check" onChange={changeSelect}>*/}
+				{/*		<input className="form-check-input" type="checkbox" value={ post.pageId || post.postId }*/}
+				{/*			   id={ post.pageId || post.postId } />*/}
+				{/*	</div>*/}
+				{/*</td>*/}
 				
 				<td>{ post.title }</td>
 				<td>{ post.username }</td>
@@ -63,7 +63,7 @@ export default function PostsTable({ posts, title, select, setSelect, counter, s
 				<table className={'table table-hover'}>
 					<thead>
 						<tr>
-							<th scope={'col'}></th>
+							{/*<th scope={'col'}></th>*/}
 							<th scope={'col'}>{title} Title</th>
 							<th scope={'col'}>Author</th>
 							<th scope={'col'}>Status</th>
