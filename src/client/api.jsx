@@ -41,14 +41,14 @@ export const getPostById = async ( id ) => {
 // Testimonials
 
 export const getTestimonials = async ( limit ) => {
-	const data = await axios.get('/api/admin/pages', { ...axiosConfig, params: {
+	const data = await axios.get('/api/admin/testimonials', { ...axiosConfig, params: {
 			limit: limit
 		}});
 	return data.data;
 };
 
 export const getTestimonialById = async ( id ) => {
-	const data = await axios.get('/api/testimonials/posts/' + id, axiosConfig );
+	const data = await axios.get('/api/admin/testimonials/' + id, axiosConfig );
 	return data.data;
 };
 

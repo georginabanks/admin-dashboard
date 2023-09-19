@@ -9,15 +9,35 @@ export async function addTestimonial( testimonial ) {
 	});
 }
 
+export async function editTestimonial( testimonial ) {
+	const data = await knex('testimonials')
+			.where({ testimonialId: testimonial.testimonialId })
+			.update( testimonial );
+	
+	if (data > 0) { return getTestimonialById(testimonial.testimonialId) }
+	else { return 'error' + data }
+}
+
 export function getTestimonials( limit ) {
 	return knex('testimonials')
 			.select('*')
+			.leftJoin('pages', { 'pages.pageId' : 'testimonials.PagePageId' })
 			.limit(limit);
 }
 
 export function getTestimonialById( id ) {
 	return knex('testimonials')
 			.select('*')
+			.leftJoin('pages', { 'pages.pageId' : 'testimonials.PagePageId' })
 			.where({ testimonialId: id })
 			.first();
+}
+
+export async function deleteTestimonial( id ) {
+	const data = await knex('testimonials')
+			.where({ testimonialId: id })
+			.del();
+	
+	if (data > 0) { return 'deleted' }
+	else { return 'error' + data }
 }

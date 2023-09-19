@@ -1,7 +1,13 @@
 import express from 'express';
 import {addPage, deletePage, editPage, getPageById, getPages} from "./pages.js";
 import {addPost, addPostCategory, deletePost, editPost, getPostById, getPosts} from "./posts.js";
-import {addTestimonial, getTestimonialById, getTestimonials} from "./testimonials.js";
+import {
+    addTestimonial,
+    deleteTestimonial,
+    editTestimonial,
+    getTestimonialById,
+    getTestimonials
+} from "./testimonials.js";
 import path from "path";
 
 export const router = express.Router();
@@ -68,14 +74,18 @@ router.route('/posts/:postId')
 router.route('/testimonials')
         .get(async function (req, res) {
             res.send(await getTestimonials(req.query.limit));
-        })
-        .post(async function (req, res) {
-            res.send(await addTestimonial(req.body));
         });
 
 router.route('/testimonials/:testimonialId')
         .get(async function (req, res) {
             res.send(await getTestimonialById(req.params.testimonialId));
+        })
+        .post(async function (req, res) {
+            if ( String(req.params.testimonialId) === "0") { res.send(await addTestimonial(req.body)) }
+            else { res.send(await editTestimonial(req.body)) }
+        })
+        .delete(async function (req, res) {
+            res.send(await deleteTestimonial(req.params.testimonialId));
         });
 
 
