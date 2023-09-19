@@ -2,19 +2,25 @@ import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
 import {useEffect, useState} from "react";
 import {getRecents} from "../../api.jsx";
 
-function RecentCard({ cardTitle, recents }) {
+function RecentCard({ cardTitle, recents, seeAllLink }) {
  return (
-		 <div>
+		 <div className={'recent-card'}>
 			 <div className="card">
 				 <div className="card-body">
-					 <h5 className="card-title">{ cardTitle }</h5>
+					 <div className={'row justify-content-between'}>
+						 <div className={'col-auto'}>
+							 <h5 className="card-title">{ cardTitle }</h5>
+						 </div>
+						 <div className={'col-auto'}>
+							 <a href={ seeAllLink} className={'card-title'}>See All</a>
+						 </div>
+					 </div>
 					 <hr />
 					
 					 { recents.map( r => {
 						 return (
-								 <div key={ r.pageId || r.postId || r.testimonialId }>
+								 <div key={ r.pageId || r.postId || r.testimonialId } className={'recent-box'}>
 									 <a href={ r.slug }>{ r.title || r.testimonialAuthor }</a>
-									 <hr />
 								 </div>
 						 )
 					 }) }
