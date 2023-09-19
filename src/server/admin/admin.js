@@ -18,6 +18,17 @@ router.get('/health-check', function (req, res) {
 });
 
 
+// Dashboard
+
+router.get('/dashboard', async function (req, res) {
+            res.send({
+                pages: await getPages(5),
+                posts: await getPosts(5),
+                testimonials: await getTestimonials(5)
+            });
+        });
+
+
 // Pages
 
 router.route('/pages')

@@ -1,8 +1,8 @@
-import EditPostForm from "../outletComponents/EditPostForm.jsx";
+import EditPostForm from "../../outletComponents/EditPostForm.jsx";
 import {useEffect, useState} from "react";
-import PostData, {DeleteData} from "../outletComponents/PostData.jsx";
+import PostData, {DeleteData} from "../../outletComponents/PostData.jsx";
 import {useParams} from "react-router-dom";
-import {getPostById} from "../../api.jsx";
+import {getPostById} from "../../../api.jsx";
 
 export default function EditPost({ showDelete }) {
 	

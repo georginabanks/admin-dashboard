@@ -8,6 +8,14 @@ export const axiosConfig = {
 };
 
 
+// Dashboard
+
+export const getRecents = async () => {
+	const data = await axios.get('/api/admin/dashboard', axiosConfig );
+	return data.data;
+}
+
+
 // Pages
 
 export const getPages = async ( limit ) => {

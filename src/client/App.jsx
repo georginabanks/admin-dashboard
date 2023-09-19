@@ -4,14 +4,14 @@ import { DashboardLayout } from "./admin/DashboardLayout";
 import Dashboard from "./admin/pages/Dashboard";
 import Pages from "./admin/pages/Pages";
 import Posts from "./admin/pages/Posts";
-import Upload from "./admin/pages/Upload.jsx";
+import Upload from "./admin/pages/editing/Upload.jsx";
 import Settings from "./admin/pages/Settings";
 import Login from "./admin/pages/Login";
 import Images from "./admin/pages/Images";
 import Testimonials from "./admin/pages/Testimonials";
-import EditTestimonial from "./admin/pages/EditTestimonial.jsx";
-import EditPage from "./admin/pages/EditPage.jsx";
-import EditPost from "./admin/pages/EditPost.jsx";
+import EditTestimonial from "./admin/pages/editing/EditTestimonial.jsx";
+import EditPage from "./admin/pages/editing/EditPage.jsx";
+import EditPost from "./admin/pages/editing/EditPost.jsx";
 
 export default function App() {
     
