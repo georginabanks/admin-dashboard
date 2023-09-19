@@ -1,4 +1,3 @@
-import Help from "./Help";
 import Logout from "./Logout";
 
 function CreateNav(props) {
@@ -90,7 +89,7 @@ function SecondaryNavigation() {
 			id: 7,
 			name: 'Help',
 			icon: <i className="fa-solid fa-circle-question"></i>,
-			link: <Help />
+			link: 'mailto:hello@georginabanks.com'
 		}
 	]
 	
