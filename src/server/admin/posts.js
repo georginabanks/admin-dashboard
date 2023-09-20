@@ -26,6 +26,7 @@ export function getPosts( limit ) {
 	return knex('posts')
 			.select('*')
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
 			.limit(limit);
 }
 
@@ -33,6 +34,7 @@ export function getPostById( id ) {
 	return knex('posts')
 			.select('*')
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
 			.where({ postId: id })
 			.first();
 }

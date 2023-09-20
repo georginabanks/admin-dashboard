@@ -26,9 +26,16 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 						 
 						 return (
 								 <div key={ r.pageId || r.postId || r.testimonialId } className={'recent-box'}>
-									 <a href={ `/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
-										 { r.title || r.testimonialAuthor }
-									 </a>
+									 <div className={'row'}>
+										 { r.featuredImage !== null && <div className={'col-2'}>
+											 <img src={r.filename} alt={r.alt} />
+										 </div>}
+										 <div className={'col-auto'}>
+											 <a href={ `/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
+												 { r.title || r.testimonialAuthor }
+											 </a>
+										 </div>
+									 </div>
 								 </div>
 						 )
 					 }) }
@@ -53,15 +60,15 @@ export default function Dashboard() {
 					
 					<div className={'row'}>
 						{recents.posts.length > 0 && <div className={'col-md-4'}>
-							<RecentCard cardTitle={'Recent Posts'} recents={recents.posts}/>
+							<RecentCard cardTitle={'Recent Posts'} recents={recents.posts} seeAllLink={'posts'}/>
 						</div>}
 						
 						{recents.pages.length > 0 && <div className={'col-md-4'}>
-							<RecentCard cardTitle={'Recent Pages'} recents={recents.pages}/>
+							<RecentCard cardTitle={'Recent Pages'} recents={recents.pages} seeAllLink={'pages'}/>
 						</div>}
 						
 						{recents.testimonials.length > 0 && <div className={'col-md-4'}>
-							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials}/>
+							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials} seeAllLink={'testimonials'}/>
 						</div>}
 					</div>
 				</div>
