@@ -7,10 +7,14 @@ export async function addImage( img ) {
 	});
 }
 
-export function editImage( img ) {
-	return knex('images')
+export async function editImage( img ) {
+	const data = await knex('images')
 			.where({ imageId: img.imageId })
-			.update( img );
+			.update( img )
+			.catch( err => { return err });
+	
+	if (data > 0) { return getImageById(img.imageId) }
+	else { return 'error ' + data }
 }
 
 export function getImages( limit ) {

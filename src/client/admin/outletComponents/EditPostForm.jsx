@@ -2,7 +2,8 @@ import EditHeader from "./EditHeader.jsx";
 import { HandleChange } from "./PostData.jsx";
 import TextEditor from "./TextEditor.jsx";
 
-export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl }) {
+export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl,
+										 quill, setQuill }) {
 	
 	// Handle Change
 	
@@ -23,7 +24,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 					<input type="text" className="form-control" name='slug' id="slug"
 						   placeholder="Slug" value={ post.slug || ''} onChange={ handleChange } />
 				</div>
-				<TextEditor value={ post.content || '' } handleChange={ handleChange } />
+				<TextEditor value={ quill } setValue={ setQuill } />
 			</div>
 	)
 }

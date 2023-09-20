@@ -12,7 +12,8 @@ export async function addTestimonial( testimonial ) {
 export async function editTestimonial( testimonial ) {
 	const data = await knex('testimonials')
 			.where({ testimonialId: testimonial.testimonialId })
-			.update( testimonial );
+			.update( testimonial )
+			.catch( err => { return err } );
 	
 	if (data > 0) { return getTestimonialById(testimonial.testimonialId) }
 	else { return 'error' + data }

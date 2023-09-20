@@ -4,7 +4,7 @@ export async function addPost( post ) {
 	return await Post.create({
 		title: post.title,
 		content: post.content,
-		datePublished: post.datePublished || new Date(),
+		datePublished: post.datePublished,
 		slug: post.slug,
 		StatusStatusId: post.StatusStatusId,
 		UserUserId: post.UserUserId,
@@ -15,10 +15,11 @@ export async function addPost( post ) {
 export async function editPost( post ) {
 	const data = await knex('posts')
 			.where({ postId: post.postId })
-			.update( post );
+			.update( post )
+			.catch( err => { return err });
 	
 	if (data > 0) { return getPostById(post.postId) }
-	else { return 'error' + data }
+	else { return 'error ' + data }
 }
 
 export function getPosts( limit ) {
@@ -46,5 +47,5 @@ export async function deletePost( id ) {
 			.del();
 	
 	if (data > 0) { return 'deleted' }
-	else { return 'error' + data }
+	else { return 'error ' + data }
 }
