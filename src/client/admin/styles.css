@@ -162,6 +162,22 @@ i {
     background: rgba(216, 191, 216, 1);
 }
 
+.category-btn {
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+
+/* Forms */
+
+.form-control {
+    border-radius: 2rem;
+}
+
+.add-category {
+    border-radius: 5px;
+}
+
 
 /* Edit Page/Post/Testimonial */
 

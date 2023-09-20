@@ -14,6 +14,7 @@ export async function addPage( page ) {
 export async function editPage( page ) {
 	const data = await knex('pages')
 			.where({ pageId: page.pageId })
+			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
 			.update( page )
 			.catch( err => { return err });
 	

@@ -1,7 +1,7 @@
 import express from 'express';
 import { URL } from 'url';
 import {addPage, deletePage, editPage, getPageById, getPages} from "./pages.js";
-import {addPost, addPostCategory, deletePost, editPost, getPostById, getPosts} from "./posts.js";
+import {addPost, addPostCategory, deletePost, editPost, getPostById, getPostCategories, getPosts} from "./posts.js";
 import {
     addTestimonial,
     deleteTestimonial,
@@ -66,8 +66,11 @@ router.route('/posts')
         });
 
 router.route('/posts/categories')
+        .get(async function (req, res) {
+            res.send(await getPostCategories());
+        })
         .post(async function (req, res) {
-            res.send(await addPostCategory(req.body));
+            res.send(await addPostCategory(req.body.postCategory));
         });
 
 router.route('/posts/:postId')

@@ -12,6 +12,7 @@ export async function addTestimonial( testimonial ) {
 export async function editTestimonial( testimonial ) {
 	const data = await knex('testimonials')
 			.where({ testimonialId: testimonial.testimonialId })
+			.leftJoin('pages', { 'pages.pageId' : 'testimonials.PagePageId' })
 			.update( testimonial )
 			.catch( err => { return err } );
 	

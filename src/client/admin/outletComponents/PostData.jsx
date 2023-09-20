@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const config = {
+export const axiosConfig = {
 	headers: {
 		'Content-Type': 'application/x-www-form-urlencoded'
 	}
@@ -46,9 +46,10 @@ export default async function PostData(
 		event, setButtons, buttons, buttonType, originalButton, waitingButton, doneButton, url, content, dataSuccess, setState
 ) {
 	event.preventDefault();
+	console.log(content);
 	setButtons({ ...buttons, [buttonType]: waitingButton});
 	
-	const data = await axios.post("/api/admin/" + url, content, config);
+	const data = await axios.post("/api/admin/" + url, content, axiosConfig);
 	
 	await response(setButtons, buttons, buttonType, originalButton,
 			doneButton, data, dataSuccess, setState);
@@ -61,7 +62,7 @@ export async function DeleteData( event, setButtons, buttons, url, dataSuccess )
 	event.preventDefault();
 	setButtons({ ...buttons, deleteButton: 'Deleting...'});
 	
-	const data = await axios.delete('/api/admin/' + url, config);
+	const data = await axios.delete('/api/admin/' + url, axiosConfig);
 	
 	await response(setButtons, buttons, 'deleteButton', 'Delete',
 			'Deleted', data, dataSuccess)

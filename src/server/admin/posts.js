@@ -15,6 +15,8 @@ export async function addPost( post ) {
 export async function editPost( post ) {
 	const data = await knex('posts')
 			.where({ postId: post.postId })
+			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
 			.update( post )
 			.catch( err => { return err });
 	
@@ -41,8 +43,13 @@ export function getPostById( id ) {
 
 export async function addPostCategory( category ) {
 	return await PostCategory.create({
-		postCategory: category.postCategory
+		postCategory: category
 	});
+}
+
+export async function getPostCategories() {
+	return knex('postCategories')
+			.select('*');
 }
 
 export async function deletePost( id ) {
