@@ -1,5 +1,6 @@
 import EditHeader from "./EditHeader.jsx";
 import { HandleChange } from "./PostData.jsx";
+import TextEditor from "./TextEditor.jsx";
 
 export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl }) {
 	
@@ -22,10 +23,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 					<input type="text" className="form-control" name='slug' id="slug"
 						   placeholder="Slug" value={ post.slug || ''} onChange={ handleChange } />
 				</div>
-				<div className="mb-3">
-					<textarea className="form-control" name='content' id="content" rows="18"
-							  value={ post.content || '' } onChange={ handleChange }></textarea>
-				</div>
+				<TextEditor value={ post.content || '' } handleChange={ handleChange } />
 			</div>
 	)
 }

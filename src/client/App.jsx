@@ -12,6 +12,7 @@ import Testimonials from "./admin/pages/Testimonials";
 import EditTestimonial from "./admin/pages/editing/EditTestimonial.jsx";
 import EditPage from "./admin/pages/editing/EditPage.jsx";
 import EditPost from "./admin/pages/editing/EditPost.jsx";
+import EditImage from "./admin/pages/editing/EditImage.jsx";
 
 export default function App() {
     
@@ -66,6 +67,7 @@ export default function App() {
                     
                     <Route path={'images'} element={<Images />} />
                     <Route path={'images/upload'} element={<Upload />} />
+                    <Route path={'images/:imageId/edit'} element={<EditImage />} />
                     
                     <Route path={'testimonials'} element={<Testimonials />} />
                     <Route path={'testimonials/:testimonialId/edit'} element={<EditTestimonial showDelete={ true } />} />

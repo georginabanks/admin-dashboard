@@ -7,6 +7,12 @@ export async function addImage( img ) {
 	});
 }
 
+export function editImage( img ) {
+	return knex('images')
+			.where({ imageId: img.imageId })
+			.update( img );
+}
+
 export function getImages( limit ) {
 	return knex('images')
 			.select('*')

@@ -10,7 +10,7 @@ import {
     getTestimonials
 } from "./testimonials.js";
 import path from "path";
-import {addImage, getImages} from "./images.js";
+import {addImage, editImage, getImageById, getImages} from "./images.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -119,5 +119,13 @@ router.route('/images')
             // Move the uploaded image to our upload folder
             await image.mv(path.join(uploadPath, image.name));
             
-            res.send(await addImage({ filename: image.name, dateUploaded: new Date() }));
+            res.send( await addImage({ filename: image.name, dateUploaded: new Date() }) );
+        });
+
+router.route('/images/:imageId')
+        .get(async function (req, res) {
+            res.send( await getImageById( req.params.imageId ) );
+        })
+        .post(async function (req, res) {
+            res.send( await editImage(req.body) );
         });

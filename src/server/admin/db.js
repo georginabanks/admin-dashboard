@@ -52,6 +52,17 @@ sequelize.authenticate().then(() => {
 
 // Create Models
 
+export const Image = sequelize.define('Image', {
+	imageId: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true
+	},
+	filename: { type: DataTypes.TEXT },
+	alt: { type: DataTypes.TEXT },
+	dateUploaded: { type: DataTypes.DATE }
+}, { timestamps: false, tableName: 'images' })
+
 export const Page = sequelize.define('Page', {
 	pageId: {
 		type: DataTypes.INTEGER,
@@ -61,7 +72,14 @@ export const Page = sequelize.define('Page', {
 	title: { type: DataTypes.TEXT },
 	content: { type: DataTypes.TEXT('medium') },
 	datePublished: { type: DataTypes.DATE },
-	slug: { type: DataTypes.TEXT }
+	slug: { type: DataTypes.TEXT },
+	featuredImage: {
+		type: DataTypes.INTEGER,
+		references: {
+			model: Image,
+			key: 'imageId'
+		}
+	}
 }, { timestamps: false, tableName: 'pages' });
 
 export const Post = sequelize.define('Post', {
@@ -73,7 +91,14 @@ export const Post = sequelize.define('Post', {
 	title: { type: DataTypes.TEXT },
 	content: { type: DataTypes.TEXT('medium') },
 	datePublished: { type: DataTypes.DATE },
-	slug: { type: DataTypes.TEXT }
+	slug: { type: DataTypes.TEXT },
+	featuredImage: {
+		type: DataTypes.INTEGER,
+		references: {
+			model: Image,
+			key: 'imageId'
+		}
+	}
 }, { timestamps: false, tableName: 'posts' });
 
 export const PostCategory = sequelize.define('PostCategory', {
@@ -93,17 +118,6 @@ export const Status = sequelize.define('Status', {
 	},
 	statusType: { type: DataTypes.TEXT }
 }, { timestamps: false, tableName: 'statuses' });
-
-export const Image = sequelize.define('Image', {
-	imageId: {
-		type: DataTypes.INTEGER,
-		primaryKey: true,
-		autoIncrement: true
-	},
-	filename: { type: DataTypes.TEXT },
-	alt: { type: DataTypes.TEXT },
-	dateUploaded: { type: DataTypes.DATE }
-}, { timestamps: false, tableName: 'images' })
 
 export const Testimonial = sequelize.define('Testimonial', {
 	testimonialId: {
@@ -159,12 +173,6 @@ User.hasMany(Post);
 
 Post.belongsTo(PostCategory);
 PostCategory.hasMany(Post);
-
-Image.belongsTo(Page);
-Page.hasMany(Image);
-
-Image.belongsTo(Post);
-Post.hasMany(Image);
 
 Testimonial.belongsTo(Page);
 Page.hasMany(Testimonial);
