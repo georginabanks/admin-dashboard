@@ -2,7 +2,7 @@ import PostData, {DeleteData} from "../../outletComponents/PostData.jsx";
 import {useEffect, useState} from "react";
 import EditPostForm from "../../outletComponents/EditPostForm.jsx";
 import {useParams} from "react-router-dom";
-import {getPostById} from "../../../api.jsx";
+import {getPageById} from "../../../api.jsx";
 
 export default function EditPage({ showDelete }) {
 	
@@ -16,7 +16,7 @@ export default function EditPage({ showDelete }) {
 	const { pageId } = useParams();
 	if (pageId !== undefined) {
 		useEffect(() => {
-			getPostById(pageId).then( res => setPage(res) );
+			getPageById(pageId).then( res => setPage(res) );
 		}, [])
 	}
 	

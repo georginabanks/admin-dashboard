@@ -27,7 +27,7 @@ export function getPages( limit ) {
 }
 
 export function getPageById( id ) {
-	return knex('testimonials')
+	return knex('pages')
 			.select('*')
 			.where({ pageId: id })
 			.first();

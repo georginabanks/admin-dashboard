@@ -1,4 +1,5 @@
 import express from 'express';
+import { URL } from 'url';
 import {addPage, deletePage, editPage, getPageById, getPages} from "./pages.js";
 import {addPost, addPostCategory, deletePost, editPost, getPostById, getPosts} from "./posts.js";
 import {
@@ -9,8 +10,10 @@ import {
     getTestimonials
 } from "./testimonials.js";
 import path from "path";
+import {addImage, getImages} from "./images.js";
 
 export const router = express.Router();
+const uploadPath = path.join('public', 'uploads');
 
 
 router.get('/health-check', function (req, res) {
@@ -103,15 +106,18 @@ router.route('/testimonials/:testimonialId')
 // Images
 
 router.route('/images')
+        .get(async function (req, res) {
+            res.send( await getImages(req.query.limit) );
+        })
         .post(async function (req, res) {
             // Get the file that was set to our field named "image"
             const { image } = req.files;
-        
+            
             // If no image submitted, exit
             if (!image) return res.sendStatus(400);
-        
+            
             // Move the uploaded image to our upload folder
-            image.mv(path.join(__dirname, '..', '..', 'public', 'uploads', image.name));
-        
-            res.sendStatus(200);
+            await image.mv(path.join(uploadPath, image.name));
+            
+            res.send(await addImage({ filename: image.name, dateUploaded: new Date() }));
         });

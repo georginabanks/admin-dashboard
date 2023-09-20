@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {getPages, getPostById} from "../../../api.jsx";
+import {getPages, getTestimonialById} from "../../../api.jsx";
 import PostData, {DeleteData, HandleChange} from "../../outletComponents/PostData.jsx";
 import EditHeader from "../../outletComponents/EditHeader.jsx";
 
@@ -22,7 +22,7 @@ export default function EditTestimonial() {
 	let showDelete = false;
 	if (testimonialId !== undefined) {
 		useEffect(() => {
-			getPostById(testimonialId).then( res => setTestimonial(res) );
+			getTestimonialById(testimonialId).then( res => setTestimonial(res) );
 		}, []);
 		showDelete = true;
 	}

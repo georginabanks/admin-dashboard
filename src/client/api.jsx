@@ -60,3 +60,12 @@ export const getTestimonialById = async ( id ) => {
 	return data.data;
 };
 
+
+// Images
+
+export const getImages = async ( limit ) => {
+	const data = await axios.get('/api/admin/images', { ...axiosConfig, params: {
+			limit: limit
+		}});
+	return data.data;
+}
