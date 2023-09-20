@@ -25,12 +25,14 @@ export async function editPost( post ) {
 export function getPosts( limit ) {
 	return knex('posts')
 			.select('*')
+			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.limit(limit);
 }
 
 export function getPostById( id ) {
 	return knex('posts')
 			.select('*')
+			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.where({ postId: id })
 			.first();
 }

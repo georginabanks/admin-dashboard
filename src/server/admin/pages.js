@@ -24,12 +24,14 @@ export async function editPage( page ) {
 export function getPages( limit ) {
 	return knex('pages')
 			.select('*')
+			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
 			.limit(limit);
 }
 
 export function getPageById( id ) {
 	return knex('pages')
 			.select('*')
+			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
 			.where({ pageId: id })
 			.first();
 }
@@ -42,5 +44,3 @@ export async function deletePage( id ) {
 	if (data > 0) { return 'deleted' }
 	else { return `error ` + data }
 }
-
-console.log(await editPage({ pageId: 6, content: 'maybe' }))

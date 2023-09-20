@@ -45,8 +45,8 @@ function Row({ post, select, setSelect, pageName, counter, setCounter }) {
 				
 				<td>{ post.title }</td>
 				<td>{ post.username }</td>
-				<td>{ post.status }</td>
-				<td>{ DateString(post.datePublished) }</td>
+				<td>{ post.statusType }</td>
+				<td>{ post.datePublished !== null && DateString(post.datePublished) }</td>
 				
 				<td>
 					<a href={`/${url}/edit`}>Edit</a>

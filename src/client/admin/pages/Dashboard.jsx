@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {getRecents} from "../../api.jsx";
 
 function RecentCard({ cardTitle, recents, seeAllLink }) {
- return (
+	return (
 		 <div className={'recent-card'}>
 			 <div className="card">
 				 <div className="card-body">
@@ -18,9 +18,17 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 					 <hr />
 					
 					 { recents.map( r => {
+						 
+						 let url;
+						 if ( r.pageId !== undefined ) { url = 'pages'}
+						 else if ( r.postId !== undefined ) { url = 'posts' }
+						 else if ( r.testimonialId !== undefined ) { url = 'testimonials' }
+						 
 						 return (
 								 <div key={ r.pageId || r.postId || r.testimonialId } className={'recent-box'}>
-									 <a href={ r.slug }>{ r.title || r.testimonialAuthor }</a>
+									 <a href={ `/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
+										 { r.title || r.testimonialAuthor }
+									 </a>
 								 </div>
 						 )
 					 }) }

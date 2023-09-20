@@ -46,7 +46,6 @@ export default async function PostData(
 		event, setButtons, buttons, buttonType, originalButton, waitingButton, doneButton, url, content, dataSuccess, setState
 ) {
 	event.preventDefault();
-	console.log(content)
 	setButtons({ ...buttons, [buttonType]: waitingButton});
 	
 	const data = await axios.post("/api/admin/" + url, content, config);
