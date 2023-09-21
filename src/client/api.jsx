@@ -45,8 +45,10 @@ export const getPostById = async ( id ) => {
 	return data.data;
 };
 
-export const getPostCategories = async () => {
-	const data = await axios.get('/api/admin/posts/categories', axiosConfigGet );
+export const getPostCategories = async ( filters ) => {
+	const data = await axios.get('/api/admin/posts/categories', { ...axiosConfigGet, params: {
+			filters: filters
+		}} );
 	return data.data;
 }
 

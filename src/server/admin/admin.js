@@ -67,7 +67,7 @@ router.route('/posts')
 
 router.route('/posts/categories')
         .get(async function (req, res) {
-            res.send(await getPostCategories());
+                res.send(await getPostCategories(req.query.filters));
         })
         .post(async function (req, res) {
             res.send(await addPostCategory(req.body.postCategory));

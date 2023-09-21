@@ -47,9 +47,31 @@ export async function addPostCategory( category ) {
 	});
 }
 
-export async function getPostCategories() {
+export async function getPostCategories( filters ) {
+	
+	let data;
+	if ( filters !== undefined ) {
+		data = await knex('postCategories')
+				.select('*')
+				.where(filters );
+	} else {
+		data = await knex('postCategories')
+				.select('*');
+	}
+	
+	let newData = [];
+	for (let i=0; i < data.length; i++) {
+		newData.push({ ...data[i], ...await getCategoryCount({postCategoryId: data[i].postCategoryId}) })
+	}
+	
+	return newData;
+}
+
+export async function getCategoryCount( filters ) {
 	return knex('postCategories')
-			.select('*');
+			.where(filters )
+			.count('* as count')
+			.first();
 }
 
 export async function deletePost( id ) {
@@ -60,3 +82,5 @@ export async function deletePost( id ) {
 	if (data > 0) { return 'deleted' }
 	else { return 'error ' + data }
 }
+
+console.log(await getCategoryCount({ postCategoryId: 5 }))

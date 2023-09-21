@@ -75,6 +75,10 @@ i {
     padding: 0 1rem;
 }
 
+.logo h5 {
+    padding: 0;
+}
+
 .logo {
     padding: 1rem 1rem 2rem;
 }
@@ -119,6 +123,7 @@ i {
 
 .card-title {
     color: #624F81;
+    padding: 0;
 }
 
 .recent-box {

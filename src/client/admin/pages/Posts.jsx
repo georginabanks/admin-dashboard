@@ -29,7 +29,7 @@ export default function Posts() {
 				
 				{ categories.length > 0 && <div>
 					<h4>Post Categories</h4>
-					<CategoryTable categories={ categories } />
+					<CategoryTable categories={ categories } counter={ counter } setCounter={ setCounter } />
 				</div> }
 			</div>
 	)
