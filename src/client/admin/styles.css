@@ -194,3 +194,36 @@ i {
 .fa-arrow-left {
     padding-top: 1.25rem;
 }
+
+
+/* Images */
+
+.thumbnail-image {
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: .5s ease;
+    color: white;
+    text-align: right;
+    padding: 0.5rem;
+}
+
+.overlay i {
+    color: white;
+    padding: 5px;
+    outline: #624F81;
+}
+
+.overlay i:hover {
+    color: #624F81;
+}

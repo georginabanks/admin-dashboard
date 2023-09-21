@@ -1,10 +1,32 @@
-export default function ImageGrid({ images }) {
+import {DeleteData} from "./PostData.jsx";
+import {useState} from "react";
+
+export default function ImageGrid({ images, counter, setCounter }) {
 	return (
 			<div className={'row image-grid'}>
 				{ images.map( img => {
+					
+					const [buttons, setButtons] = useState({ deleteButton: 'Delete' });
+					
+					const deleteImg = async ( event ) => {
+						await DeleteData(event, setButtons, buttons, 'images/' + img.imageId,
+								'imageId')
+						setCounter( counter + 1 );
+					}
+					
 					return (
-							<div className={'col-md-3 thumbnail-image'}>
-								<img src={ '/uploads/' + img.filename } alt={ img.alt } width={'100%'} />
+							<div className={'col-md-3'} key={ img.imageId }>
+								<div className={'thumbnail-image'}>
+									<img src={ '/uploads/' + img.filename } alt={ img.alt } />
+									<div className={'overlay'}>
+										<a href={`/images/${img.imageId}/edit`}>
+											<i className="fa-solid fa-pencil"></i>
+										</a>
+										<a onClick={ deleteImg } >
+											<i className="fa-solid fa-trash"></i>
+										</a>
+									</div>
+								</div>
 							</div>
 					)
 				}) }

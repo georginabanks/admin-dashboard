@@ -1,7 +1,16 @@
 import express from 'express';
 import { URL } from 'url';
 import {addPage, deletePage, editPage, getPageById, getPages} from "./pages.js";
-import {addPost, addPostCategory, deletePost, editPost, getPostById, getPostCategories, getPosts} from "./posts.js";
+import {
+    addPost,
+    addPostCategory,
+    deletePost,
+    deletePostCategory,
+    editPost,
+    getPostById,
+    getPostCategories,
+    getPosts
+} from "./posts.js";
 import {
     addTestimonial,
     deleteTestimonial,
@@ -10,7 +19,7 @@ import {
     getTestimonials
 } from "./testimonials.js";
 import path from "path";
-import {addImage, editImage, getImageById, getImages} from "./images.js";
+import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -73,6 +82,11 @@ router.route('/posts/categories')
             res.send(await addPostCategory(req.body.postCategory));
         });
 
+router.route('/posts/categories/:postCategoryId')
+        .delete(async function (req, res) {
+            res.send(await deletePostCategory(req.params.postCategoryId))
+        })
+
 router.route('/posts/:postId')
         .get(async function (req, res) {
             res.send(await getPostById(req.params.postId));
@@ -131,4 +145,7 @@ router.route('/images/:imageId')
         })
         .post(async function (req, res) {
             res.send( await editImage(req.body) );
+        })
+        .delete(async function (req, res) {
+            res.send(await deleteImage(req.params.imageId));
         });

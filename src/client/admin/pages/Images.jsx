@@ -16,7 +16,7 @@ export default function Images() {
 	return (
 			<div>
 				<OutletHeader newLink={'/images/upload'} newText={'Upload Image'} />
-				{ images.length > 0 && <ImageGrid images={ images } /> }
+				{ images.length > 0 && <ImageGrid images={ images } counter={ counter } setCounter={ setCounter } /> }
 			</div>
 	)
 }

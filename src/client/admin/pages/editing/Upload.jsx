@@ -1,20 +1,24 @@
 import axios from "axios";
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function Upload() {
 	
 	const [image, setImage] = useState();
 	const [success, setSuccess] = useState("");
+	const navigate = useNavigate()
 	
-	const handleSubmit = ( event ) => {
+	const handleSubmit = async ( event ) => {
 		event.preventDefault();
-		axios.post("/api/admin/images", image, { headers: { "Content-Type": "multipart/form-data" }})
+		await axios.post("/api/admin/images", image, { headers: { "Content-Type": "multipart/form-data" }})
 				.then(res => {
 					console.log(res);
 					if (res.data.imageId !== undefined) {
 						setSuccess("Successfully uploaded!")
+						setTimeout(() => navigate('/images'), 1000)
 					} else {
 						setSuccess("Upload failed")
+						setTimeout(() => setSuccess(''), 3000)
 					}
 				})
 	}

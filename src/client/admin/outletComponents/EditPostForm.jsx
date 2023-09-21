@@ -51,8 +51,6 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 						<TextEditor value={ quill } setValue={ setQuill } />
 					</div>
 					
-					{/*<div className={'col-md-1'}><div className="vr"></div></div>*/}
-					
 					<div className={'col-md-3'}>
 						Featured Image
 						

@@ -83,4 +83,11 @@ export async function deletePost( id ) {
 	else { return 'error ' + data }
 }
 
-console.log(await getCategoryCount({ postCategoryId: 5 }))
+export async function deletePostCategory( id ) {
+	const data = await knex('postCategories')
+			.where({ postCategoryId: id })
+			.del();
+	
+	if (data > 0) { return 'deleted' }
+	else { return 'error ' + data }
+}
