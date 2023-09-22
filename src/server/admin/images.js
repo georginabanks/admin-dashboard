@@ -18,9 +18,14 @@ export async function editImage( img ) {
 }
 
 export function getImages( limit ) {
-	return knex('images')
-			.select('*')
-			.limit(limit);
+	if ( limit > 0 ) {
+		return knex('images')
+				.select('*')
+				.limit( limit );
+	} else {
+		return knex('images')
+				.select('*');
+	}
 }
 
 export function getImageById( id ) {

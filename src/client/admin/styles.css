@@ -7,6 +7,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: #624F81;
     padding-top: 2rem;
+    padding-bottom: 0.5rem;
 }
 
 a {
@@ -169,8 +170,15 @@ i {
 }
 
 .category-btn {
-    padding: 1rem;
+    padding: 0 1rem;
     border-radius: 5px;
+    background: rgba(216, 191, 216, 0.6);
+}
+
+.category-btn:hover {
+    padding: 0 1rem;
+    border-radius: 5px;
+    background: rgba(216, 191, 216, 1);
 }
 
 
@@ -193,6 +201,15 @@ i {
 
 .fa-arrow-left {
     padding-top: 1.25rem;
+}
+
+.ql-editor{
+    min-height: 60vh;
+}
+
+.edit-sidebar {
+    background: rgba(216, 191, 216, 0.3);
+    padding: 1rem;
 }
 
 
@@ -228,6 +245,33 @@ img {
     color: #624F81;
 }
 
+.selected-overlay, .select-overlay, .select-overlay:hover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s ease;
+    text-align: right;
+    padding: 0.5rem;
+}
+
+.select-overlay i {
+    color: transparent;
+}
+
+.selected-overlay, .select-overlay:hover {
+    background: rgba(98, 79, 129, 0.6);
+}
+
+.selected-overlay i, .select-overlay:hover i {
+    transition: .5s ease;
+    color: #302740;
+}
+
 .edit-image {
     max-height: 100vh;
+}
+
+.modal-title {
+    padding: 0;
 }

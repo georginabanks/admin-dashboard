@@ -10,7 +10,7 @@ export default function Images() {
 	const [counter, setCounter] = useState(0);
 	
 	useEffect(() => {
-		getImages( limit).then( res => setImages(res) );
+		getImages( limit ).then( res => setImages(res) );
 	}, [ counter ]);
 	
 	return (

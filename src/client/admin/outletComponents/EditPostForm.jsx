@@ -4,6 +4,38 @@ import TextEditor from "./TextEditor.jsx";
 import {useEffect, useState} from "react";
 import {getPostCategories} from "../../api.jsx";
 import axios from "axios";
+import SelectImage from "./SelectImage.jsx";
+
+function FeaturedImage() {
+
+}
+
+function EditPostCategory({ handleChange, cat, addCategory, setNewCat }) {
+	return (
+			<div>
+				<h5>Post Category</h5>
+				
+				<div className={'mb-3'}>
+					<select className="form-select" aria-label="select post category" name={'postCategory'}
+							onChange={handleChange}>
+						<option defaultValue={null}>Select Category</option>
+						{cat.length > 0 && cat.map( c => {
+							return <option value={c.postCategory} key={ cat.indexOf(c) }>
+								{c.postCategory}
+							</option>
+						})}
+					</select>
+				</div>
+				
+				<form className="input-group mb-3" onSubmit={ addCategory }>
+					<input type="text" className="form-control add-category" id="addCategory"
+						   placeholder="Add Category"
+						   onChange={ e => setNewCat(e.target.value) } />
+					<button type={"submit"} className={'btn category-btn'}>+</button>
+				</form>
+			</div>
+	)
+}
 
 export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl,
 										 quill, setQuill }) {
@@ -17,6 +49,11 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 	useEffect(() => {
 		getPostCategories().then( res => setCat( res) );
 	}, [ catCount ])
+	
+	const setFeaturedImage = ( selected, setSelected ) => {
+		setPost({ ...post, featuredImage: selected.imageId });
+		setSelected({});
+	}
 	
 	const addCategory = async ( event ) => {
 		event.preventDefault();
@@ -51,33 +88,16 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 						<TextEditor value={ quill } setValue={ setQuill } />
 					</div>
 					
-					<div className={'col-md-3'}>
-						Featured Image
+					<div className={'col-md-3 edit-sidebar'}>
+						<button type="button" className="btn btn-primary" data-bs-toggle="modal"
+								data-bs-target="#featuredImage">
+							Launch static backdrop modal
+						</button>
 						
-						{ post.postId !== undefined && <div className="card">
-							<div className="card-body">
-								<h5 className="card-title">Post Category</h5>
-								
-								<div className={'mb-3'}>
-									<select className="form-select" aria-label="select post category" name={'postCategory'}
-											onChange={handleChange}>
-										<option defaultValue={null}>Select Category</option>
-										{cat.length > 0 && cat.map( c => {
-											return <option value={c.postCategory} key={ cat.indexOf(c) }>
-												{c.postCategory}
-											</option>
-										})}
-									</select>
-								</div>
-								
-								<form className="input-group mb-3" onSubmit={ addCategory }>
-									<input type="text" className="form-control add-category" id="addCategory"
-										   placeholder="Add Category"
-										   onChange={ e => setNewCat(e.target.value) } />
-									<button type={"submit"} className={'btn category-btn'}>+</button>
-								</form>
-							</div>
-						</div> }
+						<SelectImage setFeaturedImage={ setFeaturedImage } />
+						
+						{ post.postId !== undefined && <EditPostCategory handleChange={ handleChange } cat={ cat }
+																		 addCategory={ addCategory } setNewCat={ setNewCat } /> }
 					</div>
 				</div>
 			</div>

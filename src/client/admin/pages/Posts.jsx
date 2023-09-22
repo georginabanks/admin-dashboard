@@ -27,10 +27,10 @@ export default function Posts() {
 				
 				{ posts.length === 0 && <p>There are no posts yet.</p> }
 				
-				{ categories.length > 0 && <div>
-					<h4>Post Categories</h4>
-					<CategoryTable categories={ categories } counter={ counter } setCounter={ setCounter } />
-				</div> }
+				<h4>Post Categories</h4>
+				
+				{ categories.length > 0 && <CategoryTable categories={categories} counter={counter} setCounter={setCounter}/> }
+				{ categories.length === 0 && <p>There are no categories yet.</p> }
 			</div>
 	)
 }
