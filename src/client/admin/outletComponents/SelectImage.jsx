@@ -57,7 +57,7 @@ export default function SelectImage({ setFeaturedImage }) {
 						<div className="modal-footer">
 							<button type="button" className="btn save-button" data-bs-dismiss="modal">Close</button>
 							<button type="button" className="btn publish-button" data-bs-dismiss="modal"
-									onClick={ () => setFeaturedImage( selected, setSelected ) }>
+									onClick={ () => setFeaturedImage( setSelected ) }>
 								Select
 							</button>
 						</div>

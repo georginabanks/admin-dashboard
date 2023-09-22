@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {getPostCategories} from "../../api.jsx";
 import axios from "axios";
 import SelectImage from "./SelectImage.jsx";
+import {useNavigate} from "react-router-dom";
 
 function FeaturedImage() {
 
@@ -38,7 +39,24 @@ function EditPostCategory({ handleChange, cat, addCategory, setNewCat }) {
 }
 
 export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl,
-										 quill, setQuill }) {
+										 quill, setQuill, counter, setCounter }) {
+	
+	// Upload Image
+	
+	const [image, setImage] = useState({});
+	
+	const upload = ( event ) => {
+		event.preventDefault();
+		axios.post("/api/admin/images", image, { headers: { "Content-Type": "multipart/form-data" }})
+				.then(res => {
+					console.log(res);
+					if (res.data.imageId !== undefined) {
+						setSuccess("Successfully uploaded!")
+					} else {
+						setSuccess("Upload failed")
+					}
+				})
+	}
 	
 	// Post Categories
 	
@@ -50,8 +68,8 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 		getPostCategories().then( res => setCat( res) );
 	}, [ catCount ])
 	
-	const setFeaturedImage = ( selected, setSelected ) => {
-		setPost({ ...post, featuredImage: selected.imageId });
+	const setFeaturedImage = ( setSelected ) => {
+		setCounter( counter + 1 );
 		setSelected({});
 	}
 	
@@ -89,10 +107,20 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 					</div>
 					
 					<div className={'col-md-3 edit-sidebar'}>
-						<button type="button" className="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#featuredImage">
-							Launch static backdrop modal
-						</button>
+						<h5 style={{ paddingTop: '0.5rem' }}>Featured Image</h5>
+						
+						<div className="card">
+							<div className="card-body text-center">
+								{ post.featuredImage > 0 && <div>
+									<img src={ '/uploads/' + post.filename } className="card-img-top" alt={ post.alt } />
+									<hr />
+								</div> }
+								
+								<a data-bs-toggle="modal" data-bs-target="#featuredImage">
+									<i className="fa-solid fa-upload"></i> &emsp; Select Image
+								</a>
+							</div>
+						</div>
 						
 						<SelectImage setFeaturedImage={ setFeaturedImage } />
 						

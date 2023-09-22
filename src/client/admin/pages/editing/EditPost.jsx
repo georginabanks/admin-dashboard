@@ -7,6 +7,7 @@ import {getPostById} from "../../../api.jsx";
 export default function EditPost({ showDelete }) {
 	
 	const [post, setPost] = useState({ postId: 0 });
+	const [counter, setCounter] = useState(0);
 	const [quill, setQuill] = useState(post.content);
 	const [buttons, setButtons] = useState({
 		deleteButton: 'Delete',
@@ -18,7 +19,7 @@ export default function EditPost({ showDelete }) {
 	if (postId !== undefined) {
 		useEffect(() => {
 			getPostById(postId).then( res => setPost(res) );
-		}, [])
+		}, [ counter ])
 	}
 	
 	
@@ -44,5 +45,5 @@ export default function EditPost({ showDelete }) {
 	
 	return <EditPostForm post={ post } setPost={ setPost } deletePost={ deletePost } saveDraft={ saveDraft }
 						 publishPost={ publishPost } buttons={ buttons } showDelete={ showDelete } backUrl={'/posts'}
-						 quill={ quill } setQuill={ setQuill } />
+						 quill={ quill } setQuill={ setQuill } counter={ counter } setCounter={ setCounter } />
 }

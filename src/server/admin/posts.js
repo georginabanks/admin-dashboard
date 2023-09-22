@@ -29,6 +29,7 @@ export function getPosts( limit ) {
 			.select('*')
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
+			.leftJoin('images', { 'posts.featuredImage' : 'images.imageId' })
 			.limit(limit);
 }
 
@@ -37,6 +38,7 @@ export function getPostById( id ) {
 			.select('*')
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
+			.leftJoin('images', { 'posts.featuredImage' : 'images.imageId' })
 			.where({ postId: id })
 			.first();
 }
