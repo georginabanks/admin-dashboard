@@ -1,4 +1,4 @@
-export default function EditHeader({ deletePost, saveDraft, publishPost, backUrl, buttons, showDelete }) {
+export default function EditHeader({ deletePost, saveDraft, publishPost, backUrl, buttons, showDelete, showSave }) {
 	return (
 			<div className={'row justify-content-between'}>
 				<div className={'col-auto'}>
@@ -11,12 +11,13 @@ export default function EditHeader({ deletePost, saveDraft, publishPost, backUrl
 							<button type="submit" className="btn delete-button" onClick={ deletePost }>
 								{ buttons.deleteButton }
 							</button>
-						</div>}
-						<div className={'col-auto mb-3'}>
+						</div> }
+						
+						{ showSave !== false && <div className={'col-auto mb-3'}>
 							<button type="submit" className="btn save-button" onClick={ saveDraft }>
 								{ buttons.saveButton }
 							</button>
-						</div>
+						</div> }
 						<div className={'col-auto mb-3'}>
 							<button type="submit" className="btn publish-button" onClick={ publishPost }>
 								{ buttons.publishButton }

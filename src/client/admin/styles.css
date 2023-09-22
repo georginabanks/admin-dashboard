@@ -227,3 +227,7 @@ img {
 .overlay i:hover {
     color: #624F81;
 }
+
+.edit-image {
+    max-height: 100vh;
+}

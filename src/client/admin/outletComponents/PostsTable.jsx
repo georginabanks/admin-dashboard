@@ -37,7 +37,7 @@ function Row({ post, counter, setCounter }) {
 	)
 }
 
-export default function PostsTable({ posts, title, select, setSelect, counter, setCounter }) {
+export default function PostsTable({ posts, title, counter, setCounter }) {
 	return (
 			<div>
 				<table className={'table table-hover'}>

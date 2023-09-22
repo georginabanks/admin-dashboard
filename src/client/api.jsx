@@ -76,3 +76,8 @@ export const getImages = async ( limit ) => {
 		}});
 	return data.data;
 }
+
+export const getImageById = async ( id ) => {
+	const data = await axios.get('/api/admin/images/' + id, axiosConfigGet );
+	return data.data;
+}

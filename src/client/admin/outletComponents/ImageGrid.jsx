@@ -3,7 +3,7 @@ import {useState} from "react";
 
 export default function ImageGrid({ images, counter, setCounter }) {
 	return (
-			<div className={'row image-grid'}>
+			<div className={'row gy-3 image-grid'}>
 				{ images.map( img => {
 					
 					const [buttons, setButtons] = useState({ deleteButton: 'Delete' });
