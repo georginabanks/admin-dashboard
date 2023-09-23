@@ -22,7 +22,9 @@ function Logo() {
 	return (
 			<div className={'row logo'}>
 				<div className={'col-3'}>
-					<img src={'/uploads/logo.png'} alt={'logo'} />
+					<div className={'square'}>
+						<img src={'/uploads/logo.png'} alt={'logo'} className={'round-image'} />
+					</div>
 				</div>
 				<div className={'col-9'}>
 					<h5>Company Name</h5>

@@ -84,11 +84,6 @@ i {
     padding: 1rem 1rem 2rem;
 }
 
-.logo img {
-    max-width: 100%;
-    border-radius: 1rem;
-}
-
 
 /* Outlet */
 
@@ -223,6 +218,25 @@ img {
     display: block;
     width: 100%;
     height: auto;
+}
+
+.square {
+    position: relative;
+    width: 100%;
+}
+
+.square:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.round-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .overlay {

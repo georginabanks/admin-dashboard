@@ -27,8 +27,10 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 						 return (
 								 <div key={ r.pageId || r.postId || r.testimonialId } className={'recent-box'}>
 									 <div className={'row'}>
-										 { r.featuredImage !== null && <div className={'col-2'}>
-											 <img src={r.filename} alt={r.alt} />
+										 { r.featuredImage !== null && <div className={'col-3'}>
+											 <div className={'square'}>
+											 <img src={'/uploads/' + r.filename} alt={r.alt} className={'round-image'} />
+											 </div>
 										 </div>}
 										 <div className={'col-auto'}>
 											 <a href={ `/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
