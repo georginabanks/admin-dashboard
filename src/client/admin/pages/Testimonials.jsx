@@ -3,22 +3,9 @@ import { getTestimonials } from "../../api";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {DeleteData} from "../outletComponents/PostData.jsx";
 
-function Row({ testimonial, select, setSelect, counter, setCounter }) {
+function Row({ testimonial, counter, setCounter }) {
 	
 	const [buttons, setButtons] = useState({ deleteButton: 'Delete' })
-	
-	// const changeSelect = (event) => {
-	// 	let data = [...select];
-	// 	const index = data.indexOf(String(testimonial.testimonialId));
-	//
-	// 	if (index > -1) {
-	// 		data.splice(index, 1);
-	// 	} else {
-	// 		data = [...data, event.target.value]
-	// 	}
-	//
-	// 	setSelect(data);
-	// }
 	
 	const deleteRow = async ( event ) => {
 		await DeleteData(event, setButtons, buttons, '/testimonials/' + testimonial.testimonialId,
@@ -31,15 +18,9 @@ function Row({ testimonial, select, setSelect, counter, setCounter }) {
 	
 	return (
 			<tr>
-				{/*<td>*/}
-				{/*	<div className="form-check" onChange={changeSelect}>*/}
-				{/*		<input className="form-check-input" type="checkbox" value={testimonial.id} id={testimonial.id} />*/}
-				{/*	</div>*/}
-				{/*</td>*/}
-				
 				<td>{ testimonial.testimonialAuthor }</td>
 				<td>{ comments + "..." }</td>
-				<td>{ testimonial.pageTitle }</td>
+				<td>{ testimonial.title }</td>
 				
 				<td>
 					<a href={`/testimonials/${ testimonial.testimonialId }/edit`}>Edit</a>
@@ -68,7 +49,6 @@ export default function Testimonials() {
 				{ testimonials.length > 0 && <table className={'table table-hover'}>
 					<thead>
 					<tr>
-						{/*<th scope={'col'}></th>*/}
 						<th scope={'col'}>Testimonial Author</th>
 						<th scope={'col'}>Excerpt</th>
 						<th scope={'col'}>Page Assigned</th>
@@ -83,6 +63,11 @@ export default function Testimonials() {
 					})}
 					</tbody>
 				</table> }
+				
+				{ testimonials.length >= 10 && <a onClick={ () => {
+						setLimit( limit + 10 );
+						setCounter( counter + 1 );
+					}} className={'see-more-button'}><p>See more</p></a> }
 				
 				{ testimonials.length === 0 && <p>There are no testimonials yet.</p> }
 			</div>

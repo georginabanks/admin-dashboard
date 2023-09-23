@@ -1,7 +1,7 @@
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {useEffect, useState} from "react";
-import ImageGrid from "../outletComponents/ImageGrid.jsx";
 import {getImages} from "../../api.jsx";
+import ImageGrid from "../outletComponents/ImageGrid.jsx";
 
 export default function Images() {
 	
@@ -16,7 +16,13 @@ export default function Images() {
 	return (
 			<div>
 				<OutletHeader newLink={'/images/upload'} newText={'Upload Image'} />
-				{ images.length > 0 && <ImageGrid images={ images } counter={ counter } setCounter={ setCounter } /> }
+				{ images.length > 0 && <div>
+					<ImageGrid images={ images } counter={ counter } setCounter={ setCounter } />
+					<a onClick={ () => {
+						setLimit( limit + 16 );
+						setCounter( counter + 1 );
+					}} className={'see-more-button'}><p>See more</p></a>
+				</div> }
 			</div>
 	)
 }

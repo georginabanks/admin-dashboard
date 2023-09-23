@@ -177,6 +177,11 @@ i {
     background: rgba(216, 191, 216, 1);
 }
 
+.see-more-button {
+    text-align: center;
+    padding: 2rem;
+}
+
 
 /* Forms */
 

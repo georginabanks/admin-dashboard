@@ -25,6 +25,11 @@ export default function Posts() {
 						&& <PostsTable posts={ posts } title={'Post'} select={ select } setSelect={ setSelect }
 									   counter={ counter } setCounter={ setCounter } limit={ limit } setLimit={ setLimit }/> }
 				
+				{ posts.length >= 10 && <a onClick={ () => {
+						setLimit( limit + 10 );
+						setCounter( counter + 1 );
+					}} className={'see-more-button'}><p>See more</p></a> }
+				
 				{ posts.length === 0 && <p>There are no posts yet.</p> }
 				
 				<h4>Post Categories</h4>

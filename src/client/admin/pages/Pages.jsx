@@ -18,9 +18,13 @@ export default function Pages() {
 			<div>
 				<OutletHeader newLink={'/pages/new'} newText={'New Page'} />
 				
-				{ pages.length > 0
-						&& <PostsTable posts={ pages } title={'Page'} select={ select } setSelect={ setSelect }
+				{ pages.length > 0 && <PostsTable posts={ pages } title={'Page'} select={ select } setSelect={ setSelect }
 									   counter={ counter } setCounter={ setCounter } limit={ limit } setLimit={ setLimit } /> }
+				
+				{ pages.length >= 10 && <a onClick={ () => {
+						setLimit( limit + 10 );
+						setCounter( counter + 1 );
+					}} className={'see-more-button'}><p>See more</p></a> }
 				
 				{ pages.length === 0 && <p>There are no pages yet.</p>}
 			</div>
