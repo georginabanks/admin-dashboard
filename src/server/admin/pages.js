@@ -1,6 +1,15 @@
 import { Page, knex } from "./db.js";
 
 export async function addPage( page ) {
+	
+	page.year && page.year.length > 0
+			? page.datePublished = new Date(`${page.year}-${page.month}-${page.date}T00:00:00.000Z`)
+			: page.datePublished = null;
+	
+	delete page.year;
+	delete page.month;
+	delete page.date;
+	
 	return await Page.create({
 		title: page.title,
 		content: page.content,
@@ -14,6 +23,11 @@ export async function addPage( page ) {
 
 export async function editPage( page ) {
 	delete page.postCategory;
+	const datePublished = new Date(`${page.year}-${page.month}-${page.date}T00:00:00.000Z`) || page.datePublished;
+	delete page.year;
+	delete page.month;
+	delete page.date;
+	page.datePublished = datePublished;
 	
 	const data = await knex('pages')
 			.where({ pageId: page.pageId })

@@ -1,6 +1,15 @@
 import {Post, knex, PostCategory} from './db.js';
 
 export async function addPost( post ) {
+	
+	post.year && post.year.length > 0
+			? post.datePublished = new Date(`${post.year}-${post.month}-${post.date}T00:00:00.000Z`)
+			: post.datePublished = null;
+	
+	delete post.year;
+	delete post.month;
+	delete post.date;
+	
 	return await Post.create({
 		title: post.title,
 		content: post.content,
@@ -14,6 +23,12 @@ export async function addPost( post ) {
 }
 
 export async function editPost( post ) {
+	const datePublished = new Date(`${post.year}-${post.month}-${post.date}T00:00:00.000Z`) || post.datePublished;
+	delete post.year;
+	delete post.month;
+	delete post.date;
+	post.datePublished = datePublished;
+	
 	const data = await knex('posts')
 			.where({ postId: post.postId })
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })

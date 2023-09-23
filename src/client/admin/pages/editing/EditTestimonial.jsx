@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {getPages, getTestimonialById} from "../../../api.jsx";
 import PostData, {DeleteData, HandleChange} from "../../outletComponents/PostData.jsx";
 import EditHeader from "../../outletComponents/EditHeader.jsx";
@@ -7,6 +7,7 @@ import EditHeader from "../../outletComponents/EditHeader.jsx";
 export default function EditTestimonial() {
 	
 	const [testimonial, setTestimonial] = useState({ testimonialId: 0 });
+	const navigate = useNavigate();
 	const [buttons, setButtons] = useState({
 		deleteButton: 'Delete',
 		saveButton: 'Save Draft',
@@ -40,6 +41,7 @@ export default function EditTestimonial() {
 	const deletePost = async (event) => {
 		await DeleteData(event, setButtons, buttons, '/testimonials/' + testimonial.testimonialId,
 				'testimonialId');
+		navigate('/testimonials')
 	}
 	
 	const saveDraft = async ( event ) => {
@@ -77,7 +79,7 @@ export default function EditTestimonial() {
 				<select className="form-select" aria-label="Select page" name={'PagePageId'} onChange={ handleChange }>
 					<option>Assign to page</option>
 					{ pages.map( page => {
-						return <option value={page.pageId}>{page.title}</option>
+						return <option value={page.pageId} key={page.pageId}>{page.title}</option>
 					})}
 				</select>
 			</div>

@@ -5,12 +5,28 @@ import {useEffect, useState} from "react";
 import {getPostCategories} from "../../api.jsx";
 import axios from "axios";
 import SelectImage from "./SelectImage.jsx";
-import {useNavigate} from "react-router-dom";
+
+function Schedule({ post, handleChange }) {
+	return (
+			<div>
+				<h5 style={{ paddingTop: '0.5rem' }}>Schedule</h5>
+				
+				<div className={'input-group'}>
+					<input type="text" className="form-control" id="date" name={'date'}
+						   placeholder="dd" onChange={ handleChange } value={ post.date || '' } />
+					<input type="text" className="form-control" id="month" name={'month'}
+						   placeholder="mm" onChange={ handleChange } value={ post.month || '' } />
+					<input type="text" className="form-control" id="year" name={'year'}
+						   placeholder="yyyy" onChange={ handleChange } value={ post.year || '' } />
+				</div>
+			</div>
+	)
+}
 
 function FeaturedImage({ post, setFeaturedImage }) {
 	return (
 			<div>
-				<h5 style={{ paddingTop: '0.5rem' }}>Featured Image</h5>
+				<h5>Featured Image</h5>
 				
 				<div className="card">
 					<div className="card-body text-center">
@@ -106,12 +122,14 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 						</div>
 						<div className="mb-3">
 							<input type="text" className="form-control" name='slug' id="slug"
-								   placeholder="Slug" value={ post.slug || ''} onChange={ handleChange } />
+								   placeholder="Slug" value={ post.slug || '' } onChange={ handleChange } />
 						</div>
 						<TextEditor value={ quill } setValue={ setQuill } />
 					</div>
 					
 					<div className={'col-md-3 edit-sidebar'}>
+						<Schedule post={ post } handleChange={ handleChange } />
+						
 						<FeaturedImage post={ post } setFeaturedImage={ setFeaturedImage } />
 						
 						{ post.postId !== undefined && <EditPostCategory handleChange={ handleChange } cat={ cat }
