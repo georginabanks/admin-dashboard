@@ -54,7 +54,8 @@ export default function App() {
     return (
             <Routes >
                 
-                <Route path={'/'} element={<DashboardLayout handleLogout={handleLogout} cookies={cookies} />}>
+                <Route path={'/'} element={<DashboardLayout handleLogin={ handleLogin } handleLogout={handleLogout}
+                                                            cookies={cookies} />}>
                     <Route path={''} element={<Dashboard />} />
                     
                     <Route path={'pages'} element={<Pages />} />

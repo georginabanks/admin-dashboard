@@ -1,14 +1,12 @@
-import Logout from "./Logout";
-
-function CreateNav(props) {
+function CreateNav({ link, id, icon, name }) {
 	return (
-			<a href={ props.link } className={'nav-link'} key={ props.id }>
+			<a href={ link } className={'nav-link'} key={ id }>
 				<div className={'row'}>
 					<div className={'col-2'}>
-						{ props.icon }
+						{ icon }
 					</div>
 					<div className={'col-8'}>
-						{ props.name }
+						{ name }
 					</div>
 				</div>
 			</a>
@@ -69,10 +67,10 @@ function PrimaryNavigation() {
 		}
 	]
 	
-	return primaryNav.map(CreateNav)
+	return primaryNav.map( n => <CreateNav name={ n.name } link={ n.link } id={ n.id } icon={ n.icon } key={ n.id } /> )
 }
 
-function SecondaryNavigation() {
+function SecondaryNavigation({ logout }) {
 	
 	const secondaryNav = [
 		{
@@ -84,8 +82,7 @@ function SecondaryNavigation() {
 		{
 			id: 6,
 			name: 'Logout',
-			icon: <i className="fa-solid fa-arrow-right-from-bracket"></i>,
-			link: <Logout />
+			icon: <i className="fa-solid fa-arrow-right-from-bracket"></i>
 		},
 		{
 			id: 7,
@@ -95,10 +92,29 @@ function SecondaryNavigation() {
 		}
 	]
 	
-	return secondaryNav.map(CreateNav)
+	return (
+			<div>
+				<CreateNav name={ secondaryNav[0].name } link={ secondaryNav[0].link } id={ secondaryNav[0].id }
+						   icon={ secondaryNav[0].icon } />
+				
+				<a onClick={ logout } className={'nav-link'}>
+					<div className={'row'} onClick={ logout }>
+						<div className={'col-2'}>
+							{ secondaryNav[1].icon }
+						</div>
+						<div className={'col-8'}>
+							{ secondaryNav[1].name }
+						</div>
+					</div>
+				</a>
+				
+				<CreateNav name={ secondaryNav[2].name } link={ secondaryNav[2].link } id={ secondaryNav[2].id }
+						   icon={ secondaryNav[2].icon } />
+			</div>
+	)
 }
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({ logout }) {
 	return (
 			<div className={'sidebar d-flex align-items-start flex-column mb-3 nav-menu'}>
 				<div className={'mb-lg-auto'}>
@@ -106,7 +122,7 @@ export default function DashboardSidebar() {
 					<PrimaryNavigation />
 				</div>
 				
-				<SecondaryNavigation />
+				<SecondaryNavigation logout={ logout } />
 			</div>
 	)
 }
