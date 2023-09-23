@@ -7,8 +7,27 @@ import axios from "axios";
 import SelectImage from "./SelectImage.jsx";
 import {useNavigate} from "react-router-dom";
 
-function FeaturedImage() {
-
+function FeaturedImage({ post, setFeaturedImage }) {
+	return (
+			<div>
+				<h5 style={{ paddingTop: '0.5rem' }}>Featured Image</h5>
+				
+				<div className="card">
+					<div className="card-body text-center">
+						{ post.filename !== null && post.featuredImage !== undefined && <div>
+							<img src={ '/uploads/' + post.filename } className="card-img-top" alt={ post.alt } />
+							<hr />
+						</div> }
+						
+						<a data-bs-toggle="modal" data-bs-target="#featuredImage">
+							<i className="fa-solid fa-upload"></i> &emsp; Select Image
+						</a>
+					</div>
+				</div>
+				
+				<SelectImage setFeaturedImage={ setFeaturedImage } />
+			</div>
+	)
 }
 
 function EditPostCategory({ handleChange, cat, addCategory, setNewCat }) {
@@ -39,23 +58,13 @@ function EditPostCategory({ handleChange, cat, addCategory, setNewCat }) {
 }
 
 export default function EditPostForm({ post, setPost, deletePost, saveDraft, publishPost, buttons, showDelete, backUrl,
-										 quill, setQuill, counter, setCounter }) {
+										 quill, setQuill }) {
 	
-	// Upload Image
+	// Featured Image
 	
-	const [image, setImage] = useState({});
-	
-	const upload = ( event ) => {
-		event.preventDefault();
-		axios.post("/api/admin/images", image, { headers: { "Content-Type": "multipart/form-data" }})
-				.then(res => {
-					console.log(res);
-					if (res.data.imageId !== undefined) {
-						setSuccess("Successfully uploaded!")
-					} else {
-						setSuccess("Upload failed")
-					}
-				})
+	const setFeaturedImage = ( selected, setSelected ) => {
+		setPost({ ...post, ...selected, featuredImage: selected.imageId })
+		setSelected({});
 	}
 	
 	// Post Categories
@@ -68,11 +77,6 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 		getPostCategories().then( res => setCat( res) );
 	}, [ catCount ])
 	
-	const setFeaturedImage = ( setSelected ) => {
-		setCounter( counter + 1 );
-		setSelected({});
-	}
-	
 	const addCategory = async ( event ) => {
 		event.preventDefault();
 		await axios.post('/api/admin/posts/categories', { postCategory: newCat },
@@ -80,6 +84,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 		setCatCount(catCount + 1);
 		setNewCat('');
 	}
+	
 	
 	// Handle Change
 	
@@ -107,22 +112,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 					</div>
 					
 					<div className={'col-md-3 edit-sidebar'}>
-						<h5 style={{ paddingTop: '0.5rem' }}>Featured Image</h5>
-						
-						<div className="card">
-							<div className="card-body text-center">
-								{ post.featuredImage > 0 && <div>
-									<img src={ '/uploads/' + post.filename } className="card-img-top" alt={ post.alt } />
-									<hr />
-								</div> }
-								
-								<a data-bs-toggle="modal" data-bs-target="#featuredImage">
-									<i className="fa-solid fa-upload"></i> &emsp; Select Image
-								</a>
-							</div>
-						</div>
-						
-						<SelectImage setFeaturedImage={ setFeaturedImage } />
+						<FeaturedImage post={ post } setFeaturedImage={ setFeaturedImage } />
 						
 						{ post.postId !== undefined && <EditPostCategory handleChange={ handleChange } cat={ cat }
 																		 addCategory={ addCategory } setNewCat={ setNewCat } /> }

@@ -8,7 +8,8 @@ export async function addPost( post ) {
 		slug: post.slug,
 		StatusStatusId: post.StatusStatusId,
 		UserUserId: post.UserUserId,
-		PostCategoryPostCategoryId: post.PostCategoryPostCategoryId
+		PostCategoryPostCategoryId: post.PostCategoryPostCategoryId,
+		featuredImage: post.imageId
 	});
 }
 
@@ -17,6 +18,7 @@ export async function editPost( post ) {
 			.where({ postId: post.postId })
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
+			.leftJoin('images', { 'posts.featuredImage' : 'images.imageId '})
 			.update( post )
 			.catch( err => { return err });
 	

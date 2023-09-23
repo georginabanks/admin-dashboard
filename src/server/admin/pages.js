@@ -7,14 +7,18 @@ export async function addPage( page ) {
 		datePublished: page.datePublished,
 		slug: page.slug,
 		StatusStatusId: page.StatusStatusId,
-		UserUserId: page.UserUserId
+		UserUserId: page.UserUserId,
+		featuredImage: page.imageId
 	});
 }
 
 export async function editPage( page ) {
+	delete page.postCategory;
+	
 	const data = await knex('pages')
 			.where({ pageId: page.pageId })
 			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('images', { 'pages.featuredImage' : 'images.imageId' })
 			.update( page )
 			.catch( err => { return err });
 	
@@ -26,6 +30,7 @@ export function getPages( limit ) {
 	return knex('pages')
 			.select('*')
 			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('images', { 'pages.featuredImage' : 'images.imageId '})
 			.limit(limit);
 }
 
@@ -33,6 +38,7 @@ export function getPageById( id ) {
 	return knex('pages')
 			.select('*')
 			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
+			.leftJoin('images', { 'pages.featuredImage' : 'images.imageId '})
 			.where({ pageId: id })
 			.first();
 }
