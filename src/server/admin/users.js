@@ -1,4 +1,4 @@
-import { User, sequelize, knex } from "./db.mjs";
+import { User } from "./db.js";
 
 export async function addUser(u) {
 	return await User.create({

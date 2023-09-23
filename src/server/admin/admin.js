@@ -1,5 +1,4 @@
 import express from 'express';
-import { URL } from 'url';
 import {addPage, deletePage, editPage, getPageById, getPages} from "./pages.js";
 import {
     addPost,
@@ -20,6 +19,7 @@ import {
 } from "./testimonials.js";
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
+import {Login} from "./users.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -27,6 +27,13 @@ const uploadPath = path.join('public', 'uploads');
 
 router.get('/health-check', function (req, res) {
     res.sendStatus(200);
+});
+
+
+// User
+
+router.post('/user', async function (req, res) {
+    res.send( await Login( req.body ) );
 });
 
 

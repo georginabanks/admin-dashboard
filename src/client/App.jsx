@@ -74,9 +74,9 @@ export default function App() {
                     <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
                     
                     <Route path={'settings'} element={<Settings />} />
-                    
-                    <Route path={'login'} element={<Login handleLogin={handleLogin} />} />
                 </Route>
+                
+                <Route path={'login'} element={<Login handleLogin={handleLogin} />} />
             
             </Routes>
     )
