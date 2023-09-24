@@ -83,3 +83,13 @@ export const getImageById = async ( id ) => {
 	const data = await axios.get('/api/admin/images/' + id, axiosConfigGet );
 	return data.data;
 }
+
+
+// Users
+
+export const getUsers = async ( username ) => {
+	const data = await axios.get('/api/admin/users', { ...axiosConfigGet, params: {
+			username: username
+		}});
+	return data.data
+}

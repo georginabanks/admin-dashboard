@@ -13,6 +13,7 @@ import EditTestimonial from "./admin/pages/editing/EditTestimonial.jsx";
 import EditPage from "./admin/pages/editing/EditPage.jsx";
 import EditPost from "./admin/pages/editing/EditPost.jsx";
 import EditImage from "./admin/pages/editing/EditImage.jsx";
+import {getUsers} from "./api.jsx";
 
 export default function App() {
     
@@ -26,9 +27,11 @@ export default function App() {
         return d;
     }
     
-    function handleLogin(user) {
+    async function handleLogin( username ) {
+        const user = await getUsers( username );
+        
         setCookie("user", {
-            ...user,
+            ...user[0],
             expires: addHours(new Date(), 4)
         }, {
             path: "/",
@@ -56,7 +59,8 @@ export default function App() {
                 
                 <Route path={'/'} element={<DashboardLayout handleLogin={ handleLogin } handleLogout={handleLogout}
                                                             cookies={cookies} />}>
-                    <Route path={''} element={<Dashboard />} />
+                    
+                    <Route path={''} element={<Dashboard cookies={cookies.user} />} />
                     
                     <Route path={'pages'} element={<Pages />} />
                     <Route path={'pages/:pageId/edit'} element={<EditPage showDelete={ true } />} />
@@ -74,7 +78,7 @@ export default function App() {
                     <Route path={'testimonials/:testimonialId/edit'} element={<EditTestimonial showDelete={ true } />} />
                     <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
                     
-                    <Route path={'settings'} element={<Settings cookies={ cookies } />} />
+                    <Route path={'settings'} element={<Settings cookies={ cookies.user } />} />
                 </Route>
                 
                 <Route path={'login'} element={<Login handleLogin={handleLogin} />} />

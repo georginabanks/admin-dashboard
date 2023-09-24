@@ -41,7 +41,7 @@ export async function editPage( page ) {
 }
 
 export function getPages( limit, query ) {
-	if ( query.length > 0 ) {
+	if ( query && query.length > 0 ) {
 		return knex('pages')
 				.select('*')
 				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})

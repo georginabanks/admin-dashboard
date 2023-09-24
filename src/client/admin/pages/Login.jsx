@@ -24,11 +24,11 @@ export default function Login({ handleLogin }) {
 		event.preventDefault();
 		setButtonText("Waiting...");
 		
-		const data = await axios.post("/api/admin/user", user, {
+		const data = await axios.post("/api/admin/users/login", user, {
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}});
-console.log(data)
+		
 		if (data.data === true) {
 			setButtonText("Logging in...");
 			handleLogin(user.username);

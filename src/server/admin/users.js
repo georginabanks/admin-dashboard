@@ -36,10 +36,17 @@ export async function Login(u) {
 
 // Get User
 
-export async function getUser( username ) {
-	return knex('users')
-			.leftJoin('permissions', { 'users.PermissionPermissionId' : 'permissions.permission' })
-			.leftJoin('images', { 'users.ImageImageId' : 'images.imageId' })
-			.select('name', 'username', 'email', 'filename', 'alt', 'permission')
-			.where('username', username );
+export async function getUsers( username ) {
+	if ( username && username.length > 0 ) {
+		return knex('users')
+				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permission'})
+				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
+				.select('name', 'username', 'email', 'filename', 'alt', 'permission')
+				.where('username', username);
+	} else {
+		return knex('users')
+				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permission'})
+				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
+				.select('name', 'username', 'email', 'filename', 'alt', 'permission');
+	}
 }

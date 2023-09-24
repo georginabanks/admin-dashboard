@@ -42,7 +42,7 @@ export async function editPost( post ) {
 }
 
 export function getPosts( limit, query ) {
-	if ( query.length > 0 ) {
+	if ( query && query.length > 0 ) {
 		return knex('posts')
 				.select('*')
 				.leftJoin('statuses', {'posts.StatusStatusId': 'statuses.statusId'})

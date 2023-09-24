@@ -47,7 +47,7 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
  )
 }
 
-export default function Dashboard() {
+export default function Dashboard({ cookies }) {
 	
 	const [recents, setRecents] = useState({});
 	
@@ -58,7 +58,7 @@ export default function Dashboard() {
 	if ( recents.posts !== undefined || recents.pages !== undefined || recents.testimonials !== undefined) {
 		return (
 				<div>
-					<DashboardHeader/>
+					<DashboardHeader cookies={ cookies } />
 					
 					<div className={'row'}>
 						{recents.posts.length > 0 && <div className={'col-md-4'}>
