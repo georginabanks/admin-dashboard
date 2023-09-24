@@ -139,8 +139,7 @@ export const User = sequelize.define('User', {
 	username: { type: DataTypes.TEXT },
 	password: { type: DataTypes.TEXT },
 	email: { type: DataTypes.TEXT },
-	name: { type: DataTypes.TEXT },
-	profile: { type: DataTypes.TEXT }
+	name: { type: DataTypes.TEXT }
 }, { timestamps: false, tableName: 'users' });
 
 useBcrypt(User, {
@@ -179,8 +178,11 @@ PostCategory.hasMany(Post);
 Testimonial.belongsTo(Page);
 Page.hasMany(Testimonial);
 
+User.belongsTo(Image);
+Image.hasMany(User);
+
 User.belongsTo(Permission);
-Permission.hasOne(User);
+Permission.hasMany(User);
 
 
 // Create Tables
