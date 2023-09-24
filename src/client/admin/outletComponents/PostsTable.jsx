@@ -24,9 +24,9 @@ function Row({ post, counter, setCounter }) {
 	return (
 			<tr>
 				<td>{ post.title }</td>
-				<td>{ post.username }</td>
-				<td>{ post.statusType }</td>
-				<td>{ post.datePublished !== null && DateString(post.datePublished) }</td>
+				<td className={'computer'}>{ post.username }</td>
+				<td className={'computer'}>{ post.statusType }</td>
+				<td className={'computer'}>{ post.datePublished !== null && DateString(post.datePublished) }</td>
 				
 				<td>
 					<a href={`/${url}/edit`}>Edit</a>
@@ -44,9 +44,9 @@ export default function PostsTable({ posts, title, counter, setCounter }) {
 					<thead>
 						<tr>
 							<th scope={'col'}>{title} Title</th>
-							<th scope={'col'}>Author</th>
-							<th scope={'col'}>Status</th>
-							<th scope={'col'}>Date Published</th>
+							<th scope={'col'} className={'computer'}>Author</th>
+							<th scope={'col'} className={'computer'}>Status</th>
+							<th scope={'col'} className={'computer'}>Date Published</th>
 							<th scope={'col'}></th>
 						</tr>
 					</thead>

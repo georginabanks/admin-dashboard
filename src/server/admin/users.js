@@ -36,7 +36,7 @@ export async function Login(u) {
 
 // Get User
 
-export async function getUsers( username ) {
+export async function getUsers( username, query ) {
 	if ( username && username.length > 0 ) {
 		return knex('users')
 				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
@@ -47,6 +47,10 @@ export async function getUsers( username ) {
 		return knex('users')
 				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
+				.orWhereILike('username', `%${query}%`)
+				.orWhereILike('name', `%${query}%`)
+				.orWhereILike('email', `%${query}%`)
+				.orWhereILike('permission', `%${query}%`)
 				.select('name', 'username', 'email', 'filename', 'alt', 'permission');
 	}
 }

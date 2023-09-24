@@ -34,7 +34,7 @@ router.get('/health-check', function (req, res) {
 
 router.route('/users')
         .get( async function (req, res) {
-            res.send( await getUsers(req.query.username) );
+            res.send( await getUsers(req.query.username, req.query.query) );
         })
         .post(async function (req, res) {
             res.send( await editUser(req.body) );

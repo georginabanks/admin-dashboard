@@ -19,12 +19,12 @@ function Row({ testimonial, counter, setCounter }) {
 	return (
 			<tr>
 				<td>{ testimonial.testimonialAuthor }</td>
-				<td>{ comments + "..." }</td>
+				<td className={'computer'}>{ comments + "..." }</td>
 				<td>{ testimonial.title }</td>
 				
 				<td>
 					<a href={`/testimonials/${ testimonial.testimonialId }/edit`}>Edit</a>
-					&ensp;
+					&ensp; / &ensp;
 					<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
 				</td>
 			</tr>
@@ -51,7 +51,7 @@ export default function Testimonials() {
 					<thead>
 					<tr>
 						<th scope={'col'}>Testimonial Author</th>
-						<th scope={'col'}>Excerpt</th>
+						<th scope={'col'} className={'computer'}>Excerpt</th>
 						<th scope={'col'}>Page Assigned</th>
 						<th scope={'col'}></th>
 					</tr>

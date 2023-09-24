@@ -159,6 +159,10 @@ i {
 
 /* Dashboard */
 
+.dashboard-header {
+    padding-bottom: 2rem;
+}
+
 .recent-card .card {
     background: rgba(159, 115, 171, 0.32);
     border: transparent;

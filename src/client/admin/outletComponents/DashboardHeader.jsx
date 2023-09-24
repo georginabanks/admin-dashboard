@@ -4,7 +4,7 @@ export default function DashboardHeader({ cookies }) {
 	if ( cookies.name !== null ) { greeting = cookies.name }
 	
 	return (
-			<div className={'outlet-header'}>
+			<div className={'outlet-header dashboard-header'}>
 				<div className={'row'}>
 					<div className={'greeting'}>
 						<div className={'row'}>

@@ -88,9 +88,10 @@ export const getImageById = async ( id ) => {
 
 // Users
 
-export const getUsers = async ( username ) => {
+export const getUsers = async ( username, query ) => {
 	const data = await axios.get('/api/admin/users', { ...axiosConfigGet, params: {
-			username: username
+			username: username,
+			query: query || ''
 		}});
 	return data.data
 }
