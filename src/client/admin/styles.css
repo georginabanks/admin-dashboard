@@ -233,6 +233,11 @@ i {
     border-radius: 5px;
 }
 
+.search-icon {
+    position: relative;
+    top: 0.5rem;
+}
+
 
 /* Edit Page/Post/Testimonial */
 

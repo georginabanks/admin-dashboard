@@ -13,7 +13,7 @@ export default function Pages() {
 	
 	useEffect(() => {
 		getPages(limit, query).then( res => setPages(res) );
-	}, [ counter ]);
+	}, [ counter, query ]);
 	
 	return (
 			<div>

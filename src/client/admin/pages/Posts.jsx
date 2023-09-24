@@ -16,7 +16,7 @@ export default function Posts() {
 	useEffect(() => {
 		getPosts(limit, query).then( res => setPosts(res) );
 		getPostCategories().then( res => setCategories(res) );
-	}, [ counter ]);
+	}, [ counter, query ]);
 	
 	return (
 			<div>

@@ -1,4 +1,11 @@
+import {HandleChange} from "./PostData.jsx";
+
 export default function OutletHeader({ newLink, newText, query, setQuery }) {
+	
+	const handleChange = ( event ) => {
+		HandleChange( event, query, setQuery );
+	}
+	
 	return (
 			<div className={'outlet-header row justify-content-between'}>
 				<div className={'col-auto'}>
@@ -7,7 +14,16 @@ export default function OutletHeader({ newLink, newText, query, setQuery }) {
 					</a>
 				</div>
 				{ query !== undefined && <div className={'col-auto'}>
-					2
+					<div className={'row mb-3'}>
+						<div className={'col-auto'}>
+							<label htmlFor="query" className="form-label search-icon">
+								<i className="fa-solid fa-magnifying-glass"></i>
+							</label>
+						</div>
+						<div className={'col-auto'}>
+							<input type="text" className="form-control" id="query" placeholder=" Search" onChange={ handleChange } />
+						</div>
+					</div>
 				</div> }
 			</div>
 	)
