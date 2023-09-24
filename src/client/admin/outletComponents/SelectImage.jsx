@@ -33,7 +33,7 @@ function Grid({ images, selected, setSelected }) {
 	)
 }
 
-export default function SelectImage({ setFeaturedImage }) {
+export default function SelectImage({ setFeaturedImage, modalTitle }) {
 	
 	const [images, setImages] = useState([]);
 	const [selected, setSelected] = useState({});
@@ -47,7 +47,7 @@ export default function SelectImage({ setFeaturedImage }) {
 				<div className="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 					<div className="modal-content">
 						<div className="modal-header">
-							<h5 className="modal-title">Featured Image</h5>
+							<h5 className="modal-title">{ modalTitle }</h5>
 							<button type="button" className="btn-close" data-bs-dismiss="modal"
 									aria-label="Close"></button>
 						</div>

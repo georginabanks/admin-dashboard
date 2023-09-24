@@ -41,7 +41,7 @@ function FeaturedImage({ post, setFeaturedImage }) {
 					</div>
 				</div>
 				
-				<SelectImage setFeaturedImage={ setFeaturedImage } />
+				<SelectImage setFeaturedImage={ setFeaturedImage } modalTitle={'Featured Image'} />
 			</div>
 	)
 }

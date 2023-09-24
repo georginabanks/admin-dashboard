@@ -333,6 +333,30 @@ img {
     color: #302740;
 }
 
+.edit-pfp h5 {
+    color: transparent;
+}
+
+.edit-pfp:hover {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(216, 191, 216, 0.6);
+}
+
+.edit-pfp:hover h5 {
+    color: #302740;
+    padding: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(216, 191, 216, 1);
+    border-radius: 0.5rem;
+}
+
 .edit-image {
     max-height: 100vh;
 }
