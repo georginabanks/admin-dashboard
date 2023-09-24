@@ -37,14 +37,15 @@ export default function Testimonials() {
 	const [counter, setCounter] = useState(0);
 	const [select, setSelect] = useState([]);
 	const [limit, setLimit] = useState(10);
+	const [query, setQuery] = useState('');
 	
 	useEffect(() => {
-		getTestimonials(limit).then( res => setTestimonials(res) );
+		getTestimonials(limit, query).then( res => setTestimonials(res) );
 	}, [ counter ])
 	
 	return (
 			<div>
-				<OutletHeader newLink={'/testimonials/new'} newText={'New Testimonial'} />
+				<OutletHeader newLink={'/testimonials/new'} newText={'New Testimonial'} query={ query } setQuery={ setQuery } />
 				
 				{ testimonials.length > 0 && <table className={'table table-hover'}>
 					<thead>

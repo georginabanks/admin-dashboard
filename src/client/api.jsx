@@ -57,9 +57,10 @@ export const getPostCategories = async ( filters ) => {
 
 // Testimonials
 
-export const getTestimonials = async ( limit ) => {
+export const getTestimonials = async ( limit, query ) => {
 	const data = await axios.get('/api/admin/testimonials', { ...axiosConfigGet, params: {
-			limit: limit
+			limit: limit,
+			query: query
 		}});
 	return data.data;
 };

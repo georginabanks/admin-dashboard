@@ -20,11 +20,22 @@ export async function editTestimonial( testimonial ) {
 	else { return 'error' + data }
 }
 
-export function getTestimonials( limit ) {
-	return knex('testimonials')
-			.select('*')
-			.leftJoin('pages', { 'pages.pageId' : 'testimonials.PagePageId' })
-			.limit(limit);
+export function getTestimonials( limit, query ) {
+	if ( query && query.length > 0 ) {
+		return knex('testimonials')
+				.select('*')
+				.leftJoin('pages', {'pages.pageId': 'testimonials.PagePageId'})
+				.orWhereILike('testimonialContent', `%${query}%`)
+				.orWhereILike('testimonialAuthor', `%${query}%`)
+				.orWhereILike('testimonialBio', `%${query}%`)
+				.orWhereILike('title', `%${query}%`)
+				.limit(limit);
+	} else {
+		return knex('testimonials')
+				.select('*')
+				.leftJoin('pages', {'pages.pageId': 'testimonials.PagePageId'})
+				.limit(limit);
+	}
 }
 
 export function getTestimonialById( id ) {
