@@ -9,14 +9,15 @@ export default function Pages() {
 	const [counter, setCounter] = useState(0);
 	const [select, setSelect] = useState([]);
 	const [limit, setLimit] = useState(10);
+	const [query, setQuery] = useState('');
 	
 	useEffect(() => {
-		getPages(limit).then( res => setPages(res) );
+		getPages(limit, query).then( res => setPages(res) );
 	}, [ counter ]);
 	
 	return (
 			<div>
-				<OutletHeader newLink={'/pages/new'} newText={'New Page'} />
+				<OutletHeader newLink={'/pages/new'} newText={'New Page'} query={ query } setQuery={ setQuery } />
 				
 				{ pages.length > 0 && <PostsTable posts={ pages } title={'Page'} select={ select } setSelect={ setSelect }
 									   counter={ counter } setCounter={ setCounter } limit={ limit } setLimit={ setLimit } /> }

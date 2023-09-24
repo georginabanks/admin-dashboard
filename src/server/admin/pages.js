@@ -40,12 +40,27 @@ export async function editPage( page ) {
 	else { return 'error ' + data }
 }
 
-export function getPages( limit ) {
-	return knex('pages')
-			.select('*')
-			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
-			.leftJoin('images', { 'pages.featuredImage' : 'images.imageId '})
-			.limit(limit);
+export function getPages( limit, query ) {
+	if ( query.length > 0 ) {
+		return knex('pages')
+				.select('*')
+				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})
+				.leftJoin('images', {'pages.featuredImage': 'images.imageId '})
+				.leftJoin('users', {'pages.UserUserId': 'users.userId'})
+				.orWhereILike('title', `%${query}%`)
+				.orWhereILike('content', `%${query}%`)
+				.orWhereILike('slug', `%${query}%`)
+				.orWhereILike('statusType', `%${query}%`)
+				.orWhereILike('username', `%${query}%`)
+				.limit(limit);
+	} else {
+		return knex('pages')
+				.select('*')
+				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})
+				.leftJoin('images', {'pages.featuredImage': 'images.imageId '})
+				.leftJoin('users', {'pages.UserUserId': 'users.userId'})
+				.limit(limit);
+	}
 }
 
 export function getPageById( id ) {

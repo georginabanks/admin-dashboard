@@ -18,9 +18,10 @@ export const getRecents = async () => {
 
 // Pages
 
-export const getPages = async ( limit ) => {
+export const getPages = async ( limit, query ) => {
 	const data = await axios.get('/api/admin/pages', { ...axiosConfigGet, params: {
-			limit: limit
+			limit: limit,
+			query: query
 		}});
 	return data.data;
 };

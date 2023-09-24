@@ -52,7 +52,7 @@ router.get('/dashboard', async function (req, res) {
 
 router.route('/pages')
         .get(async function (req, res) {
-            res.send(await getPages(req.query.limit));
+            res.send(await getPages(req.query.limit, req.query.query));
         })
         .post(async function (req, res) {
             res.send(await addPage(req.body));
