@@ -19,12 +19,12 @@ function CreateNav({ link, id, icon, name }) {
 function Logo() {
 	return (
 			<div className={'row logo'}>
-				<div className={'col-3'}>
+				<div className={'col-3 col-md-4'}>
 					<div className={'square'}>
 						<img src={'/uploads/logo.png'} alt={'logo'} className={'round-image'} />
 					</div>
 				</div>
-				<div className={'col-9'}>
+				<div className={'col-9 col-md-8'}>
 					<h5>Company Name</h5>
 					Admin Dashboard
 				</div>

@@ -47,18 +47,16 @@ export default function Settings({ cookies, updateUser }) {
 	return (
 			<div>
 				<form onSubmit={ handleSubmit }>
-					<div className={'row'}>
-						<div className={'col-2'}>
+					<div className={'row gy-4'}>
+						<div className={'col-12 col-md-2'}>
 							<div className={'square'}>
 								<img src={ user.filename !== null ? '/uploads/' + user.filename : '/uploads/logo.png' }
 									 alt={ user.alt } className={'round-image'} />
 								
-								{/*<div className={'edit-pfp round-image'}>*/}
-									<a data-bs-toggle="modal" data-bs-target="#featuredImage"
-									   className={'edit-pfp round-image'}>
-										<h5>Edit</h5>
-									</a>
-								{/*</div>*/}
+								<a data-bs-toggle="modal" data-bs-target="#featuredImage"
+								   className={'edit-pfp round-image'}>
+									<h5>Edit</h5>
+								</a>
 							</div>
 							
 							<SelectImage setFeaturedImage={ setPFP } modalTitle={'Profile Picture'} />
