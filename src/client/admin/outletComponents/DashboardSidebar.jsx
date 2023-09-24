@@ -32,7 +32,7 @@ function Logo() {
 	)
 }
 
-function PrimaryNavigation() {
+function PrimaryNavigation({ cookies }) {
 	
 	const primaryNav = [
 		{
@@ -64,10 +64,21 @@ function PrimaryNavigation() {
 			name: 'Testimonials',
 			icon: <i className="fa-solid fa-comment-dots"></i>,
 			link: '/testimonials'
+		},
+		{
+			id: 6,
+			name: 'Users',
+			icon: <i className="fa-solid fa-user"></i>,
+			link: '/users'
 		}
 	]
 	
-	return primaryNav.map( n => <CreateNav name={ n.name } link={ n.link } id={ n.id } icon={ n.icon } key={ n.id } /> )
+	if ( cookies.permission === 'admin' ) {
+		return primaryNav.map(n => <CreateNav name={n.name} link={n.link} id={n.id} icon={n.icon} key={n.id}/>)
+	} else {
+		return primaryNav.slice(0, -1)
+				.map( n => <CreateNav name={ n.name } link={ n.link } id={ n.id } icon={ n.icon } key={ n.id } /> )
+	}
 }
 
 function SecondaryNavigation({ logout }) {
@@ -114,12 +125,12 @@ function SecondaryNavigation({ logout }) {
 	)
 }
 
-export default function DashboardSidebar({ logout }) {
+export default function DashboardSidebar({ logout, cookies }) {
 	return (
 			<div className={'sidebar d-flex align-items-start flex-column mb-3 nav-menu'}>
 				<div className={'mb-lg-auto'}>
 					<Logo />
-					<PrimaryNavigation />
+					<PrimaryNavigation cookies={ cookies } />
 				</div>
 				
 				<SecondaryNavigation logout={ logout } />

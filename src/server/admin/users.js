@@ -1,5 +1,4 @@
 import { User, knex } from "./db.js";
-import {getPostById} from "./posts.js";
 
 export async function addUser(u) {
 	return await User.create({
@@ -40,13 +39,13 @@ export async function Login(u) {
 export async function getUsers( username ) {
 	if ( username && username.length > 0 ) {
 		return knex('users')
-				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permission'})
+				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
 				.select('name', 'username', 'email', 'filename', 'alt', 'permission')
 				.where('username', username);
 	} else {
 		return knex('users')
-				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permission'})
+				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
 				.select('name', 'username', 'email', 'filename', 'alt', 'permission');
 	}
@@ -59,7 +58,7 @@ export async function editUser( u ) {
 	delete u.expires;
 	
 	const data = await knex('users')
-			.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permission'})
+			.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 			.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
 			.where({ username: u.username })
 			.update( u );

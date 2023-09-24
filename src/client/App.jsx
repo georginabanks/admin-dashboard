@@ -14,6 +14,7 @@ import EditPage from "./admin/pages/editing/EditPage.jsx";
 import EditPost from "./admin/pages/editing/EditPost.jsx";
 import EditImage from "./admin/pages/editing/EditImage.jsx";
 import {getUsers} from "./api.jsx";
+import Users from "./admin/pages/Users.jsx";
 
 export default function App() {
     
@@ -58,7 +59,7 @@ export default function App() {
             <Routes >
                 
                 <Route path={'/'} element={<DashboardLayout handleLogin={ handleLogin } handleLogout={handleLogout}
-                                                            cookies={cookies} />}>
+                                                            cookies={cookies.user} />}>
                     
                     <Route path={''} element={<Dashboard cookies={cookies.user} />} />
                     
@@ -77,6 +78,8 @@ export default function App() {
                     <Route path={'testimonials'} element={<Testimonials />} />
                     <Route path={'testimonials/:testimonialId/edit'} element={<EditTestimonial showDelete={ true } />} />
                     <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
+                    
+                    <Route path={'users'} element={<Users cookies={ cookies.user } />} />
                     
                     <Route path={'settings'} element={<Settings cookies={ cookies.user } updateUser={ handleLogin } />} />
                 </Route>

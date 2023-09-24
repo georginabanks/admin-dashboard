@@ -4,10 +4,10 @@ import { Outlet } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 
 export const DashboardLayout = ({ handleLogin, handleLogout, cookies }) => {
-	if ( cookies.user ) {
+	if ( cookies ) {
 		return (
 				<div>
-					<DashboardSidebar logout={handleLogout}/>
+					<DashboardSidebar logout={handleLogout} cookies={ cookies } />
 					
 					<div className={'outlet'}>
 						<Outlet/>
