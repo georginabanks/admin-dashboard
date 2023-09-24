@@ -34,9 +34,10 @@ export const getPageById = async ( id ) => {
 
 // Posts
 
-export const getPosts = async ( limit ) => {
+export const getPosts = async ( limit, query ) => {
 	const data = await axios.get('/api/admin/posts', { ...axiosConfigGet, params: {
-			limit: limit
+			limit: limit,
+			query: query
 		}});
 	return data.data;
 };

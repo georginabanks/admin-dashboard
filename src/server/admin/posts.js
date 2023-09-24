@@ -41,13 +41,30 @@ export async function editPost( post ) {
 	else { return 'error ' + data }
 }
 
-export function getPosts( limit ) {
-	return knex('posts')
-			.select('*')
-			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
-			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
-			.leftJoin('images', { 'posts.featuredImage' : 'images.imageId' })
-			.limit(limit);
+export function getPosts( limit, query ) {
+	if ( query.length > 0 ) {
+		return knex('posts')
+				.select('*')
+				.leftJoin('statuses', {'posts.StatusStatusId': 'statuses.statusId'})
+				.leftJoin('postCategories', {'posts.PostCategoryPostCategoryId': 'postCategory'})
+				.leftJoin('images', {'posts.featuredImage': 'images.imageId'})
+				.leftJoin('users', { 'posts.UserUserId' : 'users.userId' })
+				.orWhereILike('title', `%${query}%`)
+				.orWhereILike('content', `%${query}%`)
+				.orWhereILike('slug', `%${query}%`)
+				.orWhereILike('statusType', `%${query}%`)
+				.orWhereILike('username', `%${query}%`)
+				.orWhereILike('postCategory', `%${query}%`)
+				.limit(limit);
+	} else {
+		return knex('posts')
+				.select('*')
+				.leftJoin('statuses', {'posts.StatusStatusId': 'statuses.statusId'})
+				.leftJoin('postCategories', {'posts.PostCategoryPostCategoryId': 'postCategory'})
+				.leftJoin('images', {'posts.featuredImage': 'images.imageId'})
+				.leftJoin('users', { 'posts.UserUserId' : 'users.userId' })
+				.limit(limit);
+	}
 }
 
 export function getPostById( id ) {

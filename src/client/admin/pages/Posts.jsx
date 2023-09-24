@@ -11,15 +11,16 @@ export default function Posts() {
 	const [counter, setCounter] = useState(0);
 	const [select, setSelect] = useState([]);
 	const [limit, setLimit] = useState(10);
+	const [query, setQuery] = useState('');
 	
 	useEffect(() => {
-		getPosts(limit).then( res => setPosts(res) );
+		getPosts(limit, query).then( res => setPosts(res) );
 		getPostCategories().then( res => setCategories(res) );
 	}, [ counter ]);
 	
 	return (
 			<div>
-				<OutletHeader newLink={'/posts/new'} newText={'New Post'} />
+				<OutletHeader newLink={'/posts/new'} newText={'New Post'} query={ query } setQuery={ setQuery } />
 				
 				{ posts.length > 0
 						&& <PostsTable posts={ posts } title={'Post'} select={ select } setSelect={ setSelect }

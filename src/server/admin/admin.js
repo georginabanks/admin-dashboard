@@ -75,7 +75,7 @@ router.route('/pages/:pageId')
 
 router.route('/posts')
         .get(async function (req, res) {
-            res.send(await getPosts(req.query.limit));
+            res.send(await getPosts(req.query.limit, req.query.query));
         })
         .post(async function (req, res) {
             res.send(await addPost(req.body));
