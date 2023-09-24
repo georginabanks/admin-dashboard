@@ -138,7 +138,9 @@ export const User = sequelize.define('User', {
 	},
 	username: { type: DataTypes.TEXT },
 	password: { type: DataTypes.TEXT },
-	email: { type: DataTypes.TEXT }
+	email: { type: DataTypes.TEXT },
+	name: { type: DataTypes.TEXT },
+	profile: { type: DataTypes.TEXT }
 }, { timestamps: false, tableName: 'users' });
 
 useBcrypt(User, {
