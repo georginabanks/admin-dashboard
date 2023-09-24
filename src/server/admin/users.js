@@ -1,10 +1,13 @@
-import { User } from "./db.js";
+import { User, knex } from "./db.js";
 
 export async function addUser(u) {
 	return await User.create({
 		username: u.username,
 		password: u.password,
-		email: u.email
+		email: u.email,
+		name: u.name,
+		ImageImageId: u.ImageImageId,
+		PermissionPermissionId: u.PermissionPermissionId
 	});
 }
 
@@ -18,7 +21,8 @@ export async function Login(u) {
     // Authentication
     
     try {
-        const user = await User.findOne({ where: {username: username} });
+        const user = await User.findOne({
+			where: {username: username} });
         if (!user) { auth = false }
         
         auth = await user.authenticate(password);
@@ -27,4 +31,15 @@ export async function Login(u) {
     catch(err) {return err}
     
     return auth;
+}
+
+
+// Get User
+
+export async function getUser( username ) {
+	return knex('users')
+			.leftJoin('permissions', { 'users.PermissionPermissionId' : 'permissions.permission' })
+			.leftJoin('images', { 'users.ImageImageId' : 'images.imageId' })
+			.select('name', 'username', 'email', 'filename', 'alt', 'permission')
+			.where('username', username );
 }
