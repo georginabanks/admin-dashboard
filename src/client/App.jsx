@@ -15,7 +15,7 @@ import EditPost from "./admin/pages/editing/EditPost.jsx";
 import EditImage from "./admin/pages/editing/EditImage.jsx";
 import {getUsers} from "./api.jsx";
 import Users from "./admin/pages/Users.jsx";
-import NewUser from "./admin/pages/editing/NewUser.jsx";
+import EditUser from "./admin/pages/editing/EditUser.jsx";
 
 export default function App() {
     
@@ -81,7 +81,8 @@ export default function App() {
                     <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
                     
                     <Route path={'users'} element={<Users cookies={ cookies.user } />} />
-                    <Route path={'users/new'} element={<NewUser />} />
+                    <Route path={'users/new'} element={<EditUser />} />
+                    <Route path={'users/:username/edit'} element={<EditUser />} />
                     
                     <Route path={'settings'} element={<Settings cookies={ cookies.user } updateUser={ handleLogin } />} />
                 </Route>

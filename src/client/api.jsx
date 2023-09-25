@@ -100,3 +100,16 @@ export const getPermissions = async () => {
 	const data = await axios.get('/api/admin/users/permissions', axiosConfigGet );
 	return data.data;
 }
+
+export const avatars = [
+		{ filename: 'cow.jpg', alt: 'cute watercolour cow' },
+		{ filename: 'dog.jpg', alt: 'cute cartoon Beagle dog' },
+		{ filename: 'elephant.jpg', alt: 'cute watercolour elephant' },
+		{ filename: 'face mask cow.jpg', alt: 'cute watercolour cow wearing a face mask' },
+		{ filename: 'manatee.jpg', alt: 'cute watercolour manatee' },
+		{ filename: 'pig.jpg', alt: 'cute watercolour pig' },
+		{ filename: 'pink cat.jpg', alt: 'cute pink watercolour cat' },
+		{ filename: 'pink rabbit.jpg', alt: 'cute pink watercolour rabbit holding a carrot' },
+		{ filename: 'polar bear.jpg', alt: 'cute watercolour polar bear' },
+		{ filename: 'rabbit.jpg', alt: 'cute watercolour rabbit' }
+];

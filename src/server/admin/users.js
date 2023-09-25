@@ -75,6 +75,18 @@ export async function editUser( u ) {
 }
 
 
+// Delete User
+
+export async function deleteUser( username ) {
+	const data = await knex('users')
+			.where({ username: username })
+			.del();
+	
+	if (data > 0) { return 'deleted' }
+	else { return 'error ' + data }
+}
+
+
 // Get Permissions
 
 export function getPermissions() {

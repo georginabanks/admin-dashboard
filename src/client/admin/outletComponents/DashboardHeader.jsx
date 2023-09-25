@@ -1,3 +1,5 @@
+import {avatars} from "../../api.jsx";
+
 export default function DashboardHeader({ cookies }) {
 	console.log(cookies)
 	let greeting = cookies.username;
@@ -10,7 +12,8 @@ export default function DashboardHeader({ cookies }) {
 						<div className={'row'}>
 							<div className={'col-3'}>
 								<div className={'square'}>
-									<img src={ cookies.filename !== null ? '/uploads/' + cookies.filename : '/uploads/default.jpeg' }
+									<img src={ cookies.filename !== null ? '/uploads/' + cookies.filename
+											: '/uploads/' + avatars[ Math.floor(Math.random() * 10) ].filename }
 										 alt={ cookies.alt } className={'round-image'} />
 								</div>
 							</div>

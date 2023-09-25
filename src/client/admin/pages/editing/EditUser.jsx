@@ -1,18 +1,20 @@
 import {useEffect, useState} from "react";
 import PostData, {HandleChange} from "../../outletComponents/PostData.jsx";
-import {useNavigate} from "react-router-dom";
-import {getPermissions} from "../../../api.jsx";
+import {useNavigate, useParams} from "react-router-dom";
+import {getPermissions, getUsers} from "../../../api.jsx";
 import _ from 'lodash';
 
-export default function NewUser() {
+export default function EditUser() {
 	
 	const navigate = useNavigate();
+	const { username } = useParams();
 	
 	const [user, setUser] = useState({});
 	const [permissions, setPermissions] = useState([]);
-	const [buttons, setButtons] = useState({ saveButton: 'Create User' });
+	const [buttons, setButtons] = useState({ saveButton: 'Save User' });
 	
 	useEffect(() => {
+		username !== undefined && getUsers( username, '').then( res => setUser( res[0] ) );
 		getPermissions().then( res => setPermissions( res ) );
 	}, []);
 	
@@ -21,7 +23,7 @@ export default function NewUser() {
 	}
 	
 	const handleSubmit = async ( event ) => {
-		await PostData( event, setButtons, buttons, 'saveButton', 'Create User',
+		await PostData( event, setButtons, buttons, 'saveButton', 'Save User',
 				'Waiting...', 'User Created', 'users/new', user, 'userId',
 				setUser);
 		navigate('/users');
@@ -38,7 +40,7 @@ export default function NewUser() {
 								<label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
 								<div className="col-sm-10">
 									<input type="text" className="form-control" id="name" name={'name'} onChange={ handleChange }
-										   value={ user.name } />
+										   value={ user.name || '' } />
 								</div>
 							</div>
 						</div>
@@ -48,7 +50,7 @@ export default function NewUser() {
 								<label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
 								<div className="col-sm-10">
 									<input type="text" className="form-control" id="email" name={'email'} onChange={ handleChange }
-										   value={ user.email } />
+										   value={ user.email || '' } />
 								</div>
 							</div>
 						</div>
@@ -59,8 +61,8 @@ export default function NewUser() {
 							<div className="row mb-3">
 								<label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
 								<div className="col-sm-10">
-									<input type="text" className="form-control" id="username" name={'username'} onChange={ handleChange }
-										   value={ user.username } />
+									<input type="text" className="form-control" id="username" name={'username'}
+										   onChange={ handleChange } value={ user.username || '' } />
 								</div>
 							</div>
 						</div>
@@ -69,8 +71,8 @@ export default function NewUser() {
 							<div className="row mb-3">
 								<label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
 								<div className="col-sm-10">
-									<input type="password" className="form-control" id="password" name={'password'} onChange={ handleChange }
-										   value={ user.password } />
+									<input type="password" className="form-control" id="password" name={'password'}
+										   onChange={ handleChange } value={ user.password || '' } />
 								</div>
 							</div>
 						</div>
@@ -83,7 +85,7 @@ export default function NewUser() {
 								<div className="col-sm-9">
 									<select className="form-select" aria-label="Select user permissions" name={'permission'}
 											onChange={ handleChange } defaultValue={ String(user.permissionId) }>
-										<option selected>--</option>
+										<option value={''}>--</option>
 										{ permissions.length > 0 && permissions.map( p => {
 											return <option value={ String(p.permissionId) } key={ permissions.indexOf(p) }>
 												{ _.startCase(p.permission) }
