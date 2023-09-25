@@ -95,3 +95,8 @@ export const getUsers = async ( username, query ) => {
 		}});
 	return data.data
 }
+
+export const getPermissions = async () => {
+	const data = await axios.get('/api/admin/users/permissions', axiosConfigGet );
+	return data.data;
+}

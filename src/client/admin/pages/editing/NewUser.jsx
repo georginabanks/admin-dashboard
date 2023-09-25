@@ -1,3 +1,108 @@
-export default function NewUser() {
+import {useEffect, useState} from "react";
+import PostData, {HandleChange} from "../../outletComponents/PostData.jsx";
+import {useNavigate} from "react-router-dom";
+import {getPermissions} from "../../../api.jsx";
+import _ from 'lodash';
 
+export default function NewUser() {
+	
+	const navigate = useNavigate();
+	
+	const [user, setUser] = useState({});
+	const [permissions, setPermissions] = useState([]);
+	const [buttons, setButtons] = useState({ saveButton: 'Create User' });
+	
+	useEffect(() => {
+		getPermissions().then( res => setPermissions( res ) );
+	}, []);
+	
+	const handleChange = ( event ) => {
+		HandleChange( event, user, setUser );
+	}
+	
+	const handleSubmit = async ( event ) => {
+		await PostData( event, setButtons, buttons, 'saveButton', 'Create User',
+				'Waiting...', 'User Created', 'users/new', user, 'userId',
+				setUser);
+		navigate('/users');
+	}
+	
+	return (
+			<div>
+				<a href={'/users'}><i className="fa-solid fa-arrow-left fa-2xl"></i></a>
+				
+				<form onSubmit={ handleSubmit }>
+					<div className={'row'}>
+						<div className={'col-md-6'}>
+							<div className="row mb-3">
+								<label htmlFor="name" className="col-sm-2 col-form-label">Name</label>
+								<div className="col-sm-10">
+									<input type="text" className="form-control" id="name" name={'name'} onChange={ handleChange }
+										   value={ user.name } />
+								</div>
+							</div>
+						</div>
+						
+						<div className={'col-md-6'}>
+							<div className="row mb-3">
+								<label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
+								<div className="col-sm-10">
+									<input type="text" className="form-control" id="email" name={'email'} onChange={ handleChange }
+										   value={ user.email } />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div className={'row'}>
+						<div className={'col-md-6'}>
+							<div className="row mb-3">
+								<label htmlFor="username" className="col-sm-2 col-form-label">Username</label>
+								<div className="col-sm-10">
+									<input type="text" className="form-control" id="username" name={'username'} onChange={ handleChange }
+										   value={ user.username } />
+								</div>
+							</div>
+						</div>
+						
+						<div className={'col-md-6'}>
+							<div className="row mb-3">
+								<label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
+								<div className="col-sm-10">
+									<input type="password" className="form-control" id="password" name={'password'} onChange={ handleChange }
+										   value={ user.password } />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div className={'row'}>
+						<div className={'col-md-6'}>
+							<div className="row mb-3">
+								<label htmlFor="permission" className="col-sm-3 col-form-label">Permissions</label>
+								<div className="col-sm-9">
+									<select className="form-select" aria-label="Select user permissions" name={'permission'}
+											onChange={ handleChange } defaultValue={ String(user.permissionId) }>
+										<option selected>--</option>
+										{ permissions.length > 0 && permissions.map( p => {
+											return <option value={ String(p.permissionId) } key={ permissions.indexOf(p) }>
+												{ _.startCase(p.permission) }
+											</option>
+										})}
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div className={'col-md-6'}>
+						
+						</div>
+					</div>
+					
+					<button type="submit" className="btn publish-button" style={{ marginTop: '1rem' }}>
+						{ buttons.saveButton }
+					</button>
+				</form>
+			</div>
+	)
 }

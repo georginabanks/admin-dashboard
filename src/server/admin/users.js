@@ -73,3 +73,11 @@ export async function editUser( u ) {
 	}
 	else { return 'error ' + data }
 }
+
+
+// Get Permissions
+
+export function getPermissions() {
+	return knex('permissions')
+			.select('*');
+}

@@ -19,7 +19,7 @@ import {
 } from "./testimonials.js";
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
-import {editUser, getUsers, Login} from "./users.js";
+import {addUser, editUser, getPermissions, getUsers, Login} from "./users.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -39,6 +39,14 @@ router.route('/users')
         .post(async function (req, res) {
             res.send( await editUser(req.body) );
         });
+
+router.post('/users/new', async function (req, res) {
+    res.send( await addUser( req.body ));
+});
+
+router.get('/users/permissions', async function (req, res) {
+    res.send( await getPermissions() );
+});
 
 router.post('/users/login', async function (req, res) {
     res.send( await Login( req.body ) );
