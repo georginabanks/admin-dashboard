@@ -52,6 +52,9 @@ export function getPages( limit, query ) {
 				.orWhereILike('slug', `%${query}%`)
 				.orWhereILike('statusType', `%${query}%`)
 				.orWhereILike('username', `%${query}%`)
+				.orWhereILike('datePublished', `%${new Date(query).getDate()}%`)
+				.orWhereILike('datePublished', `%${new Date(query).getMonth()}%`)
+				.orWhereILike('datePublished', `%${new Date(query).getFullYear()}%`)
 				.limit(limit);
 	} else {
 		return knex('pages')

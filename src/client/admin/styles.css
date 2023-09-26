@@ -248,6 +248,10 @@ form {
     padding: 2rem 0;
 }
 
+.login-form {
+    padding: 0;
+}
+
 .form-control {
     border-radius: 2rem;
 }

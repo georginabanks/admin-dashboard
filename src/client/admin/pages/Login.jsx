@@ -51,7 +51,7 @@ export default function Login({ handleLogin }) {
 						<h3 className="card-title text-center">Login</h3>
 					</div>
 					
-					<form onSubmit={ handleSubmit }>
+					<form onSubmit={ handleSubmit } className={'login-form'}>
 						<div className="card-body">
 							<div className="mb-3">
 								<label htmlFor="username" className="form-label">Username:</label>
