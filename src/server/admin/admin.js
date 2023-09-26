@@ -20,6 +20,7 @@ import {
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
 import {addUser, deleteUser, editUser, getPermissions, getUsers, Login} from "./users.js";
+import {runReport} from "./analytics.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -27,6 +28,10 @@ const uploadPath = path.join('public', 'uploads');
 
 router.get('/health-check', function (req, res) {
     res.sendStatus(200);
+});
+
+router.get('/analytics', async function (req, res) {
+    res.send( await runReport() );
 });
 
 
