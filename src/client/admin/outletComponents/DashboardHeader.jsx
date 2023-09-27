@@ -1,8 +1,11 @@
 import {avatars} from "../../api.jsx";
 import {useState} from "react";
 import {HandleChange} from "../functions/PostData.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function DashboardHeader({ cookies }) {
+	
+	const navigate = useNavigate();
 	
 	let greeting = cookies.username;
 	if ( cookies.name !== null ) { greeting = cookies.name }
@@ -11,6 +14,12 @@ export default function DashboardHeader({ cookies }) {
 	
 	const handleChange = ( event ) => {
 		HandleChange( event, query, setQuery );
+	}
+	
+	const handleSubmit = ( event ) => {
+		if ( event.key === 'Enter' ) {
+			navigate('/posts', { state: query });
+		}
 	}
 	
 	return (
@@ -44,7 +53,7 @@ export default function DashboardHeader({ cookies }) {
 								</div>
 								<div className={'col-auto'}>
 									<input type="text" className="form-control" id="query" placeholder=" Search Posts"
-										   onChange={ handleChange } />
+										   onChange={ handleChange } onKeyDown={ handleSubmit } />
 								</div>
 							</div>
 						</div>

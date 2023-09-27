@@ -3,19 +3,24 @@ import {getPostCategories, getPosts} from "../../api";
 import { useState, useEffect } from "react";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import CategoryTable from "../outletComponents/CategoryTable.jsx";
+import {useLocation} from "react-router-dom";
 
 export default function Posts() {
+	
+	const location = useLocation();
+	console.log(location.state)
 	
 	const [posts, setPosts] = useState([]);
 	const [categories, setCategories] = useState([]);
 	const [counter, setCounter] = useState(0);
 	const [select, setSelect] = useState([]);
 	const [limit, setLimit] = useState(10);
-	const [query, setQuery] = useState('');
+	const [query, setQuery] = useState(location.state || '');
 	
 	useEffect(() => {
 		getPosts(limit, query).then( res => setPosts(res) );
 		getPostCategories().then( res => setCategories(res) );
+		window.history.replaceState({}, document.title)
 	}, [ counter, query ]);
 	
 	return (
