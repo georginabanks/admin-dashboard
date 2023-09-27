@@ -1,4 +1,4 @@
-import PostData, {DeleteData} from "../../outletComponents/PostData.jsx";
+import PostData, {DeleteData} from "../../functions/PostData.jsx";
 import {useEffect, useState} from "react";
 import EditPostForm from "../../outletComponents/EditPostForm.jsx";
 import {useNavigate, useParams} from "react-router-dom";

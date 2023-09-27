@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTestimonials } from "../../api";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
-import {DeleteData} from "../outletComponents/PostData.jsx";
+import {DeleteData} from "../functions/PostData.jsx";
 
 function Row({ testimonial, counter, setCounter }) {
 	

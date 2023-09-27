@@ -3,7 +3,7 @@ import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {useEffect, useState} from "react";
 import {avatars, getUsers} from "../../api.jsx";
 import _ from 'lodash';
-import {DeleteData} from "../outletComponents/PostData.jsx";
+import {DeleteData} from "../functions/PostData.jsx";
 
 function UsersTable({ users, counter, setCounter }) {
 	return (

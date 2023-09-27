@@ -1,5 +1,5 @@
 import EditHeader from "./EditHeader.jsx";
-import {axiosConfig, HandleChange} from "./PostData.jsx";
+import {axiosConfig, HandleChange} from "../functions/PostData.jsx";
 import TextEditor from "./TextEditor.jsx";
 import {useEffect, useState} from "react";
 import {getPostCategories} from "../../api.jsx";

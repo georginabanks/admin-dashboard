@@ -1,6 +1,6 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {HandleChange} from "../outletComponents/PostData.jsx";
+import {HandleChange} from "../functions/PostData.jsx";
 import axios from "axios";
 
 export default function Login({ handleLogin }) {

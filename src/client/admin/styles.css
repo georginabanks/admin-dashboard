@@ -408,3 +408,10 @@ img {
 .modal-title {
     padding: 0;
 }
+
+
+/* Analytics */
+
+.analytics-line-graph {
+    height: 40vh;
+}

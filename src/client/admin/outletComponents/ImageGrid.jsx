@@ -1,4 +1,4 @@
-import {DeleteData} from "./PostData.jsx";
+import {DeleteData} from "../functions/PostData.jsx";
 import {useState} from "react";
 
 export default function ImageGrid({ images, counter, setCounter }) {

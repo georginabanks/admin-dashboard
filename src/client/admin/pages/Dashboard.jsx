@@ -1,6 +1,7 @@
 import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
 import {useEffect, useState} from "react";
-import {getRecents} from "../../api.jsx";
+import {getAnalytics, getRecents} from "../../api.jsx";
+import {LineGraph} from "../functions/Graphs.jsx";
 
 function RecentCard({ cardTitle, recents, seeAllLink }) {
 	return (
@@ -50,10 +51,28 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 export default function Dashboard({ cookies }) {
 	
 	const [recents, setRecents] = useState({});
+	const [analytics, setAnalytics] = useState({});
 	
 	useEffect(() => {
 		getRecents().then( res => setRecents(res) );
+		getAnalytics().then( res => console.log(res) );
 	}, []);
+	
+	const data = {
+        labels: ['Red', 'Orange', 'Blue'],
+        datasets: [
+            {
+              label: 'Popularity of colours',
+              data: [55, 23, 96],
+              backgroundColor: [
+                'rgba(255, 255, 255, 0.6)',
+                'rgba(255, 255, 255, 0.6)',
+                'rgba(255, 255, 255, 0.6)'
+              ],
+              borderWidth: 1,
+            }
+        ]
+}
 	
 	if ( recents.posts !== undefined || recents.pages !== undefined || recents.testimonials !== undefined) {
 		return (
@@ -72,6 +91,10 @@ export default function Dashboard({ cookies }) {
 						{recents.testimonials.length > 0 && <div className={'col-md-4'}>
 							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials} seeAllLink={'testimonials'}/>
 						</div>}
+						
+						<div className={'analytic-line-graph'}>
+							<LineGraph chartData={ data } plugins={{}} />
+						</div>
 					</div>
 				</div>
 		)

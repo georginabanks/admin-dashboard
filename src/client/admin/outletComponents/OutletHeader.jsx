@@ -1,4 +1,4 @@
-import {HandleChange} from "./PostData.jsx";
+import {HandleChange} from "../functions/PostData.jsx";
 
 export default function OutletHeader({ newLink, newText, query, setQuery }) {
 	

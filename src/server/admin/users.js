@@ -14,18 +14,16 @@ export async function addUser(u) {
 // Login User
 
 export async function Login(u) {
-    const username = u.username;
-    const password = u.password;
     let auth = false;
     
     // Authentication
     
     try {
         const user = await User.findOne({
-			where: {username: username} });
+			where: { username: u.username } });
         if (!user) { auth = false }
         
-        auth = await user.authenticate(password);
+        auth = await user.authenticate(u.password);
     }
     
     catch(err) {return err}

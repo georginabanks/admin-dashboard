@@ -1,5 +1,5 @@
 import EditHeader from "../../outletComponents/EditHeader.jsx";
-import PostData, {DeleteData, HandleChange} from "../../outletComponents/PostData.jsx";
+import PostData, {DeleteData, HandleChange} from "../../functions/PostData.jsx";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {getImageById} from "../../../api.jsx";

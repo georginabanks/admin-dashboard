@@ -1,5 +1,5 @@
 import {DateString} from "./Datetime";
-import {DeleteData} from "./PostData.jsx";
+import {DeleteData} from "../functions/PostData.jsx";
 import {useState} from "react";
 
 function Row({ post, counter, setCounter }) {

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {DeleteData} from "./PostData.jsx";
+import {DeleteData} from "../functions/PostData.jsx";
 
 export default function CategoryTable({ categories, counter, setCounter }) {
 	return (

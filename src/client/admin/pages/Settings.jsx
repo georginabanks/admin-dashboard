@@ -1,4 +1,4 @@
-import PostData, {HandleChange} from "../outletComponents/PostData.jsx";
+import PostData, {HandleChange} from "../functions/PostData.jsx";
 import {useState} from "react";
 import SelectImage from "../outletComponents/SelectImage.jsx";
 import {getImageById} from "../../api.jsx";

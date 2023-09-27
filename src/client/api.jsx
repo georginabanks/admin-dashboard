@@ -15,6 +15,11 @@ export const getRecents = async () => {
 	return data.data;
 }
 
+export const getAnalytics = async () => {
+	const data = await axios.get('/api/admin/analytics', axiosConfigGet );
+	return data.data;
+}
+
 
 // Pages
 
