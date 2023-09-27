@@ -20,9 +20,6 @@ import {
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
 import {addUser, deleteUser, editUser, getPermissions, getUsers, Login} from "./users.js";
-import {runReport} from "./analytics.js";
-import dotenv from 'dotenv'
-dotenv.config()
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');

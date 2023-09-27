@@ -12,30 +12,32 @@ const jwt = new google.auth.JWT(
 
 const view_id = ck.VIEW_ID;
 
-async function getViews(){
+export async function getViews(){
   try {
     await jwt.authorize();
 
-    return await google.analytics("v3").data.ga.get({
+    const data = await google.analytics("v3").data.ga.get({
       auth: jwt,
       ids: "ga:" + view_id,
       "start-date": "30daysAgo",
       "end-date": "today",
       metrics: "ga:pageviews",
     });
+    
+    return data.data.rows[0][0];
   } catch (err) {
     console.log(err);
   }
 }
 
-async function getTopPosts() {
+export async function getTopPosts() {
   try {
     await jwt.authorize();
 
-    return await google.analytics("v3").data.ga.get({
+    const data = await google.analytics("v3").data.ga.get({
       auth: jwt,
       ids: "ga:" + view_id,
-      "start-date": "2019-01-01",
+      "start-date": "30daysAgo",
       "end-date": "today",
       dimensions: "ga:pagePath,ga:pageTitle",
       metrics: "ga:pageviews",
@@ -43,6 +45,8 @@ async function getTopPosts() {
       "max-results": "10",
       filters: "ga:medium==organic",
     });
+    
+    return data.data.rows;
   } catch (err) {
     console.log(err);
   }
