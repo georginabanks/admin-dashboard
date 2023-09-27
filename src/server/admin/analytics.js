@@ -1,15 +1,16 @@
-import { google } from 'googleapis'
+import { google } from 'googleapis';
+import ck from 'ckey';
 
 const scopes = "https://www.googleapis.com/auth/analytics.readonly";
 
 const jwt = new google.auth.JWT(
-  process.env.CLIENT_EMAIL,
+  ck.CLIENT_EMAIL,
   null,
-  process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
+  ck.PRIVATE_KEY.replace(/\\n/g, "\n"),
   scopes
 );
 
-const view_id = process.env.view_id;
+const view_id = ck.VIEW_ID;
 
 async function getViews(){
   try {
@@ -23,7 +24,7 @@ async function getViews(){
       metrics: "ga:pageviews",
     });
   } catch (err) {
-     console.log(err);
+    console.log(err);
   }
 }
 
@@ -43,6 +44,6 @@ async function getTopPosts() {
       filters: "ga:medium==organic",
     });
   } catch (err) {
-   console.log(err);
+    console.log(err);
   }
 }

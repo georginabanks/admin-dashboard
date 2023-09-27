@@ -1,12 +1,13 @@
+import ck from 'ckey';
 import { Sequelize, DataTypes } from "sequelize";
 import useBcrypt from "sequelize-bcrypt";
 import Knex from "knex";
 
-const host = process.env.host;
-const username = process.env.username;
-const password = process.env.password;
-const database = process.env.database;
-const port = process.env.port;
+const host = ck.DB_HOST;
+const username = ck.DB_USERNAME;
+const password = ck.DB_PASSWORD;
+const database = ck.DB_DATABASE;
+const port = ck.DB_PORT;
 
 
 // Connect DB
@@ -192,3 +193,19 @@ sequelize.sync().then(() => {
 }).catch((error) => {
    console.error('Unable to create table : ', error);
 });
+
+
+// Avatars
+
+// const avatars = await Image.bulkCreate([
+// 		{ filename: 'cow.jpg', alt: 'cute watercolour cow' },
+// 		{ filename: 'dog.jpg', alt: 'cute cartoon Beagle dog' },
+// 		{ filename: 'elephant.jpg', alt: 'cute watercolour elephant' },
+// 		{ filename: 'face mask cow.jpg', alt: 'cute watercolour cow wearing a face mask' },
+// 		{ filename: 'manatee.jpg', alt: 'cute watercolour manatee' },
+// 		{ filename: 'pig.jpg', alt: 'cute watercolour pig' },
+// 		{ filename: 'pink cat.jpg', alt: 'cute pink watercolour cat' },
+// 		{ filename: 'pink rabbit.jpg', alt: 'cute pink watercolour rabbit holding a carrot' },
+// 		{ filename: 'polar bear.jpg', alt: 'cute watercolour polar bear' },
+// 		{ filename: 'rabbit.jpg', alt: 'cute watercolour rabbit' }
+// ]);

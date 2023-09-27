@@ -1,3 +1,4 @@
+import ck from 'ckey';
 import express from "express";
 import ViteExpress from "vite-express";
 import fileUpload from "express-fileupload";
@@ -13,7 +14,7 @@ app.use('/api/admin', router);
 
 // Server
 
-const port = process.env.PORT || 3000;
+const port = ck.PORT || 3000;
 
 ViteExpress.listen(app, port, () =>
     console.log(`Server is listening on port ${port}...`)
