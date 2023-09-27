@@ -1,7 +1,7 @@
 import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
 import {useEffect, useState} from "react";
 import {getAnalytics, getRecents} from "../../api.jsx";
-import {LineGraph} from "../functions/Graphs.jsx";
+import { LineGraph } from "../functions/Graphs.jsx";
 
 function RecentCard({ cardTitle, recents, seeAllLink }) {
 	return (
@@ -16,7 +16,6 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 							 <a href={ seeAllLink} className={'card-title'}>See All</a>
 						 </div>
 					 </div>
-					 <hr />
 					
 					 { recents.map( r => {
 						 
@@ -48,6 +47,21 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
  )
 }
 
+function AnalyticsGraph({ analytics }) {
+	return (
+			<div className={'analytics-overview'}>
+				<div className="card">
+					<div className="card-body">
+						<h5 className="card-title">Overview</h5>
+						<div className={'analytics-line-graph'}>
+							<LineGraph chartData={ analytics } plugins={{}} />
+						</div>
+					</div>
+				</div>
+			</div>
+	)
+}
+
 export default function Dashboard({ cookies }) {
 	
 	const [recents, setRecents] = useState({});
@@ -55,46 +69,58 @@ export default function Dashboard({ cookies }) {
 	
 	useEffect(() => {
 		getRecents().then( res => setRecents(res) );
-		getAnalytics().then( res => console.log(res) );
+		getAnalytics().then( res => {
+			let views = [];
+			
+			res.map(a => {
+				views.push(
+					{
+						id: res.indexOf(a),
+						day: a[0],
+						views: a[1]
+					}
+				)
+			})
+			
+			console.log( views );
+			const chartData = {
+				labels: views.map((data) => data.day),
+				datasets: [
+					{
+						data: views.map((data) => data.day),
+						borderColor: '#624F81',
+						borderWidth: 1
+					}
+				]
+			}
+			
+			console.log( chartData );
+			setAnalytics( chartData );
+		})
 	}, []);
 	
-	const data = {
-        labels: ['Red', 'Orange', 'Blue'],
-        datasets: [
-            {
-              label: 'Popularity of colours',
-              data: [55, 23, 96],
-              backgroundColor: [
-                'rgba(255, 255, 255, 0.6)',
-                'rgba(255, 255, 255, 0.6)',
-                'rgba(255, 255, 255, 0.6)'
-              ],
-              borderWidth: 1,
-            }
-        ]
-}
 	
 	if ( recents.posts !== undefined || recents.pages !== undefined || recents.testimonials !== undefined) {
 		return (
-				<div>
+				<div className={'dashboard'}>
 					<DashboardHeader cookies={ cookies } />
 					
-					<div className={'row'}>
-						{recents.posts.length > 0 && <div className={'col-md-4'}>
+					<div className={'row gy-3'}>
+						{ recents.posts.length > 0 && <div className={'col-md-4'}>
 							<RecentCard cardTitle={'Recent Posts'} recents={recents.posts} seeAllLink={'posts'}/>
-						</div>}
+						</div> }
 						
-						{recents.pages.length > 0 && <div className={'col-md-4'}>
+						{ recents.pages.length > 0 && <div className={'col-md-4'}>
 							<RecentCard cardTitle={'Recent Pages'} recents={recents.pages} seeAllLink={'pages'}/>
-						</div>}
+						</div> }
 						
-						{recents.testimonials.length > 0 && <div className={'col-md-4'}>
+						{ recents.testimonials.length > 0 && <div className={'col-md-4'}>
 							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials} seeAllLink={'testimonials'}/>
-						</div>}
+						</div> }
 						
-						<div className={'analytic-line-graph'}>
-							<LineGraph chartData={ data } plugins={{}} />
-						</div>
+						{ analytics.datasets && <div className={'col-12'}>
+							<AnalyticsGraph analytics={ analytics } />
+						</div> }
 					</div>
 				</div>
 		)

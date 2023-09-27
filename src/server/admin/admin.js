@@ -20,7 +20,7 @@ import {
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
 import {addUser, deleteUser, editUser, getPermissions, getUsers, Login} from "./users.js";
-import {getTopPosts, getViews} from "./analytics.js";
+import {getTopPosts, getViews, getViewsByDate} from "./analytics.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -31,10 +31,7 @@ router.get('/health-check', function (req, res) {
 });
 
 router.get('/analytics', async function (req, res) {
-    res.send( {
-        thisWeekViews: await getViews('7daysAgo', 'today'),
-        lastWeekViews: await getViews('14daysAgo', '7daysAgo')
-    });
+    res.send( await getViewsByDate('7daysAgo', 'today'));
 });
 
 
