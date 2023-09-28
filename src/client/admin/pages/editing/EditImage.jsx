@@ -44,7 +44,7 @@ export default function EditImage() {
 							buttons={ buttons } showDelete={ true } showSave={ false } />
 				
 				<div className={'row'}>
-					<div className={'col-md-8 edit-image'}>
+					<div className={'col-md-8'}>
 						<img src={'/uploads/' + image.filename } alt={ image.alt } />
 					</div>
 					

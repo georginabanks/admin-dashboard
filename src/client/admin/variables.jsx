@@ -1,0 +1,1 @@
+export const companyName = 'Company Name';

@@ -23,7 +23,7 @@ function Row({ testimonial, counter, setCounter }) {
 				<td>{ testimonial.title }</td>
 				
 				<td>
-					<a href={`/testimonials/${ testimonial.testimonialId }/edit`}>Edit</a>
+					<a href={`/admin/testimonials/${ testimonial.testimonialId }/edit`}>Edit</a>
 					&ensp; / &ensp;
 					<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
 				</td>

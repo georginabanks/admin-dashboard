@@ -9,7 +9,7 @@ export default function OutletHeader({ newLink, newText, query, setQuery }) {
 	return (
 			<div className={'outlet-header row gy-3 justify-content-between'}>
 				<div className={'col-auto'}>
-					<a href={ newLink }>
+					<a href={ '/admin' + newLink }>
 						<i className="fa-solid fa-circle-plus fa-xl"></i> &ensp; { newText }
 					</a>
 				</div>

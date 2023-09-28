@@ -2,7 +2,7 @@ export default function EditHeader({ deletePost, saveDraft, publishPost, backUrl
 	return (
 			<div className={'row justify-content-between gy-3'}>
 				<div className={'col-auto'}>
-					<a href={ backUrl }><i className="fa-solid fa-arrow-left fa-2xl"></i></a>
+					<a href={ '/admin' + backUrl }><i className="fa-solid fa-arrow-left fa-2xl"></i></a>
 				</div>
 				
 				<div className={'col-auto'}>

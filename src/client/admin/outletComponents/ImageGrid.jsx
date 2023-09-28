@@ -19,7 +19,7 @@ export default function ImageGrid({ images, counter, setCounter }) {
 								<div className={'thumbnail-image'}>
 									<img src={ '/uploads/' + img.filename } alt={ img.alt } />
 									<div className={'overlay'}>
-										<a href={`/images/${img.imageId}/edit`}>
+										<a href={`/admin/images/${img.imageId}/edit`}>
 											<i className="fa-solid fa-pencil"></i>
 										</a>
 										<a onClick={ deleteImg } >

@@ -8,7 +8,7 @@ import {DatetimeStrings} from "../../outletComponents/Datetime.jsx";
 export default function EditPage({ showDelete }) {
 	
 	const [page, setPage] = useState({ pageId: 0 });
-	const [quill, setQuill] = useState(page.content);
+	const [quill, setQuill] = useState('');
 	const [counter, setCounter] = useState(0);
 	const navigate = useNavigate();
 	const [buttons, setButtons] = useState({
@@ -21,6 +21,8 @@ export default function EditPage({ showDelete }) {
 	if (pageId !== undefined) {
 		useEffect(() => {
 			getPageById(pageId).then( res => {
+				setQuill( res.content );
+				
 				if ( res.datePublished !== null ) {
 					const strings = DatetimeStrings(res.datePublished);
 					

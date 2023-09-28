@@ -47,7 +47,7 @@ function UsersTable({ users, counter, setCounter }) {
 										<td>{ _.startCase(user.permission )}</td>
 										
 										<td>
-											<a href={`/users/${ user.username }/edit`}>Edit</a>
+											<a href={`/admin/users/${ user.username }/edit`}>Edit</a>
 											&emsp; / &emsp;
 											<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
 										</td>

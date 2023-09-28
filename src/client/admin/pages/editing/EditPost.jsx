@@ -21,6 +21,8 @@ export default function EditPost({ showDelete }) {
 	if (postId !== undefined) {
 		useEffect(() => {
 			getPostById(postId).then(res => {
+				setQuill( res.content );
+				
 				if (res.datePublished !== null) {
 					const strings = DatetimeStrings(res.datePublished);
 					

@@ -29,7 +29,7 @@ function Row({ post, counter, setCounter }) {
 				<td className={'computer'}>{ post.datePublished !== null && DateString(post.datePublished) }</td>
 				
 				<td>
-					<a href={`/${url}/edit`}>Edit</a>
+					<a href={`/admin/${url}/edit`}>Edit</a>
 					&emsp; / &emsp;
 					<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
 				</td>

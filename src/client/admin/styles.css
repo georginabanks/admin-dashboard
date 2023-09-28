@@ -408,10 +408,6 @@ img {
     border-radius: 0.5rem;
 }
 
-.edit-image {
-    max-height: 100vh;
-}
-
 .modal-title {
     padding: 0;
 }

@@ -1,3 +1,5 @@
+import { companyName } from "../variables.jsx";
+
 function CreateNav({ link, id, icon, name }) {
 	return (
 			<a href={ '/admin' + link } className={'nav-link'} key={ id }>
@@ -25,7 +27,7 @@ function Logo() {
 					</div>
 				</div>
 				<div className={'col-9 col-md-8'}>
-					<h5>Company Name</h5>
+					<h5>{ companyName }</h5>
 					Admin Dashboard
 				</div>
 			</div>

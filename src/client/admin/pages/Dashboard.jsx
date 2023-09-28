@@ -33,7 +33,7 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 											 </div>
 										 </div>}
 										 <div className={'col-auto'}>
-											 <a href={ `/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
+											 <a href={ `/admin/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
 												 { r.title || r.testimonialAuthor }
 											 </a>
 										 </div>
