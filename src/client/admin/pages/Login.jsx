@@ -24,7 +24,7 @@ export default function Login({ handleLogin }) {
 		event.preventDefault();
 		setButtonText("Waiting...");
 		
-		const data = await axios.post("/api/admin/users/login", user, {
+		const data = await axios.post("/api/users/login", user, {
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}});
@@ -33,8 +33,8 @@ export default function Login({ handleLogin }) {
 			setButtonText("Logging in...");
 			handleLogin(user.username);
 
-			const redir = state?.path === "/login" ? "/" : state?.path;
-			navigate(redir || "/")
+			const redir = state?.path === "/login" ? "/admin/" : state?.path;
+			navigate(redir || "/admin/")
 		} else {
 			setTimeout(() => setButtonText("Login"), 2000);
 			setButtonText("Invalid Details");

@@ -48,7 +48,7 @@ export default async function PostData(
 	event.preventDefault();
 	setButtons({ ...buttons, [buttonType]: waitingButton});
 	
-	const data = await axios.post("/api/admin/" + url, content, axiosConfig);
+	const data = await axios.post("/api/" + url, content, axiosConfig);
 	
 	await response(setButtons, buttons, buttonType, originalButton,
 			doneButton, data, dataSuccess, setState);
@@ -61,7 +61,7 @@ export async function DeleteData( event, setButtons, buttons, url, dataSuccess )
 	event.preventDefault();
 	setButtons({ ...buttons, deleteButton: 'Deleting...'});
 	
-	const data = await axios.delete('/api/admin/' + url, axiosConfig);
+	const data = await axios.delete('/api/' + url, axiosConfig);
 	
 	await response(setButtons, buttons, 'deleteButton', 'Delete',
 			'Deleted', data, dataSuccess)

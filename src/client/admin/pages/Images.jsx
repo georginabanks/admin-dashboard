@@ -1,6 +1,6 @@
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {useEffect, useState} from "react";
-import {getImages} from "../../api.jsx";
+import {getImages} from "../api.jsx";
 import ImageGrid from "../outletComponents/ImageGrid.jsx";
 
 export default function Images() {

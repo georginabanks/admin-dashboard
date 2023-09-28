@@ -1,6 +1,6 @@
 function CreateNav({ link, id, icon, name }) {
 	return (
-			<a href={ link } className={'nav-link'} key={ id }>
+			<a href={ '/admin' + link } className={'nav-link'} key={ id }>
 				<div className={'row'}>
 					<div className={'col-2'}>
 						{ icon }

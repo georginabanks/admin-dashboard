@@ -11,12 +11,12 @@ export const axiosConfigGet = {
 // Dashboard
 
 export const getRecents = async () => {
-	const data = await axios.get('/api/admin/dashboard', axiosConfigGet );
+	const data = await axios.get('/api/dashboard', axiosConfigGet );
 	return data.data;
 }
 
 export const getAnalytics = async () => {
-	const data = await axios.get('/api/admin/analytics', axiosConfigGet );
+	const data = await axios.get('/api/analytics', axiosConfigGet );
 	return data.data;
 }
 
@@ -24,7 +24,7 @@ export const getAnalytics = async () => {
 // Pages
 
 export const getPages = async ( limit, query ) => {
-	const data = await axios.get('/api/admin/pages', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/pages', { ...axiosConfigGet, params: {
 			limit: limit,
 			query: query
 		}});
@@ -32,7 +32,7 @@ export const getPages = async ( limit, query ) => {
 };
 
 export const getPageById = async ( id ) => {
-	const data = await axios.get('/api/admin/pages/' + id, axiosConfigGet );
+	const data = await axios.get('/api/pages/' + id, axiosConfigGet );
 	return data.data;
 };
 
@@ -40,7 +40,7 @@ export const getPageById = async ( id ) => {
 // Posts
 
 export const getPosts = async ( limit, query ) => {
-	const data = await axios.get('/api/admin/posts', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/posts', { ...axiosConfigGet, params: {
 			limit: limit,
 			query: query
 		}});
@@ -48,12 +48,12 @@ export const getPosts = async ( limit, query ) => {
 };
 
 export const getPostById = async ( id ) => {
-	const data = await axios.get('/api/admin/posts/' + id, axiosConfigGet );
+	const data = await axios.get('/api/posts/' + id, axiosConfigGet );
 	return data.data;
 };
 
 export const getPostCategories = async ( filters ) => {
-	const data = await axios.get('/api/admin/posts/categories', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/posts/categories', { ...axiosConfigGet, params: {
 			filters: filters
 		}} );
 	return data.data;
@@ -63,7 +63,7 @@ export const getPostCategories = async ( filters ) => {
 // Testimonials
 
 export const getTestimonials = async ( limit, query ) => {
-	const data = await axios.get('/api/admin/testimonials', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/testimonials', { ...axiosConfigGet, params: {
 			limit: limit,
 			query: query
 		}});
@@ -71,7 +71,7 @@ export const getTestimonials = async ( limit, query ) => {
 };
 
 export const getTestimonialById = async ( id ) => {
-	const data = await axios.get('/api/admin/testimonials/' + id, axiosConfigGet );
+	const data = await axios.get('/api/testimonials/' + id, axiosConfigGet );
 	return data.data;
 };
 
@@ -79,14 +79,14 @@ export const getTestimonialById = async ( id ) => {
 // Images
 
 export const getImages = async ( limit ) => {
-	const data = await axios.get('/api/admin/images', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/images', { ...axiosConfigGet, params: {
 			limit: limit
 		}});
 	return data.data;
 }
 
 export const getImageById = async ( id ) => {
-	const data = await axios.get('/api/admin/images/' + id, axiosConfigGet );
+	const data = await axios.get('/api/images/' + id, axiosConfigGet );
 	return data.data;
 }
 
@@ -94,7 +94,7 @@ export const getImageById = async ( id ) => {
 // Users
 
 export const getUsers = async ( username, query ) => {
-	const data = await axios.get('/api/admin/users', { ...axiosConfigGet, params: {
+	const data = await axios.get('/api/users', { ...axiosConfigGet, params: {
 			username: username,
 			query: query || ''
 		}});
@@ -102,7 +102,7 @@ export const getUsers = async ( username, query ) => {
 }
 
 export const getPermissions = async () => {
-	const data = await axios.get('/api/admin/users/permissions', axiosConfigGet );
+	const data = await axios.get('/api/users/permissions', axiosConfigGet );
 	return data.data;
 }
 

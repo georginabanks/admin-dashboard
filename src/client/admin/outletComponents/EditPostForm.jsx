@@ -2,7 +2,7 @@ import EditHeader from "./EditHeader.jsx";
 import {axiosConfig, HandleChange} from "../functions/PostData.jsx";
 import TextEditor from "./TextEditor.jsx";
 import {useEffect, useState} from "react";
-import {getPostCategories} from "../../api.jsx";
+import {getPostCategories} from "../api.jsx";
 import axios from "axios";
 import SelectImage from "./SelectImage.jsx";
 
@@ -95,7 +95,7 @@ export default function EditPostForm({ post, setPost, deletePost, saveDraft, pub
 	
 	const addCategory = async ( event ) => {
 		event.preventDefault();
-		await axios.post('/api/admin/posts/categories', { postCategory: newCat },
+		await axios.post('/api/posts/categories', { postCategory: newCat },
 				axiosConfig);
 		setCatCount(catCount + 1);
 		setNewCat('');

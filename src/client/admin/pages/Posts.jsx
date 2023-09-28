@@ -1,5 +1,5 @@
 import PostsTable from "../outletComponents/PostsTable";
-import {getPostCategories, getPosts} from "../../api";
+import {getPostCategories, getPosts} from "../api.jsx";
 import { useState, useEffect } from "react";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import CategoryTable from "../outletComponents/CategoryTable.jsx";
@@ -8,7 +8,6 @@ import {useLocation} from "react-router-dom";
 export default function Posts() {
 	
 	const location = useLocation();
-	console.log(location.state)
 	
 	const [posts, setPosts] = useState([]);
 	const [categories, setCategories] = useState([]);

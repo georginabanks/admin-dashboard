@@ -1,4 +1,4 @@
-import { Navigate, Routes, Route } from "react-router-dom";
+import {Navigate, Routes, Route, Outlet} from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { DashboardLayout } from "./admin/DashboardLayout";
 import Dashboard from "./admin/pages/Dashboard";
@@ -13,9 +13,11 @@ import EditTestimonial from "./admin/pages/editing/EditTestimonial.jsx";
 import EditPage from "./admin/pages/editing/EditPage.jsx";
 import EditPost from "./admin/pages/editing/EditPost.jsx";
 import EditImage from "./admin/pages/editing/EditImage.jsx";
-import {getUsers} from "./api.jsx";
+import {getUsers} from "./admin/api.jsx";
 import Users from "./admin/pages/Users.jsx";
 import EditUser from "./admin/pages/editing/EditUser.jsx";
+import AdminRoutes from "./admin/AdminRoutes.jsx";
+import ErrorPage from "./admin/ErrorPage.jsx";
 
 export default function App() {
     
@@ -43,7 +45,7 @@ export default function App() {
     
     function handleLogout() {
         removeCookie("user");
-        return <Navigate to='/login' replace state={{path: location.pathname}}/>
+        return <Navigate to='/' replace state={{path: location.pathname}}/>
     }
     
     function timeout() {
@@ -57,38 +59,12 @@ export default function App() {
     }
     
     return (
-            <Routes >
+            <Routes>
+                <Route path={'/admin//*'} element={<AdminRoutes cookies={ cookies.user } handleLogin={ handleLogin }
+                                                              handleLogout={ handleLogout} />} />
+                <Route path={'/admin/login'} element={<Login handleLogin={ handleLogin } />} />
                 
-                <Route path={'/'} element={<DashboardLayout handleLogin={ handleLogin } handleLogout={handleLogout}
-                                                            cookies={cookies.user} />}>
-                    
-                    <Route path={''} element={<Dashboard cookies={cookies.user} />} />
-                    
-                    <Route path={'pages'} element={<Pages />} />
-                    <Route path={'pages/:pageId/edit'} element={<EditPage showDelete={ true } />} />
-                    <Route path={'pages/new'} element={<EditPage showDelete={ false } />} />
-                    
-                    <Route path={'posts'} element={<Posts />} />
-                    <Route path={'posts/:postId/edit'} element={<EditPost showDelete={ true } />} />
-                    <Route path={'posts/new'} element={<EditPost showDelete={ false } />} />
-                    
-                    <Route path={'images'} element={<Images />} />
-                    <Route path={'images/upload'} element={<Upload />} />
-                    <Route path={'images/:imageId/edit'} element={<EditImage />} />
-                    
-                    <Route path={'testimonials'} element={<Testimonials />} />
-                    <Route path={'testimonials/:testimonialId/edit'} element={<EditTestimonial showDelete={ true } />} />
-                    <Route path={'testimonials/new'} element={<EditTestimonial showDelete={ false } />} />
-                    
-                    <Route path={'users'} element={<Users cookies={ cookies.user } />} />
-                    <Route path={'users/new'} element={<EditUser />} />
-                    <Route path={'users/:username/edit'} element={<EditUser />} />
-                    
-                    <Route path={'settings'} element={<Settings cookies={ cookies.user } updateUser={ handleLogin } />} />
-                </Route>
-                
-                <Route path={'login'} element={<Login handleLogin={handleLogin} />} />
-            
+                <Route path={'*'} element={<ErrorPage />} />
             </Routes>
     )
 }

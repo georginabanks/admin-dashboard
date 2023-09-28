@@ -1,5 +1,6 @@
 import { google } from 'googleapis';
 import ck from 'ckey';
+import {AddOrSubractDays} from "./datetime.js";
 
 const scopes = "https://www.googleapis.com/auth/analytics.readonly";
 
@@ -39,7 +40,7 @@ export async function getViewsByDate( startDate, endDate ){
       'ids': 'ga:' + view_id,
       'start-date': startDate,
       'end-date': endDate,
-      'dimensions': 'ga:dayOfWeekName',
+      'dimensions': 'ga:date',
       'metrics': 'ga:pageviews',
     });
     
@@ -49,6 +50,9 @@ export async function getViewsByDate( startDate, endDate ){
   }
 }
 
+const start = AddOrSubractDays(new Date('2023-08-27'), 10).toISOString().slice(0,10)
+const end = AddOrSubractDays(new Date('2023-08-27'), 7).toISOString().slice(0,10)
+console.log(await getViewsByDate(start, end))
 export async function getTopPosts( startDate, endDate ) {
   try {
     await jwt.authorize();

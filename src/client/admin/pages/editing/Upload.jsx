@@ -8,7 +8,7 @@ export default function Upload() {
 	
 	const handleSubmit = ( event ) => {
 		event.preventDefault();
-		axios.post("/api/admin/images", image, { headers: { "Content-Type": "multipart/form-data" }})
+		axios.post("/api/images", image, { headers: { "Content-Type": "multipart/form-data" }})
 				.then(res => {
 					console.log(res);
 					if (res.data.imageId !== undefined) {

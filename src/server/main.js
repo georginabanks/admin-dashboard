@@ -9,7 +9,7 @@ app.use(fileUpload());
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use('/api/admin', router);
+app.use('/api', router);
 
 
 // Server
