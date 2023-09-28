@@ -30,10 +30,6 @@ router.get('/health-check', function (req, res) {
     res.sendStatus(200);
 });
 
-router.get('/analytics', async function (req, res) {
-    res.send( await getViewsByDate('7daysAgo', 'today'));
-});
-
 
 // Users
 

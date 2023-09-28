@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@google-analytics/data": "^4.0.1",
     "axios": "^1.5.0",
     "chart.js": "^4.4.0",
     "ckey": "^1.0.3",

@@ -1,4 +1,4 @@
-import {Outlet, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {DashboardLayout} from "./DashboardLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Pages from "./pages/Pages.jsx";
@@ -13,6 +13,7 @@ import EditTestimonial from "./pages/editing/EditTestimonial.jsx";
 import Users from "./pages/Users.jsx";
 import EditUser from "./pages/editing/EditUser.jsx";
 import Settings from "./pages/Settings.jsx";
+import './styles.css'
 
 export default function AdminRoutes({ cookies, handleLogin, handleLogout }) {
     return (

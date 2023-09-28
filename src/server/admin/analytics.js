@@ -1,78 +1,39 @@
-import { google } from 'googleapis';
-import ck from 'ckey';
-import {AddOrSubractDays} from "./datetime.js";
+import ck from "ckey";
+import {BetaAnalyticsDataClient} from '@google-analytics/data';
 
-const scopes = "https://www.googleapis.com/auth/analytics.readonly";
+const propertyId = ck.PROPERTY_ID;
 
-const jwt = new google.auth.JWT(
-  ck.CLIENT_EMAIL,
-  null,
-  ck.PRIVATE_KEY.replace(/\\n/g, "\n"),
-  scopes
-);
+// Using a default constructor instructs the client to use the credentials
+// specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
+const analyticsDataClient = new BetaAnalyticsDataClient();
 
-const view_id = ck.VIEW_ID;
-
-export async function getViews( startDate, endDate ){
-  try {
-    await jwt.authorize();
-
-    const data = await google.analytics("v3").data.ga.get({
-      auth: jwt,
-      ids: "ga:" + view_id,
-      "start-date": startDate,
-      "end-date": endDate,
-      metrics: "ga:pageviews",
+// Runs a simple report.
+async function runReport() {
+    const [response] = await analyticsDataClient.runReport({
+        property: `properties/${propertyId}`,
+        dateRanges: [
+                {
+                    startDate: '7daysAgo',
+                    endDate: 'today',
+                },
+        ],
+        dimensions: [
+                {
+                    name: 'date',
+                },
+        ],
+        metrics: [
+                {
+                    name: 'screenPageViews',
+                }
+                ],
     });
     
-    return data.data.rows !== undefined ? data.data.rows[0][0] : 0;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-export async function getViewsByDate( startDate, endDate ){
-  try {
-    await jwt.authorize();
-
-    const data = await google.analytics('v3').data.ga.get({
-      'auth': jwt,
-      'ids': 'ga:' + view_id,
-      'start-date': startDate,
-      'end-date': endDate,
-      'dimensions': 'ga:date',
-      'metrics': 'ga:pageviews',
-    });
+    console.log('Report result:');
     
-    return data.data.rows !== undefined ? data.data.rows : 0;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-const start = AddOrSubractDays(new Date('2023-08-27'), 10).toISOString().slice(0,10)
-const end = AddOrSubractDays(new Date('2023-08-27'), 7).toISOString().slice(0,10)
-console.log(await getViewsByDate(start, end))
-export async function getTopPosts( startDate, endDate ) {
-  try {
-    await jwt.authorize();
-
-    const data = await google.analytics("v3").data.ga.get({
-      auth: jwt,
-      ids: "ga:" + view_id,
-      "start-date": startDate,
-      "end-date": endDate,
-      dimensions: "ga:pagePath,ga:pageTitle",
-      metrics: "ga:pageviews",
-      sort: "-ga:pageviews",
-      "max-results": "10",
-      filters: "ga:medium==organic",
+    response.rows.forEach(row => {
+        console.log(row.dimensionValues[0], row.metricValues[0]);
     });
-    
-    return data.data.rows !== undefined
-            ? data.data.rows
-            : []
-  } catch (err) {
-    console.log(err);
-  }
 }
+
+runReport();
