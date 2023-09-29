@@ -137,7 +137,10 @@ export const User = sequelize.define('User', {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	username: { type: DataTypes.TEXT },
+	username: {
+		type: DataTypes.TEXT,
+		unique: true
+	},
 	password: { type: DataTypes.TEXT },
 	email: { type: DataTypes.TEXT },
 	name: { type: DataTypes.TEXT }

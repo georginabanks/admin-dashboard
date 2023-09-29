@@ -5,9 +5,43 @@ import {avatars, getUsers} from "../api.jsx";
 import _ from 'lodash';
 import {DeleteData} from "../functions/PostData.jsx";
 
+function UserRow({ user, counter, setCounter }) {
+	
+	const [buttons, setButtons] = useState({ deleteButton: 'Delete' })
+	
+	const deleteRow = async ( event ) => {
+		await DeleteData(event, setButtons, buttons,
+				'/users/' + user.username, 'userId');
+		setCounter( counter + 1 );
+	}
+	
+	return (
+			<tr key={ user.userId }>
+				<td>
+					<div className={'square'} style={{ minWidth: '12px' }}>
+						<img src={ user.filename !== null ? '/uploads/' + user.filename
+								: '/uploads/' + avatars[ Math.floor(Math.random() * 10) ].filename}
+							 alt={ user.alt } className={'round-image'} />
+					</div>
+				</td>
+				
+				<td>{ user.name }</td>
+				<td>{ user.username }</td>
+				<td>{ user.email }</td>
+				<td>{ _.startCase(user.permission )}</td>
+				
+				<td>
+					<a href={`/admin/users/${ user.username }/edit`}>Edit</a>
+					&emsp; / &emsp;
+					<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
+				</td>
+			</tr>
+	)
+}
+
 function UsersTable({ users, counter, setCounter }) {
 	return (
-			<div>
+			<div key={'usersTable'}>
 				<table className={'table computer'}>
 					<thead>
 						<tr>
@@ -22,37 +56,7 @@ function UsersTable({ users, counter, setCounter }) {
 					
 					<tbody>
 						{ users.map( user => {
-							
-							const [buttons, setButtons] = useState({ deleteButton: 'Delete' })
-							
-							const deleteRow = async ( event ) => {
-								await DeleteData(event, setButtons, buttons,
-										'/users/' + user.username, 'userId');
-								setCounter( counter + 1 );
-							}
-							
-							return (
-									<tr key={ users.indexOf(user) }>
-										<td>
-											<div className={'square'} style={{ minWidth: '12px' }}>
-												<img src={ user.filename !== null ? '/uploads/' + user.filename
-														: '/uploads/' + avatars[ Math.floor(Math.random() * 10) ].filename}
-													 alt={ user.alt } className={'round-image'} />
-											</div>
-										</td>
-										
-										<td>{ user.name }</td>
-										<td>{ user.username }</td>
-										<td>{ user.email }</td>
-										<td>{ _.startCase(user.permission )}</td>
-										
-										<td>
-											<a href={`/admin/users/${ user.username }/edit`}>Edit</a>
-											&emsp; / &emsp;
-											<a className={'ul-link'} onClick={ deleteRow }>Delete</a>
-										</td>
-									</tr>
-							)
+							return <UserRow key={'row' + user.userId } user={ user } counter={ counter } setCounter={ setCounter } />
 						})}
 					</tbody>
 				</table>

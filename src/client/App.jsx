@@ -60,8 +60,7 @@ export default function App() {
     
     return (
             <Routes>
-                <Route path={'/admin//*'} element={<AdminRoutes cookies={ cookies.user } handleLogin={ handleLogin }
-                                                              handleLogout={ handleLogout} />} />
+                <Route path={'/admin//*'} element={<AdminRoutes cookies={ cookies.user } handleLogin={ handleLogin } handleLogout={ handleLogout} />} />
                 <Route path={'/admin/login'} element={<Login handleLogin={ handleLogin } />} />
                 
                 <Route path={'*'} element={<ErrorPage />} />

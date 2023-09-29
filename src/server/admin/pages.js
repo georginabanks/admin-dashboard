@@ -4,11 +4,21 @@ export async function addPage( page ) {
 	
 	page.year && page.year.length > 0
 			? page.datePublished = new Date(`${page.year}-${page.month}-${page.date}T00:00:00.000Z`)
-			: page.datePublished = null;
+			: page.datePublished = new Date();
 	
 	delete page.year;
 	delete page.month;
 	delete page.date;
+	
+	let userId;
+	if ( page.username ) {
+		const data = await knex('users')
+				.select('userId')
+				.where('username', page.username)
+				.first();
+		
+		userId = data.userId;
+	}
 	
 	return await Page.create({
 		title: page.title,
@@ -16,7 +26,7 @@ export async function addPage( page ) {
 		datePublished: page.datePublished,
 		slug: page.slug,
 		StatusStatusId: page.StatusStatusId,
-		UserUserId: page.UserUserId,
+		UserUserId: userId,
 		featuredImage: page.imageId
 	});
 }
@@ -33,6 +43,7 @@ export async function editPage( page ) {
 			.where({ pageId: page.pageId })
 			.leftJoin('statuses', { 'pages.StatusStatusId' : 'statuses.statusId' })
 			.leftJoin('images', { 'pages.featuredImage' : 'images.imageId' })
+			.leftJoin('users', { 'pages.UserUserId' : 'users.userId' })
 			.update( page )
 			.catch( err => { return err });
 	
@@ -40,8 +51,8 @@ export async function editPage( page ) {
 	else { return 'error ' + data }
 }
 
-export function getPages( limit, query ) {
-	if ( query && query.length > 0 ) {
+export async function getPages( limit, query ) {
+	if ( query && query.length > 0 && limit ) {
 		return knex('pages')
 				.select('*')
 				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})
@@ -55,14 +66,31 @@ export function getPages( limit, query ) {
 				.orWhereILike('datePublished', `%${new Date(query).getDate()}%`)
 				.orWhereILike('datePublished', `%${new Date(query).getMonth()}%`)
 				.orWhereILike('datePublished', `%${new Date(query).getFullYear()}%`)
+				.orderBy('pageId', 'desc')
 				.limit(limit);
-	} else {
+	} else if ( limit ) {
 		return knex('pages')
 				.select('*')
 				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})
 				.leftJoin('images', {'pages.featuredImage': 'images.imageId '})
 				.leftJoin('users', {'pages.UserUserId': 'users.userId'})
+				.orderBy('pageId', 'desc')
 				.limit(limit);
+	} else {
+		const data = await knex('pages')
+				.select('*')
+				.leftJoin('statuses', {'pages.StatusStatusId': 'statuses.statusId'})
+				.leftJoin('images', {'pages.featuredImage': 'images.imageId '})
+				.leftJoin('users', {'pages.UserUserId': 'users.userId'})
+				.orderBy('pageId', 'desc');
+		
+		for (let i=0; i < data.length; i++) {
+			data[i].testimonials = await knex('testimonials')
+					.select('*')
+					.where('PagePageId', data[i].pageId)
+		}
+		
+		return data;
 	}
 }
 
@@ -83,3 +111,5 @@ export async function deletePage( id ) {
 	if (data > 0) { return 'deleted' }
 	else { return `error ` + data }
 }
+
+console.log(await getPages())

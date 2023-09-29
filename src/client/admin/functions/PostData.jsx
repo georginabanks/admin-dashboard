@@ -31,11 +31,16 @@ async function response(setButtonText, buttons, buttonType, originalButton, done
 		setTimeout(timeout, 1800);
 		setButtonText({ ...buttons, [buttonType]: doneButton });
 		setState(data.data);
+		
+		return 'success'
+		
 	} else {
 		console.log(data)
 		setTimeout(() => setButtonText({ ...buttons, [buttonType]: originalButton }), 3000);
 		if (data.data.name === "SequelizeUniqueConstraintError") { setButtonText("Already in database!"); }
 		else { setButtonText({ ...buttons, [buttonType]: 'ERROR' }) }
+		
+		return 'error'
 	}
 }
 
@@ -50,7 +55,7 @@ export default async function PostData(
 	
 	const data = await axios.post("/api/" + url, content, axiosConfig);
 	
-	await response(setButtons, buttons, buttonType, originalButton,
+	return await response(setButtons, buttons, buttonType, originalButton,
 			doneButton, data, dataSuccess, setState);
 }
 

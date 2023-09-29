@@ -23,15 +23,24 @@ export default function EditUser() {
 	}
 	
 	const handleSubmit = async ( event ) => {
-		await PostData( event, setButtons, buttons, 'saveButton', 'Save User',
-				'Waiting...', 'User Created', 'users/new', user, 'userId',
-				setUser);
-		navigate('/users');
+		let data;
+		
+		if ( user.userId ) {
+			data = await PostData( event, setButtons, buttons, 'saveButton', 'Save User',
+					'Waiting...', 'User Saved', 'users/' + user.username, user,
+					'userId', setUser);
+		} else {
+			data = await PostData( event, setButtons, buttons, 'saveButton', 'Save User',
+					'Waiting...', 'User Created', 'users/new', user, 'userId',
+					setUser);
+		}
+		
+		data === 'success' && navigate('/admin/users');
 	}
 	
 	return (
 			<div>
-				<a href={'/users'}><i className="fa-solid fa-arrow-left fa-2xl"></i></a>
+				<a href={'/admin/users'}><i className="fa-solid fa-arrow-left fa-2xl"></i></a>
 				
 				<form onSubmit={ handleSubmit }>
 					<div className={'row'}>
@@ -83,11 +92,11 @@ export default function EditUser() {
 							<div className="row mb-3">
 								<label htmlFor="permission" className="col-sm-3 col-form-label">Permissions</label>
 								<div className="col-sm-9">
-									<select className="form-select" aria-label="Select user permissions" name={'permission'}
-											onChange={ handleChange } defaultValue={ String(user.permissionId) }>
+									<select className="form-select" aria-label="Select user permissions" name={'PermissionPermissionId'}
+											onChange={ handleChange } value={ user.permissionId }>
 										<option value={''}>--</option>
 										{ permissions.length > 0 && permissions.map( p => {
-											return <option value={ String(p.permissionId) } key={ permissions.indexOf(p) }>
+											return <option value={ p.permissionId } key={ permissions.indexOf(p) }>
 												{ _.startCase(p.permission) }
 											</option>
 										})}

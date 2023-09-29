@@ -4,11 +4,21 @@ export async function addPost( post ) {
 	
 	post.year && post.year.length > 0
 			? post.datePublished = new Date(`${post.year}-${post.month}-${post.date}T00:00:00.000Z`)
-			: post.datePublished = null;
+			: post.datePublished = new Date();
 	
 	delete post.year;
 	delete post.month;
 	delete post.date;
+	
+	let userId;
+	if ( post.username ) {
+		const data = await knex('users')
+				.select('userId')
+				.where('username', post.username)
+				.first();
+		
+		userId = data.userId;
+	}
 	
 	return await Post.create({
 		title: post.title,
@@ -16,7 +26,7 @@ export async function addPost( post ) {
 		datePublished: post.datePublished,
 		slug: post.slug,
 		StatusStatusId: post.StatusStatusId,
-		UserUserId: post.UserUserId,
+		UserUserId: userId,
 		PostCategoryPostCategoryId: post.PostCategoryPostCategoryId,
 		featuredImage: post.imageId
 	});
@@ -34,6 +44,7 @@ export async function editPost( post ) {
 			.leftJoin('statuses', { 'posts.StatusStatusId' : 'statuses.statusId' })
 			.leftJoin('postCategories', { 'posts.PostCategoryPostCategoryId' : 'postCategory' })
 			.leftJoin('images', { 'posts.featuredImage' : 'images.imageId '})
+			.leftJoin('users', { 'posts.UserUserId' : 'users.userId' })
 			.update( post )
 			.catch( err => { return err });
 	

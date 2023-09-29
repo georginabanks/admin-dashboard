@@ -39,7 +39,8 @@ export async function getUsers( username, query ) {
 		return knex('users')
 				.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 				.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
-				.select('name', 'username', 'email', 'filename', 'alt', 'permission')
+				.select('userId', 'name', 'username', 'email', 'ImageImageId',
+						'imageId', 'filename', 'alt', 'permission', 'permissionId')
 				.where('username', username);
 	} else {
 		return knex('users')
@@ -49,7 +50,7 @@ export async function getUsers( username, query ) {
 				.orWhereILike('name', `%${query}%`)
 				.orWhereILike('email', `%${query}%`)
 				.orWhereILike('permission', `%${query}%`)
-				.select('name', 'username', 'email', 'filename', 'alt', 'permission');
+				.select('userId', 'name', 'username', 'email', 'filename', 'alt', 'permission', 'permissionId');
 	}
 }
 
@@ -62,7 +63,7 @@ export async function editUser( u ) {
 	const data = await knex('users')
 			.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
 			.leftJoin('images', {'users.ImageImageId': 'images.imageId'})
-			.where({ username: u.username })
+			.where({ userId: u.userId })
 			.update( u );
 	
 	if (data > 0) {

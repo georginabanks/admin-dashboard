@@ -20,7 +20,6 @@ import {
 import path from "path";
 import {addImage, deleteImage, editImage, getImageById, getImages} from "./images.js";
 import {addUser, deleteUser, editUser, getPermissions, getUsers, Login} from "./users.js";
-import {getTopPosts, getViews, getViewsByDate} from "./analytics.js";
 
 export const router = express.Router();
 const uploadPath = path.join('public', 'uploads');
@@ -53,18 +52,22 @@ router.post('/users/login', async function (req, res) {
     res.send( await Login( req.body ) );
 });
 
-router.post('/users/:username', async function (req, res) {
-    res.send( await deleteUser( req.params.username ));
-});
+router.route('/users/:username')
+        .post( async function (req, res) {
+            res.send( await editUser(req.body) );
+        })
+        .delete( async function (req, res) {
+            res.send( await deleteUser( req.params.username ));
+        });
 
 
 // Dashboard
 
 router.get('/dashboard', async function (req, res) {
             res.send({
-                pages: await getPages(5),
-                posts: await getPosts(5),
-                testimonials: await getTestimonials(5)
+                pages: await getPages(3),
+                posts: await getPosts(3),
+                testimonials: await getTestimonials(3)
             });
         });
 
