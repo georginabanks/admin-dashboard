@@ -1,4 +1,6 @@
 import { User, knex } from "./db.js";
+import bcrypt from 'bcrypt';
+import ck from "ckey";
 
 export async function addUser(u) {
 	return await User.create({
@@ -57,8 +59,22 @@ export async function getUsers( username, query ) {
 
 // Update User
 
-export async function editUser( u ) {
-	delete u.expires;
+export async function editUser( edits ) {
+	delete edits.expires;
+	const u = edits;
+	
+	let hashData = 1;
+	if ( u.password ) {
+		const salt = await bcrypt.genSalt(Number(ck.SALT_FACTOR));
+		
+		await bcrypt.hash( u.password, salt).then( async hash => {
+			u['password'] = hash;
+		}).catch( err => {
+			console.log(err);
+			hashData = 0;
+			delete u.password;
+		});
+	}
 	
 	const data = await knex('users')
 			.leftJoin('permissions', {'users.PermissionPermissionId': 'permissions.permissionId'})
@@ -66,7 +82,7 @@ export async function editUser( u ) {
 			.where({ userId: u.userId })
 			.update( u );
 	
-	if (data > 0) {
+	if ( data > 0 && hashData > 0 ) {
 		const rtn = await getUsers( u.username );
 		return rtn[0];
 	}

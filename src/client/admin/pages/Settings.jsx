@@ -20,25 +20,27 @@ export default function Settings({ cookies, updateUser }) {
 	}
 	
 	const handleSubmit = async ( event ) => {
-		if ( password.length > 0 && password.newPassword === password.confirmPassword ) {
+		if ( password.newPassword && password.newPassword === password.confirmPassword ) {
 			await PostData(event, setButtons, buttons, 'saveButton', 'Save',
-					'Saving...', 'Saved!', 'users', { ...user, password: password.newPassword },
-					'username', setUser);
+					'Saving...', 'Saved!', 'users/' + user.username,
+					{ ...user, password: password.newPassword }, 'username', setUser);
 			
 			updateUser( user.username );
 		}
 		
-		else if ( password.length > 0 && password.newPassword !== password.confirmPassword ) {
+		else if ( password.newPassword && password.newPassword !== password.confirmPassword ) {
 			setErrors('Passwords do not match')
 			await PostData(event, setButtons, buttons, 'saveButton', 'Save',
-					'Saving...', 'Saved!', 'users', user, 'username', setUser);
+					'Saving...', 'Saved!', 'users/' + user.username, user,
+					'username', setUser);
 			
 			updateUser( user.username );
 		}
 		
 		else {
 			await PostData(event, setButtons, buttons, 'saveButton', 'Save',
-					'Saving...', 'Saved!', 'users', user, 'username', setUser);
+					'Saving...', 'Saved!', 'users/' + user.username, user,
+					'username', setUser);
 			
 			updateUser( user.username );
 		}

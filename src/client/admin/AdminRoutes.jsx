@@ -44,7 +44,7 @@ export default function AdminRoutes({ cookies, handleLogin, handleLogout }) {
                     <Route path={'users/new'} element={<EditUser/>}/>
                     <Route path={'users/:username/edit'} element={<EditUser/>}/>
                 
-                    <Route path={'settings'} element={<Settings cookies={cookies.user} updateUser={handleLogin}/>}/>
+                    <Route path={'settings'} element={<Settings cookies={cookies.user} updateUser={handleLogin} />}/>
                 </Route>
             </Routes>
     )

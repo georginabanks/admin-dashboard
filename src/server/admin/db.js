@@ -148,7 +148,7 @@ export const User = sequelize.define('User', {
 
 useBcrypt(User, {
 	field: 'password', // secret field to hash, default: 'password'
-	rounds: 12, // used to generate bcrypt salt, default: 12
+	rounds: ck.SALT_FACTOR, // used to generate bcrypt salt, default: 12
 	compare: 'authenticate', // method used to compare secrets, default: 'authenticate'
 });
 
