@@ -2,6 +2,7 @@ import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
 import {useEffect, useState} from "react";
 import {getAnalytics, getRecents} from "../api.jsx";
 import { LineGraph } from "../functions/Graphs.jsx";
+import {DatetimeStrings} from "../outletComponents/Datetime.jsx";
 
 function RecentCard({ cardTitle, recents, seeAllLink }) {
 	return (
@@ -69,34 +70,20 @@ export default function Dashboard({ cookies }) {
 	
 	useEffect(() => {
 		getRecents().then( res => setRecents(res) );
-		// getAnalytics().then( res => {
-		// 	let views = [];
-		//
-		// 	res.map(a => {
-		// 		views.push(
-		// 			{
-		// 				id: res.indexOf(a),
-		// 				day: a[0],
-		// 				views: a[1]
-		// 			}
-		// 		)
-		// 	})
-		//
-		// 	console.log( views );
-		// 	const chartData = {
-		// 		labels: views.map((data) => data.day),
-		// 		datasets: [
-		// 			{
-		// 				data: views.map((data) => data.day),
-		// 				borderColor: '#624F81',
-		// 				borderWidth: 1
-		// 			}
-		// 		]
-		// 	}
-		//
-		// 	console.log( chartData );
-		// 	setAnalytics( chartData );
-		// })
+		getAnalytics().then( res => {
+			const chartData = {
+				labels: res.map((data) => DatetimeStrings(data.datetime).day),
+				datasets: [
+					{
+						data: res.map((data) => data.views),
+						borderColor: '#624F81',
+						borderWidth: 1
+					}
+				]
+			}
+
+			setAnalytics( chartData );
+		})
 	}, []);
 	
 	
@@ -118,7 +105,7 @@ export default function Dashboard({ cookies }) {
 							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials} seeAllLink={'testimonials'}/>
 						</div> }
 						
-						{ analytics.datasets && <div className={'col-12 col-md-6'}>
+						{ analytics.datasets && <div className={'col-12 col-md-6 col-xl-12'}>
 							<AnalyticsGraph analytics={ analytics } />
 						</div> }
 					</div>

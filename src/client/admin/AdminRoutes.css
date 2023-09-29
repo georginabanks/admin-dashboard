@@ -167,6 +167,10 @@
     }
 }
 
+.admin .dashboard h5 {
+    text-align: left;
+}
+
 .admin .dashboard-header {
     padding-bottom: 1rem;
 }
@@ -196,6 +200,10 @@
 .admin .greeting-text {
     padding-top: 0.5rem;
     padding-bottom: 0;
+}
+
+.admin .analytics-overview h5 {
+    padding-bottom: 0.5rem;
 }
 
 
