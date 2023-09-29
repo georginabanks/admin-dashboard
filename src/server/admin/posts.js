@@ -20,7 +20,7 @@ export async function addPost( post ) {
 		userId = data.userId;
 	}
 	
-	return await Post.create({
+	const data = await Post.create({
 		title: post.title,
 		content: post.content,
 		datePublished: post.datePublished,
@@ -30,6 +30,8 @@ export async function addPost( post ) {
 		PostCategoryPostCategoryId: post.PostCategoryPostCategoryId,
 		featuredImage: post.imageId
 	});
+	
+	return await getPostById( data.postId );
 }
 
 export async function editPost( post ) {
@@ -69,6 +71,7 @@ export function getPosts( limit, query ) {
 				.orWhereILike('datePublished', `%${new Date(query).getDate()}%`)
 				.orWhereILike('datePublished', `%${new Date(query).getMonth()}%`)
 				.orWhereILike('datePublished', `%${new Date(query).getFullYear()}%`)
+				.orderBy('postId', 'desc')
 				.limit(limit);
 	} else {
 		return knex('posts')
@@ -77,6 +80,7 @@ export function getPosts( limit, query ) {
 				.leftJoin('postCategories', {'posts.PostCategoryPostCategoryId': 'postCategory'})
 				.leftJoin('images', {'posts.featuredImage': 'images.imageId'})
 				.leftJoin('users', { 'posts.UserUserId' : 'users.userId' })
+				.orderBy('postId', 'desc')
 				.limit(limit);
 	}
 }

@@ -20,7 +20,7 @@ export async function addPage( page ) {
 		userId = data.userId;
 	}
 	
-	return await Page.create({
+	const data = await Page.create({
 		title: page.title,
 		content: page.content,
 		datePublished: page.datePublished,
@@ -29,6 +29,8 @@ export async function addPage( page ) {
 		UserUserId: userId,
 		featuredImage: page.imageId
 	});
+	
+	return await getPageById( data.pageId );
 }
 
 export async function editPage( page ) {

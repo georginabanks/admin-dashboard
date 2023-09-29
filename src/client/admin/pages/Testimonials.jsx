@@ -14,12 +14,12 @@ function Row({ testimonial, counter, setCounter }) {
 	}
 	
 	let comments = testimonial.testimonialContent;
-	if (testimonial.testimonialContent.length > 150) { comments.slice(150) }
+	if (testimonial.testimonialContent.length > 180) { comments = comments.slice(0, 180) + '...' }
 	
 	return (
 			<tr>
 				<td>{ testimonial.testimonialAuthor }</td>
-				<td className={'computer'}>{ comments + "..." }</td>
+				<td className={'computer'}>{ comments }</td>
 				<td>{ testimonial.title }</td>
 				
 				<td>

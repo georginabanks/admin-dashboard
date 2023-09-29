@@ -29,6 +29,7 @@ export function getTestimonials( limit, query ) {
 				.orWhereILike('testimonialAuthor', `%${query}%`)
 				.orWhereILike('testimonialBio', `%${query}%`)
 				.orWhereILike('title', `%${query}%`)
+				.orderBy('testimonialId', 'desc')
 				.limit(limit);
 	} else {
 		return knex('testimonials')

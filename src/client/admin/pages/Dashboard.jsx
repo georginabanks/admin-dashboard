@@ -18,24 +18,29 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 						 </div>
 					 </div>
 					
-					 { recents.reverse().map( r => {
+					 { recents.map( r => {
 						 
 						 let url;
-						 if ( r.pageId !== undefined ) { url = 'pages'}
+						 if ( r.testimonialId !== undefined ) { url = 'testimonials'}
 						 else if ( r.postId !== undefined ) { url = 'posts' }
-						 else if ( r.testimonialId !== undefined ) { url = 'testimonials' }
+						 else if ( r.pageId !== undefined ) { url = 'pages' }
 						 
 						 return (
-								 <div key={ r.pageId || r.postId || r.testimonialId } className={'recent-box'}>
+								 <div key={ r.testimonialId || r.pageId || r.postId } className={'recent-box'}>
 									 <div className={'row'}>
-										 { r.featuredImage !== null && <div className={'col-2'}>
+										 { r.filename && true && <div className={'col-2'}>
 											 <div className={'square'}>
-											 <img src={'/uploads/' + r.filename} alt={r.alt} className={'round-image'} />
+												 <img src={'/uploads/' + r.filename} alt={r.alt} className={'round-image'} />
 											 </div>
 										 </div>}
 										 <div className={'col-10'}>
-											 <a href={ `/admin/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
-												 { r.title.slice(0, 23) + '...' || r.testimonialAuthor }
+											 <a href={ `/admin/${url}/${r.testimonialId || r.postId || r.pageId}/edit` }>
+												 { r.testimonialAuthor
+														 ? r.testimonialAuthor
+														 : r.title.length > 23
+																 ? r.title.slice(0, 23) + '...'
+																 : r.title
+												 }
 											 </a>
 										 </div>
 									 </div>

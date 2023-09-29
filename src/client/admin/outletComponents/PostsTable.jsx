@@ -1,6 +1,7 @@
 import {DateString} from "./Datetime";
 import {DeleteData} from "../functions/PostData.jsx";
 import {useState} from "react";
+import _ from 'lodash';
 
 function Row({ post, counter, setCounter }) {
 	
@@ -25,7 +26,7 @@ function Row({ post, counter, setCounter }) {
 			<tr>
 				<td>{ post.title }</td>
 				<td className={'computer'}>{ post.username }</td>
-				<td className={'computer'}>{ post.statusType }</td>
+				<td className={'computer'}>{ _.startCase(post.statusType) }</td>
 				<td className={'computer'}>{ post.datePublished !== null && DateString(post.datePublished) }</td>
 				
 				<td>
