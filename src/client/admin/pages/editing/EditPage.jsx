@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {getPageById} from "../../api.jsx";
 import {DatetimeStrings} from "../../outletComponents/Datetime.jsx";
 
-export default function EditPage({ showDelete }) {
+export default function EditPage({ showDelete, cookies }) {
 	
 	const [page, setPage] = useState({ pageId: 0 });
 	const [quill, setQuill] = useState('');
@@ -55,7 +55,7 @@ export default function EditPage({ showDelete }) {
 	const saveDraft = async ( event ) => {
 		await PostData(event, setButtons, buttons, 'saveButton', 'Save Draft',
 				'Saving...', 'Page Saved', 'pages/' + page.pageId,
-				{ ...page, content: quill, StatusStatusId: 1 }, 'pageId', setPage
+				{ ...page, content: quill, StatusStatusId: 1, username: cookies.username }, 'pageId', setPage
 		);
 		setCounter( counter + 1);
 	}
@@ -63,7 +63,8 @@ export default function EditPage({ showDelete }) {
 	const publishPost = async ( event ) => {
 		await PostData( event, setButtons, buttons, 'publishButton', 'Publish',
 				'Publishing...', 'Published', 'pages/' + page.pageId,
-				{ ...page, content: quill, StatusStatusId: 2, datePublished: new Date() }, 'pageId', setPage
+				{ ...page, content: quill, StatusStatusId: 2, datePublished: new Date(), username: cookies.username },
+				'pageId', setPage
 		);
 		setCounter( counter + 1);
 	}

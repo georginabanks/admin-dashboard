@@ -45,7 +45,7 @@ export default function Login({ handleLogin }) {
 	// Login Form
 	
 	return (
-			<div className='login-page'>
+			<div className='login-page admin'>
 				<div className="card" id="login-card">
 					<div className="card-header">
 						<h3 className="card-title text-center">Login</h3>

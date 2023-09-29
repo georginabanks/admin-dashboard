@@ -5,7 +5,7 @@ import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {getPageById, getPostById} from "../../api.jsx";
 import {DatetimeStrings} from "../../outletComponents/Datetime.jsx";
 
-export default function EditPost({ showDelete }) {
+export default function EditPost({ showDelete, cookies }) {
 	
 	const [post, setPost] = useState({ postId: 0 });
 	const [quill, setQuill] = useState(post.content);
@@ -55,7 +55,7 @@ export default function EditPost({ showDelete }) {
 	const saveDraft = async ( event ) => {
 		await PostData(event, setButtons, buttons, 'saveButton', 'Save Draft',
 				'Saving...', 'Post Saved', 'posts/' + post.postId,
-				{ ...post, content: quill, StatusStatusId: 1 }, 'postId', setPost
+				{ ...post, content: quill, StatusStatusId: 1, username: cookies.username }, 'postId', setPost
 		);
 		setCounter(counter + 1);
 	}
@@ -63,7 +63,8 @@ export default function EditPost({ showDelete }) {
 	const publishPost = async ( event ) => {
 		await PostData( event, setButtons, buttons, 'publishButton', 'Publish',
 				'Publishing...', 'Published', 'posts/' + post.postId,
-				{ ...post, content: quill, StatusStatusId: 2, datePublished: new Date() }, 'postId', setPost
+				{ ...post, content: quill, StatusStatusId: 2, datePublished: new Date(), username: cookies.username },
+				'postId', setPost
 		);
 		setCounter(counter + 1);
 	}

@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./AdminRoutes.css";
 import DashboardSidebar from "./outletComponents/DashboardSidebar.jsx";
 import { Outlet } from "react-router-dom";
 import Login from "./pages/Login.jsx";
@@ -6,7 +6,7 @@ import Login from "./pages/Login.jsx";
 export const DashboardLayout = ({ handleLogin, handleLogout, cookies }) => {
 	if ( cookies ) {
 		return (
-				<div>
+				<div className={'admin'}>
 					<DashboardSidebar logout={handleLogout} cookies={ cookies } />
 					
 					<div className={'outlet'}>

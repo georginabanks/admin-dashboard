@@ -17,7 +17,7 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 						 </div>
 					 </div>
 					
-					 { recents.map( r => {
+					 { recents.reverse().map( r => {
 						 
 						 let url;
 						 if ( r.pageId !== undefined ) { url = 'pages'}
@@ -32,9 +32,9 @@ function RecentCard({ cardTitle, recents, seeAllLink }) {
 											 <img src={'/uploads/' + r.filename} alt={r.alt} className={'round-image'} />
 											 </div>
 										 </div>}
-										 <div className={'col-auto'}>
+										 <div className={'col-9'}>
 											 <a href={ `/admin/${url}/${r.pageId || r.postId || r.testimonialId}/edit` }>
-												 { r.title || r.testimonialAuthor }
+												 { r.title.slice(0, 20) + '...' || r.testimonialAuthor }
 											 </a>
 										 </div>
 									 </div>
@@ -69,34 +69,34 @@ export default function Dashboard({ cookies }) {
 	
 	useEffect(() => {
 		getRecents().then( res => setRecents(res) );
-		getAnalytics().then( res => {
-			let views = [];
-			
-			res.map(a => {
-				views.push(
-					{
-						id: res.indexOf(a),
-						day: a[0],
-						views: a[1]
-					}
-				)
-			})
-			
-			console.log( views );
-			const chartData = {
-				labels: views.map((data) => data.day),
-				datasets: [
-					{
-						data: views.map((data) => data.day),
-						borderColor: '#624F81',
-						borderWidth: 1
-					}
-				]
-			}
-			
-			console.log( chartData );
-			setAnalytics( chartData );
-		})
+		// getAnalytics().then( res => {
+		// 	let views = [];
+		//
+		// 	res.map(a => {
+		// 		views.push(
+		// 			{
+		// 				id: res.indexOf(a),
+		// 				day: a[0],
+		// 				views: a[1]
+		// 			}
+		// 		)
+		// 	})
+		//
+		// 	console.log( views );
+		// 	const chartData = {
+		// 		labels: views.map((data) => data.day),
+		// 		datasets: [
+		// 			{
+		// 				data: views.map((data) => data.day),
+		// 				borderColor: '#624F81',
+		// 				borderWidth: 1
+		// 			}
+		// 		]
+		// 	}
+		//
+		// 	console.log( chartData );
+		// 	setAnalytics( chartData );
+		// })
 	}, []);
 	
 	
@@ -106,19 +106,19 @@ export default function Dashboard({ cookies }) {
 					<DashboardHeader cookies={ cookies } />
 					
 					<div className={'row gy-3'}>
-						{ recents.posts.length > 0 && <div className={'col-md-4'}>
+						{ recents.posts.length > 0 && <div className={'col-md-6 col-xl-4'}>
 							<RecentCard cardTitle={'Recent Posts'} recents={recents.posts} seeAllLink={'posts'}/>
 						</div> }
 						
-						{ recents.pages.length > 0 && <div className={'col-md-4'}>
+						{ recents.pages.length > 0 && <div className={'col-md-6 col-xl-4'}>
 							<RecentCard cardTitle={'Recent Pages'} recents={recents.pages} seeAllLink={'pages'}/>
 						</div> }
 						
-						{ recents.testimonials.length > 0 && <div className={'col-md-4'}>
+						{ recents.testimonials.length > 0 && <div className={'col-md-6 col-xl-4'}>
 							<RecentCard cardTitle={'Recent Testimonials'} recents={recents.testimonials} seeAllLink={'testimonials'}/>
 						</div> }
 						
-						{ analytics.datasets && <div className={'col-12'}>
+						{ analytics.datasets && <div className={'col-12 col-md-6'}>
 							<AnalyticsGraph analytics={ analytics } />
 						</div> }
 					</div>
