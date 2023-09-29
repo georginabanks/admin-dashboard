@@ -28,7 +28,7 @@ export default function DashboardHeader({ cookies }) {
 					<div className={'col-md-6'}>
 						<div className={'greeting'}>
 							<div className={'row'}>
-								<div className={'col-3'}>
+								<div className={'col-2'}>
 									<div className={'square'}>
 										<img src={ cookies.filename !== null ? '/uploads/' + cookies.filename
 												: '/uploads/' + avatars[ Math.floor(Math.random() * 10) ].filename }
@@ -51,7 +51,7 @@ export default function DashboardHeader({ cookies }) {
 										<i className="fa-solid fa-magnifying-glass"></i>
 									</label>
 								</div>
-								<div className={'col-auto'}>
+								<div className={'col-auto search-box'}>
 									<input type="text" className="form-control" id="query" placeholder=" Search Posts"
 										   onChange={ handleChange } onKeyDown={ handleSubmit } />
 								</div>
