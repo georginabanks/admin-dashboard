@@ -44,7 +44,7 @@ export default function App() {
     }
     
     function handleLogout() {
-        removeCookie("user");
+        removeCookie("user", { path: '/' });
         return <Navigate to='/' replace state={{path: location.pathname}}/>
     }
     
