@@ -1,7 +1,7 @@
 import PostData, {HandleChange} from "../functions/PostData.jsx";
 import {useState} from "react";
 import SelectImage from "../outletComponents/SelectImage.jsx";
-import {getImageById} from "../api.jsx";
+import {getImageById} from "../../api.jsx";
 
 export default function Settings({ cookies, updateUser }) {
 	

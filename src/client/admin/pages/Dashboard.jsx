@@ -1,6 +1,6 @@
 import DashboardHeader from "../outletComponents/DashboardHeader.jsx";
 import {useEffect, useState} from "react";
-import {getAnalytics, getRecents} from "../api.jsx";
+import {getAnalytics, getRecents} from "../../api.jsx";
 import { LineGraph } from "../functions/Graphs.jsx";
 import {DatetimeStrings} from "../outletComponents/Datetime.jsx";
 

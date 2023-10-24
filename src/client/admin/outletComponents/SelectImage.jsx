@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getImages} from "../api.jsx";
+import {getImages} from "../../api.jsx";
 
 function Grid({ images, selected, setSelected }) {
 	return (

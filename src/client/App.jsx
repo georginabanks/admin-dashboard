@@ -13,7 +13,7 @@ import EditTestimonial from "./admin/pages/editing/EditTestimonial.jsx";
 import EditPage from "./admin/pages/editing/EditPage.jsx";
 import EditPost from "./admin/pages/editing/EditPost.jsx";
 import EditImage from "./admin/pages/editing/EditImage.jsx";
-import {getUsers} from "./admin/api.jsx";
+import {getUsers} from "./api.jsx";
 import Users from "./admin/pages/Users.jsx";
 import EditUser from "./admin/pages/editing/EditUser.jsx";
 import AdminRoutes from "./admin/AdminRoutes.jsx";

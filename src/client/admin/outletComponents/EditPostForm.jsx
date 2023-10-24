@@ -2,7 +2,7 @@ import EditHeader from "./EditHeader.jsx";
 import {axiosConfig, HandleChange} from "../functions/PostData.jsx";
 import TextEditor from "./TextEditor.jsx";
 import {useEffect, useState} from "react";
-import {getPostCategories} from "../api.jsx";
+import {getPostCategories} from "../../api.jsx";
 import axios from "axios";
 import SelectImage from "./SelectImage.jsx";
 

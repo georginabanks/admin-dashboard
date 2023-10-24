@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {useEffect, useState} from "react";
-import {avatars, getUsers} from "../api.jsx";
+import {avatars, getUsers} from "../../api.jsx";
 import _ from 'lodash';
 import {DeleteData} from "../functions/PostData.jsx";
 

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {getPages, getTestimonialById} from "../../api.jsx";
+import {getPages, getTestimonialById} from "../../../api.jsx";
 import PostData, {DeleteData, HandleChange} from "../../functions/PostData.jsx";
 import EditHeader from "../../outletComponents/EditHeader.jsx";
 

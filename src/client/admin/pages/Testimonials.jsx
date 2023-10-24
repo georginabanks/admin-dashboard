@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTestimonials } from "../api.jsx";
+import { getTestimonials } from "../../api.jsx";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {DeleteData} from "../functions/PostData.jsx";
 

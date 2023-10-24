@@ -1,4 +1,4 @@
-import {avatars} from "../api.jsx";
+import {avatars} from "../../api.jsx";
 import {useState} from "react";
 import {HandleChange} from "../functions/PostData.jsx";
 import {useNavigate} from "react-router-dom";

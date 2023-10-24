@@ -1,6 +1,6 @@
 import PostsTable from "../outletComponents/PostsTable";
 import {useEffect, useState} from "react";
-import { getPages } from "../api.jsx";
+import { getPages } from "../../api.jsx";
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 
 export default function Pages() {

@@ -1,6 +1,6 @@
 import OutletHeader from "../outletComponents/OutletHeader.jsx";
 import {useEffect, useState} from "react";
-import {getImages} from "../api.jsx";
+import {getImages} from "../../api.jsx";
 import ImageGrid from "../outletComponents/ImageGrid.jsx";
 
 export default function Images() {
@@ -10,7 +10,7 @@ export default function Images() {
 	const [counter, setCounter] = useState(0);
 	
 	useEffect(() => {
-		getImages( limit ).then( res => setImages(res) );
+		getImages( limit ).then( res => setImages(res ) );
 	}, [ counter ]);
 	
 	return (

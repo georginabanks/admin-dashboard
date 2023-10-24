@@ -15,7 +15,7 @@ export default function ImageGrid({ images, counter, setCounter }) {
 					}
 					
 					return (
-							<div className={'col-6 col-md-3'} key={ img.imageId }>
+							<div className={'col-6 col-md-3 col-xl-2'} key={ img.imageId }>
 								<div className={'thumbnail-image'}>
 									<img src={ '/uploads/' + img.filename } alt={ img.alt } />
 									<div className={'overlay'}>

@@ -2,7 +2,7 @@ import EditPostForm from "../../outletComponents/EditPostForm.jsx";
 import {useEffect, useState} from "react";
 import PostData, {DeleteData} from "../../functions/PostData.jsx";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
-import {getPageById, getPostById} from "../../api.jsx";
+import {getPageById, getPostById} from "../../../api.jsx";
 import {DatetimeStrings} from "../../outletComponents/Datetime.jsx";
 
 export default function EditPost({ showDelete, cookies }) {

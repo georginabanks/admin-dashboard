@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import PostData, {HandleChange} from "../../functions/PostData.jsx";
 import {useNavigate, useParams} from "react-router-dom";
-import {getPermissions, getUsers} from "../../api.jsx";
+import {getPermissions, getUsers} from "../../../api.jsx";
 import _ from 'lodash';
 
 export default function EditUser() {
